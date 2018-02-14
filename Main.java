@@ -8,6 +8,7 @@ public class Main {
         Controller controller = new Controller("tesztike");
         try {
             controller.loadTaskFromFile();
+            controller.insertUnit(0);
 
             ///<INSERT TEST>
 //            controller.insertUnit(2);
