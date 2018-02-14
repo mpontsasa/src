@@ -8,7 +8,7 @@ public class Main {
         Controller controller = new Controller("tesztike");
         try {
             controller.loadTaskFromFile();
-            controller.insertUnit(0);
+
 
             ///<INSERT TEST>
 //            controller.insertUnit(2);
@@ -28,11 +28,11 @@ public class Main {
 
             //<DELETE TEST>
 
-            controller.deleteUnit(1);
-
-            //controller.deleteSubUnit(0,1);
-
-            controller.deleteRow(0,0,1);
+//            controller.deleteUnit(1);
+//
+//            //controller.deleteSubUnit(0,1);
+//
+//            controller.deleteRow(0,0,1);
 
             //</DELETE TEST>
 

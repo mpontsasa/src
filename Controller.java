@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -8,18 +9,42 @@ public class Controller {
 
     private ScheduleModel scheduleModel;
     private TaskModel taskModel;
-    //***ide meg ket view
+
+
+    private ScheduleView scheduleView;
+    private TaskView taskView;
+    private JFrame frame;
 
     private String projectName;
 
     public Controller(String projectName) {
 
-        scheduleModel = new ScheduleModel();
-        taskModel = new TaskModel();
-
         this.projectName = projectName;
+        initializeFrame();
+
+        scheduleModel = new ScheduleModel();
+        taskModel = new TaskModel();//eloszor letrehozzuk a modelleket, aztan atadjuk a viewknak a megfelelo modellt
+        scheduleView = new ScheduleView(scheduleModel, frame);
+        taskView = new TaskView(taskModel, frame);
+
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        scheduleView.test();
 
     }
+
+    private void initializeFrame(){
+        frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setTitle("Test");
+        frame.setVisible(true);
+    }
+
 
     public void loadTaskFromFile() throws FileNotFoundException{
 
