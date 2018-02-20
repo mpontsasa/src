@@ -43,8 +43,6 @@ public class Main {
             //controller.setProjectName("tesztike_mentes");
             //controller.saveTaskToFile();
 
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -59,9 +57,7 @@ public class Main {
 //        //System.out.println(t.get(20));
 //
 //       // t.remove(-1);
-//        t.remove(2);
-
-
+//        t.remove(2)
         System.out.println();
     }
 }

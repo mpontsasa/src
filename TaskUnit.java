@@ -2,13 +2,26 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 
 public class TaskUnit {
 
     private ArrayList<TaskSubUnit> subUnits;
-    private String unitCode;
     private String unitHeader;
+    private String unitCode;
+
+    private String unitTitle;
+    private float pretUnitar;
+    private String unitateMetric;
+    private float cantitate;
+    private int ore;
+    private float pretTotal;
+    private float material;
+    private float manopera;
+    private float utlaj;
+    private float transport;
+
 
     public TaskUnit() {
         subUnits = new ArrayList<>();
@@ -23,8 +36,7 @@ public class TaskUnit {
         loadUnit(unitCode);
     }
 
-    public void initialiseSubUnits()
-    {
+    public void initialiseSubUnits() {
         for (int i = 0; i < 4; i ++)
         {
             subUnits.add(new TaskSubUnit(i));
@@ -33,6 +45,15 @@ public class TaskUnit {
 
     public String getHeader(){
         return unitCode;
+    }
+
+    public void processHeader(String line){
+
+        StringTokenizer multiTokenizer = new StringTokenizer(line, "@");
+        while (multiTokenizer.hasMoreTokens())
+        {
+            System.out.println(multiTokenizer.nextToken());
+        }
     }
 
     public void loadUnit(String unitCode) throws Exception{
@@ -48,8 +69,8 @@ public class TaskUnit {
                 throw new MissingUnitHeaderException("nincs hader");
             }
             else {
-                //processHeader
-                unitHeader = line;
+
+                processHeader(line);
             }
         }
         else
@@ -100,7 +121,6 @@ public class TaskUnit {
         fw.close();
 
     }
-
 
 //    public void insertSubUnit(int subUnitIndex){
 //

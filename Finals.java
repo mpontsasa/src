@@ -12,4 +12,6 @@ public class Finals {
     public final static String[] SUB_UNIT_TITLES = {"MATERIAL", "MANOPERA", "UTILAJ", "TRANSPORT"};
     public final static String[] SUB_UNIT_NECESARS = {"NECESAR MATERIAL", "NECESAR MANOPERA", "NECESAR UTILAJ", "NECESAR TRANSPORT"};
     public final static int NUMBER_OF_SUBUNITS = 4;
+
+    
 }
