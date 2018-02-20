@@ -44,7 +44,7 @@ public class Controller {
         fopanel.add(tv2);
 
         shell = new JScrollPane(fopanel);
-
+        shell.getVerticalScrollBar().setUnitIncrement(16);
 
 
 

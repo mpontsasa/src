@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.ArrayList;
 
 public class TaskView extends JPanel implements SuperView {
 
@@ -10,11 +11,12 @@ public class TaskView extends JPanel implements SuperView {
     private JFrame myFrame;
     private JTable jt;
 
-    private SubUnitView[] subUnitViews;
+    private ArrayList<SubUnitView> subUnitViews;
 
     public TaskView(SuperModel myModel, JFrame myFrame) {
         this.myModel = myModel;
         this.myFrame = myFrame;
+        subUnitViews = new ArrayList<>();
 
 //        String[] columns= {"name", "age"};
 //        String[][] data = {{"sasa","16"},{"matyi", "2"},{"matyi", "2"},{"matyi", "2"},{"matyi", "2"},{"matyi", "2"},{"matyi", "2"}};
@@ -31,13 +33,19 @@ public class TaskView extends JPanel implements SuperView {
         SubUnitView suv2 = new SubUnitView("UTILAJE");
         SubUnitView suv3 = new SubUnitView("MATERIAL");
         SubUnitView suv4 = new SubUnitView("TRANSPORT");
+        subUnitViews.add(suv);subUnitViews.add(suv2);subUnitViews.add(suv3);subUnitViews.add(suv4);
+
+
         this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));//https://docs.oracle.com/javase/tutorial/uiswing/layout/box.html
 
         this.add(uv);
-        this.add(suv);
-        this.add(suv2);
-        this.add(suv3);
-        this.add(suv4);
+        for(SubUnitView subUnitView:subUnitViews){
+            this.add(subUnitView);
+        }
+//        this.add(suv);
+//        this.add(suv2);
+//        this.add(suv3);
+//        this.add(suv4);
         this.add(paddingPanel);
 
 

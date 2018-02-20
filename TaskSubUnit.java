@@ -71,7 +71,7 @@ public class TaskSubUnit {
         }
         else{
             System.out.println("the wrong line:"+line);
-            throw new InvalidRowException(line);
+            throw new InvalidRowHeaderException(line);
         }
     }
 

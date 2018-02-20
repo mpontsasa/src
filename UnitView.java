@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseWheelEvent;
 
 public class UnitView extends JPanel {
 
@@ -15,7 +16,27 @@ public class UnitView extends JPanel {
                             "112.68","20.00","6.00","5.00","8.00","5.00","9.00"}};
         table = new JTable(data,columns);
         table.getTableHeader().setReorderingAllowed(false);
-        scrollPane = new JScrollPane(table);
+
+
+        scrollPane = new JScrollPane(table){
+
+            @Override
+            protected void processMouseWheelEvent(MouseWheelEvent e) {
+                //https://stackoverflow.com/questions/12911506/why-jscrollpane-does-not-react-to-mouse-wheel-events
+                if (!isWheelScrollingEnabled()) {
+                    if (getParent() != null)
+                        getParent().dispatchEvent(
+                                SwingUtilities.convertMouseEvent(this, e, getParent()));
+                    return;
+                }
+                super.processMouseWheelEvent(e);
+            }
+
+        };
+        scrollPane.setWheelScrollingEnabled(false); ;
+
+
+
         table.setFillsViewportHeight(true);
         //table.setPreferredScrollableViewportSize(new Dimension(600,450));
 
@@ -37,7 +58,7 @@ public class UnitView extends JPanel {
         this.setBackground(Color.BLUE);
 
 
-       
+
         this.add(scrollPane);
     }
 }

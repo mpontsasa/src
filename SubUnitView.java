@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import java.awt.*;
+import java.awt.event.MouseWheelEvent;
 
 public class SubUnitView extends JPanel {
 
@@ -23,7 +24,28 @@ public class SubUnitView extends JPanel {
                         "7777", "yess", "sasa"}};
         table = new JTable(data,columns);
         table.getTableHeader().setReorderingAllowed(false);
-        scrollPane = new JScrollPane(table);
+
+
+
+        scrollPane = new JScrollPane(table){
+
+            @Override
+            protected void processMouseWheelEvent(MouseWheelEvent e) {
+                //https://stackoverflow.com/questions/12911506/why-jscrollpane-does-not-react-to-mouse-wheel-events
+                if (!isWheelScrollingEnabled()) {
+                    if (getParent() != null)
+                        getParent().dispatchEvent(
+                                SwingUtilities.convertMouseEvent(this, e, getParent()));
+                    return;
+                }
+                super.processMouseWheelEvent(e);
+            }
+
+        };
+        scrollPane.setWheelScrollingEnabled(false); ;
+
+
+
         table.setFillsViewportHeight(true);
         table.setPreferredScrollableViewportSize(new Dimension(600,450));
 
