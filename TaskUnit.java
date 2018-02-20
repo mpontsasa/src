@@ -8,18 +8,17 @@ import java.util.StringTokenizer;
 public class TaskUnit {
 
     private ArrayList<TaskSubUnit> subUnits;
-    private String unitHeader;
     private String unitCode;
 
     private String unitTitle;
     private float pretUnitar;
     private String unitateMetric;
     private float cantitate;
-    private int ore;
+    private float ore;
     private float pretTotal;
     private float material;
     private float manopera;
-    private float utlaj;
+    private float utilaj;
     private float transport;
 
 
@@ -44,16 +43,66 @@ public class TaskUnit {
     }
 
     public String getHeader(){
-        return unitCode;
+        return Finals.UNIT_INITAL + Finals.TOK_D + unitTitle + Finals.TOK_D + pretUnitar + Finals.TOK_D + unitateMetric
+                + Finals.TOK_D + cantitate + Finals.TOK_D + ore + Finals.TOK_D + pretTotal + Finals.TOK_D
+                + material + Finals.TOK_D + manopera + Finals.TOK_D + utilaj + Finals.TOK_D
+                + transport;
+
     }
 
-    public void processHeader(String line){
+    public void processHeader(String line) throws Exception{
 
-        StringTokenizer multiTokenizer = new StringTokenizer(line, "@");
-        while (multiTokenizer.hasMoreTokens())
-        {
-            System.out.println(multiTokenizer.nextToken());
+        String[] tokens = line.split("@");
+
+        if (tokens.length != Finals.NR_OF_FIELDS_IN_UNIT){
+            System.out.println("" + tokens.length);
+
+            for (String token : tokens)
+            {
+                System.out.println("sor: " + token);
+            }
+
+            throw new InvalidUnitHeaderException("incorrect number of fields in header");
         }
+
+        int i = 1;
+
+        unitTitle = tokens[i];
+        i++;
+
+        String nextTok = tokens[i];
+        pretUnitar = Float.parseFloat(nextTok);
+        i++;
+
+        unitateMetric = tokens[i];
+        i++;
+
+        nextTok = tokens[i];
+        cantitate = Float.parseFloat(nextTok);
+        i++;
+
+        nextTok = tokens[i];
+        ore = Float.parseFloat(nextTok);
+        i++;
+
+        nextTok = tokens[i];
+        pretTotal = Float.parseFloat(nextTok);
+        i++;
+
+        nextTok = tokens[i];
+        material = Float.parseFloat(nextTok);
+        i++;
+
+        nextTok = tokens[i];
+        manopera = Float.parseFloat(nextTok);
+        i++;
+
+        nextTok = tokens[i];
+        utilaj = Float.parseFloat(nextTok);
+        i++;
+
+        nextTok = tokens[i];
+        transport = Float.parseFloat(nextTok);
     }
 
     public void loadUnit(String unitCode) throws Exception{
@@ -105,7 +154,7 @@ public class TaskUnit {
     public void saveUnit() throws Exception{
         FileWriter fw = new FileWriter(Finals.UNITS_PATH + unitCode + ".txt");
 
-        fw.write(Finals.UNIT_INITAL + getHeader() + "\n");
+        fw.write(getHeader() + "\n");
 
 
         for (int i = 0; i < Finals.NUMBER_OF_SUBUNITS; i++){

@@ -7,6 +7,7 @@ public class TaskSubUnit {
     private Iterator<TaskRow> saveIterator;
     private int subUnitIndex;
 
+    private float sumPretTotalUnitar;
 
     public TaskSubUnit(int subUnitIndex) {
         taskRows = new ArrayList<>();
@@ -49,8 +50,6 @@ public class TaskSubUnit {
             throw new InvalidRowException(line);
         }
     }
-
-
 
     public void insertRow(int rowIndex){
         if(rowIndex == taskRows.size()){
