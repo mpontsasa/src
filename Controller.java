@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -34,14 +35,18 @@ public class Controller {
             e.printStackTrace();
         }
         scheduleView.test();
-
+        frame.add(taskView);
+        frame.revalidate();
+        frame.repaint();
     }
 
     private void initializeFrame(){
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setBounds(0,0,600,450);
+        //frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setTitle("Test");
+
         frame.setVisible(true);
     }
 
