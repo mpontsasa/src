@@ -169,7 +169,6 @@ public class TaskUnit {
         }
         fw.write(Finals.UNIT_END_STRING);
         fw.close();
-
     }
 
 //    public void insertSubUnit(int subUnitIndex){
