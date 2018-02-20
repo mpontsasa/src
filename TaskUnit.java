@@ -52,7 +52,7 @@ public class TaskUnit {
 
     public void processHeader(String line) throws Exception{
 
-        String[] tokens = line.split("@");
+        String[] tokens = line.split(Finals.TOK_D);
 
         if (tokens.length != Finals.NR_OF_FIELDS_IN_UNIT){
             System.out.println("" + tokens.length);
@@ -124,7 +124,7 @@ public class TaskUnit {
         }
         else
         {
-            //ures file error
+            throw new MissingUnitHeaderException("URES FILE");
         }
 
         while(scan.hasNextLine()){
@@ -135,6 +135,7 @@ public class TaskUnit {
 
             if (line.substring(0,1).equals(Finals.SUB_UNIT_INITAL)){
                 currentSubUnit ++;
+                subUnits.get(currentSubUnit).processHeader(line);
             }
             else{
                 if (currentSubUnit == -1){

@@ -14,6 +14,7 @@ public class TaskSubUnit {
         saveIterator = null;
 
         this.subUnitIndex = subUnitIndex;
+        this.sumPretTotalUnitar = 0;
     }
 
     private TaskSubUnit() { //private mert csak a unit hozht lete subunitot csak indexel (erre nins szukseg)
@@ -23,10 +24,35 @@ public class TaskSubUnit {
         this.subUnitIndex = -1;
     }
 
+    private String getSubUnitHeader(){
+        return Finals.SUB_UNIT_INITAL + Finals.TOK_D + sumPretTotalUnitar;
+    }
+
+    public void processHeader(String line) throws Exception{
+        String[] tokens = line.split(Finals.TOK_D);
+
+        if (tokens.length != Finals.NR_OF_FIELDS_IN_SUB_UNIT){
+            System.out.println("" + tokens.length);
+
+            for (String token : tokens)
+            {
+                System.out.println("sor: " + token);
+            }
+
+            throw new InvalidSubUnitHeaderException("incorrect number of fields in subunit");
+        }
+
+        int i = 1;
+        String nextTok = tokens[i];
+        sumPretTotalUnitar = Float.parseFloat(nextTok);
+        i++;
+
+    }
+
     public String saveLine(){
         if (saveIterator == null){
             saveIterator = taskRows.iterator();
-            return "S" + subUnitIndex;
+            return getSubUnitHeader();
         }
         else if(saveIterator.hasNext()){
             return saveIterator.next().saveLine();
@@ -38,8 +64,6 @@ public class TaskSubUnit {
     }
 
     public void loadLine(String line) throws Exception{
-        System.out.println(line+" Task Sub Unit");
-
 
         //megnezzuk hogy amit kaptunk row-e vagy anomalia (CSAK ROWT KAPHAT A SUBUNIT)
         if(line.substring(0,1).equals(Finals.ROW_INITAL)){

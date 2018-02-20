@@ -22,7 +22,7 @@ public class TaskModel implements SuperModel {
         taskUnits.add(new TaskUnit(unitCode));
     }
 
-   public void saveUnits() throws Exception {
+    public void saveUnits() throws Exception {
        for (TaskUnit unit : taskUnits) {
            unit.saveUnit();
        }

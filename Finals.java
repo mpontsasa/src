@@ -14,5 +14,6 @@ public class Finals {
     public final static int NUMBER_OF_SUBUNITS = 4;
 
     public final static int NR_OF_FIELDS_IN_UNIT = 11;
+    public final static int NR_OF_FIELDS_IN_SUB_UNIT = 2;
     public final static String TOK_D = "@"; //token delimiter
 }
