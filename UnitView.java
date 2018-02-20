@@ -1,21 +1,19 @@
 import javax.swing.*;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
 import java.awt.*;
 
-public class SubUnitView extends JPanel {
+public class UnitView extends JPanel {
 
-    private JScrollPane scrollPane;
+
     private JTable table;
+    private JScrollPane scrollPane;
 
-    public SubUnitView(String header) {
-
+    public UnitView() {
         this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
         String[] columns= {"Nr.", "Element", "um", "cantitate unitara", "pret unitar", "pret total unitar",
-                            "cantitate totala", "pret total", "furnizor"};
+                "cantitate totala", "pret total", "furnizor"};
         String[][] data = {
                 {"1", "oi", "kg", "51", "1.23", "845",
-                "78", "0", "matyi"},
+                        "78", "0", "matyi"},
 
                 {"2", "yeah", "meter", "5", "77", "777",
                         "7777", "yess", "sasa"},
@@ -42,7 +40,7 @@ public class SubUnitView extends JPanel {
         this.setPreferredSize(new Dimension(width,height));
 
         //this.setBackground(Color.BLACK);
-        this.add(new JLabel(header));
+        
         this.add(scrollPane);
     }
 }
