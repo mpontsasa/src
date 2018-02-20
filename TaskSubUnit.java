@@ -5,31 +5,27 @@ public class TaskSubUnit {
 
     private ArrayList<TaskRow> taskRows;
     private Iterator<TaskRow> saveIterator;
-    private String subUnitHeader;
+    private int subUnitIndex;
 
 
-    public TaskSubUnit(String subUnitHeader) {
+    public TaskSubUnit(int subUnitIndex) {
         taskRows = new ArrayList<>();
         saveIterator = null;
 
-        this.subUnitHeader = subUnitHeader;
+        this.subUnitIndex = subUnitIndex;
     }
 
-    public TaskSubUnit() {
+    private TaskSubUnit() { //private mert csak a unit hozht lete subunitot csak indexel (erre nins szukseg)
         taskRows = new ArrayList<>();
         saveIterator = null;
 
-        this.subUnitHeader = "New Sub Unit";
-    }
-
-    public String getHeader(){
-        return subUnitHeader;
+        this.subUnitIndex = -1;
     }
 
     public String saveLine(){
         if (saveIterator == null){
             saveIterator = taskRows.iterator();
-            return "S" + getHeader();
+            return "S" + subUnitIndex;
         }
         else if(saveIterator.hasNext()){
             return saveIterator.next().saveLine();
@@ -49,6 +45,7 @@ public class TaskSubUnit {
             taskRows.add(new TaskRow(line.substring(1)));
         }
         else{
+            System.out.println("the wrong line:"+line);
             throw new InvalidRowException(line);
         }
     }

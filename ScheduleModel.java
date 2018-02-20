@@ -8,7 +8,7 @@ public class ScheduleModel implements  SuperModel{
         System.out.println("schedule got:" + line);
     }
 
-    @Override
+
     public String saveLine(){
         if(n < 3){
             n++;

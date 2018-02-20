@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 //a projekt tablazathoz hasznaljuk
@@ -13,55 +15,30 @@ public class TaskModel implements SuperModel {
 
     }
 
-
     @Override
-    public void loadLine(String line) throws Exception {
-        System.out.println(line+" Task");
+    public void loadLine(String unitCode) throws Exception {    //a projektfilebol kap egy sort, letrehozza a unitot es betolti
+        System.out.println(unitCode+" Task");
 
-
-
-        //megnezzuk hogy egy uj betoltendo unit kovetkezik-e
-        if(line.substring(0,1).equals(Finals.UNIT_INITAL)){
-            //****dobd feldolgozasra
-
-
-            taskUnits.add(new TaskUnit(line.substring(1)));
-        }
-        else{
-            if(taskUnits.isEmpty()){
-                throw new MissingUnitException(line);//subunitot vagy rowt kaptunk de meg nincs uj unit
-            }
-            else{
-                taskUnits.get(taskUnits.size() - 1).loadLine(line);//az utolso unitnak tovabbdobjuk
-            }
-        }
-
+        taskUnits.add(new TaskUnit(unitCode));
     }
 
-    @Override
-    public String saveLine(){
+   public void saveUnits() throws Exception {
+       for (TaskUnit unit : taskUnits) {
+           unit.saveUnit();
+       }
+   }
 
-        if(currentSaveUnit == taskUnits.size()){
-            currentSaveUnit = 0;    // visszaallitjuk mintha meg nem vettunk volna ki elemet
-            return Finals.END_OF_PROJECT;//mert tulhaladtuk az osszes unitot
+    public  void saveTaskToFile(String projectName) throws IOException {
+        FileWriter fw = new FileWriter(Finals.PROJECTS_PATH + projectName + "_task.txt");
+
+        for(TaskUnit tu : taskUnits) {
+            fw.write(tu.getUnitCode() + "\n");
         }
-        else{
-            String currentLine = taskUnits.get(currentSaveUnit).saveLine();
-            if(currentLine.equals(Finals.NO_MORE_ITEMS)){
-                //kifogytunk ebbol a sub unitbol, ezert leptetem a subunitokat es meghivom megegyszer
-                currentSaveUnit++;
-                return this.saveLine();
-            }
-            else{
-                return currentLine;
-            }
-        }
+
+        fw.close();
     }
 
-
-
-
-    public void insertUnit(int unitIndex){
+    public void insertUnit(int unitIndex) throws Exception {
         if(unitIndex== taskUnits.size()){
             taskUnits.add(new TaskUnit());
         }
@@ -76,7 +53,7 @@ public class TaskModel implements SuperModel {
 
     public void insertSubUnit(int unitIndex, int subUnitIndex){
 
-        taskUnits.get(unitIndex).insertSubUnit(subUnitIndex);
+        //taskUnits.get(unitIndex).insertSubUnit(subUnitIndex);
     }
 
     public void deleteSubUnit(int unitIndex, int subUnitIndex){

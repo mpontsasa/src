@@ -1,13 +1,17 @@
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Main {
     public static void main(String[] args){
-        Controller controller = new Controller("tesztike");
+        Controller controller = new Controller("uj_tesztike");
         try {
             controller.loadTaskFromFile();
+            controller.insertUnit(0);
+            controller.saveUnits();
+            controller.saveProject();
 
 
             ///<INSERT TEST>
@@ -36,8 +40,11 @@ public class Main {
 
             //</DELETE TEST>
 
-            controller.setProjectName("tesztike_mentes");
-            controller.saveTaskToFile();
+            //controller.setProjectName("tesztike_mentes");
+            //controller.saveTaskToFile();
+
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }

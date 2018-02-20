@@ -48,8 +48,9 @@ public class Controller {
 
     public void loadTaskFromFile() throws FileNotFoundException{
 
-        Scanner scan = new Scanner(new File(projectName + "_task.txt"));
+        Scanner scan = new Scanner(new File(Finals.PROJECTS_PATH + projectName + "_task.txt"));
         while(scan.hasNextLine()){
+            //ez a line egy unicode lesz
             String line = scan.nextLine();
 
             try {
@@ -62,19 +63,19 @@ public class Controller {
         scan.close();
     }
 
-    public void saveTaskToFile() throws IOException{
+    public void saveProject() throws IOException{
 
-        FileWriter fw = new FileWriter(projectName + "_task.txt");
+        taskModel.saveTaskToFile(projectName);
+        //save Schedule ...
+    }
 
-        String currentLine = taskModel.saveLine();
-
-        while(!currentLine.equals(Finals.END_OF_PROJECT)) {
-            fw.write(currentLine + "\n");
-            currentLine = taskModel.saveLine();
+    public void saveUnits(){
+        try {
+            taskModel.saveUnits();
+        } catch (Exception e) {
+            System.out.println("error in saving units!");
+            e.printStackTrace();
         }
-
-        fw.close();
-
     }
 
     public void loadScheduleFromFile() throws FileNotFoundException{
@@ -102,9 +103,6 @@ public class Controller {
 
     }
 
-
-
-
     public void insertUnit(int unitIndex){
 
         try{
@@ -112,6 +110,10 @@ public class Controller {
         }
         catch (IndexOutOfBoundsException e){
             System.out.println("index error!");
+            e.printStackTrace();
+        }
+        catch (Exception e) {
+            System.out.println("netuu");
             e.printStackTrace();
         }
 
