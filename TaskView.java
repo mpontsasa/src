@@ -15,6 +15,7 @@ public class TaskView extends JPanel implements SuperView {
     public TaskView(SuperModel myModel, JFrame myFrame) {
         this.myModel = myModel;
         this.myFrame = myFrame;
+
 //        String[] columns= {"name", "age"};
 //        String[][] data = {{"sasa","16"},{"matyi", "2"},{"matyi", "2"},{"matyi", "2"},{"matyi", "2"},{"matyi", "2"},{"matyi", "2"}};
 //        jt = new JTable(data,columns);
@@ -22,15 +23,24 @@ public class TaskView extends JPanel implements SuperView {
 //        JScrollPane scrollPane = new JScrollPane(jt);
 //        jt.setFillsViewportHeight(true);
 //        jt.setPreferredScrollableViewportSize(new Dimension(450,450));
+        JPanel paddingPanel = new JPanel();
+        paddingPanel.setPreferredSize(new Dimension(this.getWidth(), 60));
+        //paddingPanel.setBackground(Color.BLUE);
+        UnitView uv = new UnitView();
         SubUnitView suv = new SubUnitView("MANOPERA");
         SubUnitView suv2 = new SubUnitView("UTILAJE");
-        SubUnitView suv3 = new SubUnitView("material");
-        SubUnitView suv4 = new SubUnitView("transport");
+        SubUnitView suv3 = new SubUnitView("MATERIAL");
+        SubUnitView suv4 = new SubUnitView("TRANSPORT");
         this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));//https://docs.oracle.com/javase/tutorial/uiswing/layout/box.html
+
+        this.add(uv);
         this.add(suv);
         this.add(suv2);
         this.add(suv3);
         this.add(suv4);
+        this.add(paddingPanel);
+
+
 
 //        JTextField tf = new JTextField(20);
 //

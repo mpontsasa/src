@@ -41,6 +41,7 @@ public class SubUnitView extends JPanel {
         scrollPane.setPreferredSize(new Dimension(width,height));
         this.setPreferredSize(new Dimension(width,height));
 
+
         //this.setBackground(Color.BLACK);
         this.add(new JLabel(header));
         this.add(scrollPane);

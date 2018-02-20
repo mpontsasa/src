@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseWheelListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -15,6 +16,7 @@ public class Controller {
     private ScheduleView scheduleView;
     private TaskView taskView;
     private JFrame frame;
+    private JScrollPane shell;
 
     private String projectName;
 
@@ -29,15 +31,34 @@ public class Controller {
         taskView = new TaskView(taskModel, frame);
 
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        scheduleView.test();
-        frame.add(taskView);
+
+
+        TaskView tv = new TaskView(taskModel,frame);
+        TaskView tv2 = new TaskView(taskModel,frame);
+
+
+        JPanel fopanel = new JPanel();
+        fopanel.setLayout(new BoxLayout(fopanel,BoxLayout.PAGE_AXIS));
+        fopanel.add(taskView);
+        fopanel.add(tv);
+        fopanel.add(tv2);
+
+        shell = new JScrollPane(fopanel);
+
+
+
+
+
+
+
+
+
+
+        frame.add(shell,BorderLayout.CENTER);
+        //frame.add(tv2);
         frame.revalidate();
         frame.repaint();
+        frame.setVisible(true);
     }
 
     private void initializeFrame(){
@@ -47,7 +68,7 @@ public class Controller {
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setTitle("Test");
 
-        frame.setVisible(true);
+
     }
 
 

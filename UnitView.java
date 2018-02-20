@@ -9,21 +9,15 @@ public class UnitView extends JPanel {
 
     public UnitView() {
         this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
-        String[] columns= {"Nr.", "Element", "um", "cantitate unitara", "pret unitar", "pret total unitar",
-                "cantitate totala", "pret total", "furnizor"};
-        String[][] data = {
-                {"1", "oi", "kg", "51", "1.23", "845",
-                        "78", "0", "matyi"},
-
-                {"2", "yeah", "meter", "5", "77", "777",
-                        "7777", "yess", "sasa"},
-                {"2", "yeah", "meter", "5", "77", "777",
-                        "7777", "yess", "sasa"}};
+        String[] columns= {"Index", "Titlu", "Cod", "PRET UNITAR", "UM", "CANTITATE",
+                "ore", "PRET TOTAL", "material","manopera","utilaj","transport"};
+        String[][] data = {{"6","Cofrare fundatii demisol cota -3,05", "C456", "85.00", "mp",
+                            "112.68","20.00","6.00","5.00","8.00","5.00","9.00"}};
         table = new JTable(data,columns);
         table.getTableHeader().setReorderingAllowed(false);
         scrollPane = new JScrollPane(table);
         table.setFillsViewportHeight(true);
-        table.setPreferredScrollableViewportSize(new Dimension(600,450));
+        //table.setPreferredScrollableViewportSize(new Dimension(600,450));
 
 
 
@@ -34,13 +28,16 @@ public class UnitView extends JPanel {
         int numOfRows = table.getRowCount() + 2;
         int rowHeight = table.getRowHeight();
 
-        int width = 559;
-        int height = numOfRows * rowHeight + 30;
+        int width = 610;
+        int height = numOfRows * rowHeight +10;
+        //height = 80;
         scrollPane.setPreferredSize(new Dimension(width,height));
         this.setPreferredSize(new Dimension(width,height));
 
-        //this.setBackground(Color.BLACK);
-        
+        this.setBackground(Color.BLUE);
+
+
+       
         this.add(scrollPane);
     }
 }
