@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseWheelListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -28,37 +27,30 @@ public class Controller {
         scheduleModel = new ScheduleModel();
         taskModel = new TaskModel();//eloszor letrehozzuk a modelleket, aztan atadjuk a viewknak a megfelelo modellt
         scheduleView = new ScheduleView(scheduleModel, frame);
-        taskView = new TaskView(taskModel, frame);
 
 
+        taskView = new TaskView(taskModel,frame);
 
-
-        TaskView tv = new TaskView(taskModel,frame);
-        TaskView tv2 = new TaskView(taskModel,frame);
-
-
-        JPanel fopanel = new JPanel();
-        fopanel.setLayout(new BoxLayout(fopanel,BoxLayout.PAGE_AXIS));
-        fopanel.add(taskView);
-        fopanel.add(tv);
-        fopanel.add(tv2);
-
-        shell = new JScrollPane(fopanel);
+        shell = new JScrollPane(taskView);
         shell.getVerticalScrollBar().setUnitIncrement(16);
 
 
-
-
-
-
-
-
-
         frame.add(shell,BorderLayout.CENTER);
-        //frame.add(tv2);
+
         frame.revalidate();
         frame.repaint();
         frame.setVisible(true);
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        taskView.addUnit(new UnitView());
+
+
+
     }
 
     private void initializeFrame(){

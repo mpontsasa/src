@@ -1,32 +1,29 @@
 import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.MouseWheelEvent;
 
-public class SubUnitView extends JPanel {
+public class ExtendedSubUnitView extends JPanel {
 
     private JScrollPane scrollPane;
     private JTable table;
 
-    public SubUnitView(String header) {
+    public ExtendedSubUnitView(String header) {
 
         this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
         String[] columns= {"Nr.", "Element", "um", "cantitate unitara", "pret unitar", "pret total unitar",
-                            "cantitate totala", "pret total", "furnizor"};
+                "cantitate totala", "pret total", "furnizor", "nr. de alocatii", ""};
         String[][] data = {
                 {"1", "oi", "kg", "51", "1.23", "845",
-                "78", "0", "matyi"},
+                        "78", "0", "matyi", "vagany ceg", "szeeerussz"},
 
                 {"2", "yeah", "meter", "5", "77", "777",
-                        "7777", "yess", "sasa"},
+                        "7777", "yess", "sasa", "vagany ceg", "szeeerussz"},
                 {"2", "yeah", "meter", "5", "77", "777",
-                        "7777", "yess", "sasa"}};
+                        "7777", "yess", "sasa", "vagany ceg", "szeeerussz"}};
         table = new JTable(data,columns);
         table.getTableHeader().setReorderingAllowed(false);
 
-       // https://stackoverflow.com/questions/7433602/how-to-center-in-jtable-cell-a-value
+        // https://stackoverflow.com/questions/7433602/how-to-center-in-jtable-cell-a-value
         JTableUtilities.setCellsAlignment(table, SwingConstants.CENTER);
 
 

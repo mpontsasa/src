@@ -1,34 +1,21 @@
 import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.MouseWheelEvent;
 
-public class SubUnitView extends JPanel {
+public class UnitHeaderView extends JPanel {
 
-    private JScrollPane scrollPane;
+
     private JTable table;
+    private JScrollPane scrollPane;
 
-    public SubUnitView(String header) {
-
+    public UnitHeaderView() {
         this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
-        String[] columns= {"Nr.", "Element", "um", "cantitate unitara", "pret unitar", "pret total unitar",
-                            "cantitate totala", "pret total", "furnizor"};
-        String[][] data = {
-                {"1", "oi", "kg", "51", "1.23", "845",
-                "78", "0", "matyi"},
-
-                {"2", "yeah", "meter", "5", "77", "777",
-                        "7777", "yess", "sasa"},
-                {"2", "yeah", "meter", "5", "77", "777",
-                        "7777", "yess", "sasa"}};
+        String[] columns= {"Index", "Titlu", "Cod", "    PRET UNITAR    ", "UM", "CANTITATE",
+                "ore", "PRET TOTAL", "material","manopera","utilaj","transport"};
+        String[][] data = {{"6","Cofrare fundatii demisol cota -3,05", "C456", "85.00", "mp",
+                            "112.68","20.00","6.00","5.00","8.00","5.00","9.00"}};
         table = new JTable(data,columns);
         table.getTableHeader().setReorderingAllowed(false);
-
-       // https://stackoverflow.com/questions/7433602/how-to-center-in-jtable-cell-a-value
-        JTableUtilities.setCellsAlignment(table, SwingConstants.CENTER);
-
 
 
         scrollPane = new JScrollPane(table){
@@ -51,7 +38,7 @@ public class SubUnitView extends JPanel {
 
 
         table.setFillsViewportHeight(true);
-        table.setPreferredScrollableViewportSize(new Dimension(600,450));
+        //table.setPreferredScrollableViewportSize(new Dimension(600,450));
 
 
 
@@ -62,14 +49,16 @@ public class SubUnitView extends JPanel {
         int numOfRows = table.getRowCount() + 2;
         int rowHeight = table.getRowHeight();
 
-        int width = 559;
-        int height = numOfRows * rowHeight + 30;
+        int width = 610;
+        int height = numOfRows * rowHeight +10;
+        //height = 80;
         scrollPane.setPreferredSize(new Dimension(width,height));
         this.setPreferredSize(new Dimension(width,height));
 
+        this.setBackground(Color.BLUE);
 
-        //this.setBackground(Color.BLACK);
-        this.add(new JLabel(header));
+
+
         this.add(scrollPane);
     }
 }

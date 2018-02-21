@@ -1,64 +1,76 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseWheelEvent;
+import java.util.ArrayList;
 
-public class UnitView extends JPanel {
+public class UnitView extends JPanel implements SuperView {
 
 
-    private JTable table;
-    private JScrollPane scrollPane;
+    //private SuperModel myModel;
+    //private JFrame myFrame;
+    private JTable jt;
+
+    private ArrayList<JPanel> subUnitViews;
 
     public UnitView() {
-        this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
-        String[] columns= {"Index", "Titlu", "Cod", "PRET UNITAR", "UM", "CANTITATE",
-                "ore", "PRET TOTAL", "material","manopera","utilaj","transport"};
-        String[][] data = {{"6","Cofrare fundatii demisol cota -3,05", "C456", "85.00", "mp",
-                            "112.68","20.00","6.00","5.00","8.00","5.00","9.00"}};
-        table = new JTable(data,columns);
-        table.getTableHeader().setReorderingAllowed(false);
+        //this.myModel = myModel;
+        //this.myFrame = myFrame;
+        subUnitViews = new ArrayList<>();
+
+//        String[] columns= {"name", "age"};
+//        String[][] data = {{"sasa","16"},{"matyi", "2"},{"matyi", "2"},{"matyi", "2"},{"matyi", "2"},{"matyi", "2"},{"matyi", "2"}};
+//        jt = new JTable(data,columns);
+//        jt.getTableHeader().setReorderingAllowed(false);
+//        JScrollPane scrollPane = new JScrollPane(jt);
+//        jt.setFillsViewportHeight(true);
+//        jt.setPreferredScrollableViewportSize(new Dimension(450,450));
+        JPanel paddingPanel = new JPanel();
+        paddingPanel.setPreferredSize(new Dimension(this.getWidth(), 60));
+        //paddingPanel.setBackground(Color.BLUE);
+        UnitHeaderView uhv = new UnitHeaderView();
+        SubUnitView suv = new SubUnitView("MATERIAL");
+        ExtendedSubUnitView suv2 = new ExtendedSubUnitView("MANOPERA");
+        ExtendedSubUnitView suv3 = new ExtendedSubUnitView("UTILAJ");
+        SubUnitView suv4 = new SubUnitView("TRANSPORT");
+        subUnitViews.add(suv);subUnitViews.add(suv2);subUnitViews.add(suv3);subUnitViews.add(suv4);
 
 
-        scrollPane = new JScrollPane(table){
+        this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));//https://docs.oracle.com/javase/tutorial/uiswing/layout/box.html
 
-            @Override
-            protected void processMouseWheelEvent(MouseWheelEvent e) {
-                //https://stackoverflow.com/questions/12911506/why-jscrollpane-does-not-react-to-mouse-wheel-events
-                if (!isWheelScrollingEnabled()) {
-                    if (getParent() != null)
-                        getParent().dispatchEvent(
-                                SwingUtilities.convertMouseEvent(this, e, getParent()));
-                    return;
-                }
-                super.processMouseWheelEvent(e);
-            }
-
-        };
-        scrollPane.setWheelScrollingEnabled(false); ;
-
-
-
-        table.setFillsViewportHeight(true);
-        //table.setPreferredScrollableViewportSize(new Dimension(600,450));
-
-
-
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        TableColumnAdjuster tca = new TableColumnAdjuster(table);
-        tca.adjustColumns();
-
-        int numOfRows = table.getRowCount() + 2;
-        int rowHeight = table.getRowHeight();
-
-        int width = 610;
-        int height = numOfRows * rowHeight +10;
-        //height = 80;
-        scrollPane.setPreferredSize(new Dimension(width,height));
-        this.setPreferredSize(new Dimension(width,height));
-
-        this.setBackground(Color.BLUE);
+        this.add(uhv);
+        for(JPanel subUnitView:subUnitViews){
+            this.add(subUnitView);
+        }
+//        this.add(suv);
+//        this.add(suv2);
+//        this.add(suv3);
+//        this.add(suv4);
+        this.add(paddingPanel);
 
 
 
-        this.add(scrollPane);
+//        JTextField tf = new JTextField(20);
+//
+//
+//        tf.addActionListener(e->{
+//            System.out.println("oioi");
+//        });
+//
+//        tf.addFocusListener(new FocusAdapter() {
+//            @Override
+//            public void focusLost(FocusEvent e) {
+//                super.focusLost(e);
+//                System.out.println(":(");
+//            }
+//        });
+//        this.add(tf);
+//        this.add(new JTextField(10));
+
     }
+
+    @Override
+    public void buildFromModel() {
+
+    }
+
+
 }
