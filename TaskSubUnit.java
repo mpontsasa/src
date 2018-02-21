@@ -6,15 +6,17 @@ public class TaskSubUnit {
     private ArrayList<TaskRow> taskRows;
     private Iterator<TaskRow> saveIterator;
     private int subUnitIndex;
+    private TaskUnit parent;
 
     private float sumPretTotalUnitar;
 
-    public TaskSubUnit(int subUnitIndex) {
+    public TaskSubUnit(int subUnitIndex, TaskUnit parent) {
         taskRows = new ArrayList<>();
         saveIterator = null;
 
         this.subUnitIndex = subUnitIndex;
         this.sumPretTotalUnitar = 0;
+        this.parent = parent;
     }
 
     private TaskSubUnit() { //private mert csak a unit hozht lete subunitot csak indexel (erre nins szukseg)
@@ -25,7 +27,8 @@ public class TaskSubUnit {
     }
 
     private String getSubUnitHeader(){
-        return Finals.SUB_UNIT_INITAL + Finals.TOK_D + sumPretTotalUnitar;
+//        return Finals.SUB_UNIT_INITAL + Finals.TOK_D + sumPretTotalUnitar;
+        return Finals.SUB_UNIT_INITAL + Finals.TOK_D;
     }
 
     public void processHeader(String line) throws Exception{
@@ -67,7 +70,7 @@ public class TaskSubUnit {
 
         //megnezzuk hogy amit kaptunk row-e vagy anomalia (CSAK ROWT KAPHAT A SUBUNIT)
         if(line.substring(0,1).equals(Finals.ROW_INITAL)){
-            taskRows.add(new TaskRow(line.substring(1)));
+            taskRows.add(new TaskRow(line.substring(1), this));
         }
         else{
             System.out.println("the wrong line:"+line);
@@ -77,10 +80,10 @@ public class TaskSubUnit {
 
     public void insertRow(int rowIndex){
         if(rowIndex == taskRows.size()){
-            taskRows.add(new TaskRow());
+            taskRows.add(new TaskRow(this));
         }
         else{
-            taskRows.add(rowIndex, new TaskRow());
+            taskRows.add(rowIndex, new TaskRow(this));
         }
     }
 

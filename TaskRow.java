@@ -1,5 +1,7 @@
 public class TaskRow {
 
+    private TaskSubUnit parent;
+
     private String rowTitle;
     private String unitateDeMasura;
     private float cantitateUnitara;
@@ -8,14 +10,16 @@ public class TaskRow {
     private float cantitateTotala;
     private float pretTotal;
     private String furnizor;
-    private float lastField;    //dunno what is this
+    private float numarDeAlocati;
+    private float numarDeOreNecesare;
 
-    TaskRow (String line) throws Exception{
+    TaskRow (String line, TaskSubUnit parent) throws Exception{
+        this.parent = parent;
         processRowHeader(line);
     }
 
-
-    public TaskRow() {
+    TaskRow(TaskSubUnit parent) {
+        this.parent = parent;
         this.rowTitle = "";
         this.unitateDeMasura = "";
         this.cantitateUnitara = 0;
@@ -24,7 +28,7 @@ public class TaskRow {
         this.cantitateTotala = 0;
         this.pretTotal = 0;
         this.furnizor = "";
-        this.lastField = 0;
+        this.numarDeOreNecesare = 0;
     }
 
     public void processRowHeader(String line) throws Exception{
@@ -55,36 +59,50 @@ public class TaskRow {
         pretUnitara = Float.parseFloat(nextTok);
         i++;
 
-        nextTok = tokens[i];
-        pretTotalUnitara = Float.parseFloat(nextTok);
-        i++;
-
-        nextTok = tokens[i];
-        cantitateTotala = Float.parseFloat(nextTok);
-        i++;
-
-        nextTok = tokens[i];
-        pretTotal = Float.parseFloat(nextTok);
-        i++;
-
+//        nextTok = tokens[i];
+//        pretTotalUnitara = Float.parseFloat(nextTok);
+//        i++;
+//
+//        nextTok = tokens[i];
+//        cantitateTotala = Float.parseFloat(nextTok);
+//        i++;
+//
+//        nextTok = tokens[i];
+//        pretTotal = Float.parseFloat(nextTok);
+//        i++;
         furnizor = tokens[i];
         i++;
 
         nextTok = tokens[i];
-        lastField = Float.parseFloat(nextTok);
-        i++;
+        numarDeAlocati = Float.parseFloat(nextTok);;
+//        i++;
+
+//        nextTok = tokens[i];
+//        numarDeOreNecesare = Float.parseFloat(nextTok);
+//        i++;
     }
 
     public String getHeader(){
-        return Finals.ROW_INITAL + Finals.TOK_D + rowTitle + Finals.TOK_D + unitateDeMasura + Finals.TOK_D
-                + cantitateUnitara + Finals.TOK_D + pretUnitara + Finals.TOK_D
-                + pretTotalUnitara + Finals.TOK_D + cantitateTotala + Finals.TOK_D
-                + pretTotal + Finals.TOK_D + furnizor + Finals.TOK_D + lastField + Finals.TOK_D;
+//        return Finals.ROW_INITAL + Finals.TOK_D + rowTitle + Finals.TOK_D + unitateDeMasura + Finals.TOK_D
+//                + cantitateUnitara + Finals.TOK_D + pretUnitara + Finals.TOK_D
+//                + pretTotalUnitara + Finals.TOK_D + cantitateTotala + Finals.TOK_D
+//                + pretTotal + Finals.TOK_D + furnizor + Finals.TOK_D + numarDeOreNecesare + Finals.TOK_D;
 
+        return Finals.ROW_INITAL + Finals.TOK_D + rowTitle + Finals.TOK_D + unitateDeMasura + Finals.TOK_D
+                + cantitateUnitara + Finals.TOK_D + pretUnitara + Finals.TOK_D + furnizor + Finals.TOK_D
+                + numarDeAlocati + Finals.TOK_D;
     }
 
     public String saveLine(){
         return getHeader();
+    }
+
+    public void calculatePretTotalUnitar(){
+        pretTotalUnitara = cantitateUnitara * pretUnitara;
+    }
+
+    public void calculateCantitateTotala() {
+        
     }
 
 }

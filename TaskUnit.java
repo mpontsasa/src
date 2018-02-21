@@ -38,16 +38,18 @@ public class TaskUnit {
     public void initialiseSubUnits() {
         for (int i = 0; i < 4; i ++)
         {
-            subUnits.add(new TaskSubUnit(i));
+            subUnits.add(new TaskSubUnit(i, this));
         }
     }
 
     public String getHeader(){
-        return Finals.UNIT_INITAL + Finals.TOK_D + unitTitle + Finals.TOK_D + pretUnitar + Finals.TOK_D + unitateMetric
-                + Finals.TOK_D + cantitate + Finals.TOK_D + ore + Finals.TOK_D + pretTotal + Finals.TOK_D
-                + material + Finals.TOK_D + manopera + Finals.TOK_D + utilaj + Finals.TOK_D
-                + transport;
-
+//        return Finals.UNIT_INITAL + Finals.TOK_D + unitTitle + Finals.TOK_D + pretUnitar + Finals.TOK_D + unitateMetric
+//                + Finals.TOK_D + cantitate + Finals.TOK_D + ore + Finals.TOK_D + pretTotal + Finals.TOK_D
+//                + material + Finals.TOK_D + manopera + Finals.TOK_D + utilaj + Finals.TOK_D
+//                + transport;
+//
+        return Finals.UNIT_INITAL + Finals.TOK_D + unitTitle + Finals.TOK_D + unitateMetric
+                + Finals.TOK_D + cantitate + Finals.TOK_D + ore + Finals.TOK_D;
     }
 
     public void processHeader(String line) throws Exception{
@@ -70,39 +72,39 @@ public class TaskUnit {
         unitTitle = tokens[i];
         i++;
 
-        String nextTok = tokens[i];
-        pretUnitar = Float.parseFloat(nextTok);
-        i++;
+//        String nextTok = tokens[i];
+//        pretUnitar = Float.parseFloat(nextTok);
+//        i++;
 
         unitateMetric = tokens[i];
         i++;
 
-        nextTok = tokens[i];
+        String nextTok = tokens[i];
         cantitate = Float.parseFloat(nextTok);
         i++;
 
         nextTok = tokens[i];
         ore = Float.parseFloat(nextTok);
-        i++;
+//        i++;
 
-        nextTok = tokens[i];
-        pretTotal = Float.parseFloat(nextTok);
-        i++;
-
-        nextTok = tokens[i];
-        material = Float.parseFloat(nextTok);
-        i++;
-
-        nextTok = tokens[i];
-        manopera = Float.parseFloat(nextTok);
-        i++;
-
-        nextTok = tokens[i];
-        utilaj = Float.parseFloat(nextTok);
-        i++;
-
-        nextTok = tokens[i];
-        transport = Float.parseFloat(nextTok);
+//        nextTok = tokens[i];
+//        pretTotal = Float.parseFloat(nextTok);
+//        i++;
+//
+//        nextTok = tokens[i];
+//        material = Float.parseFloat(nextTok);
+//        i++;
+//
+//        nextTok = tokens[i];
+//        manopera = Float.parseFloat(nextTok);
+//        i++;
+//
+//        nextTok = tokens[i];
+//        utilaj = Float.parseFloat(nextTok);
+//        i++;
+//
+//        nextTok = tokens[i];
+//        transport = Float.parseFloat(nextTok);
     }
 
     public void loadUnit(String unitCode) throws Exception{

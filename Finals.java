@@ -13,8 +13,8 @@ public class Finals {
     public final static String[] SUB_UNIT_NECESARS = {"NECESAR MATERIAL", "NECESAR MANOPERA", "NECESAR UTILAJ", "NECESAR TRANSPORT"};
     public final static int NUMBER_OF_SUBUNITS = 4;
 
-    public final static int NR_OF_FIELDS_IN_UNIT = 11;
-    public final static int NR_OF_FIELDS_IN_SUB_UNIT = 2;
-    public final static int NR_OF_FIELDS_IN_ROW = 10;
+    public final static int NR_OF_FIELDS_IN_UNIT = 5;
+    public final static int NR_OF_FIELDS_IN_SUB_UNIT = 1;
+    public final static int NR_OF_FIELDS_IN_ROW = 7;
     public final static String TOK_D = "@"; //token delimiter
 }
