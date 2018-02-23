@@ -14,7 +14,7 @@ public class Controller {
 
     private ScheduleView scheduleView;
     private TaskView taskView;
-    private JFrame frame;
+    private MenuFrame frame;
     private JScrollPane shell;
 
     private String projectName;
@@ -54,7 +54,7 @@ public class Controller {
     }
 
     private void initializeFrame(){
-        frame = new JFrame();
+        frame = new MenuFrame(this);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(0,0,600,450);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -190,6 +190,17 @@ public class Controller {
     public void newUnitCodeInserted(String candidateCode){
         System.out.println("New code insterted:"+candidateCode);
         taskView.addUnit();
+    }
+
+    public void saveButtonClicked(){
+        System.out.println("saved!");
+//        try {
+//            saveProject();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            //LE KELL KEZELNI
+//        }
+//        saveUnits();
     }
 
 }
