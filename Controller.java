@@ -22,15 +22,17 @@ public class Controller {
     public Controller(String projectName) {
 
         this.projectName = projectName;
-        initializeFrame();
+
 
         scheduleModel = new ScheduleModel();
         taskModel = new TaskModel();//eloszor letrehozzuk a modelleket, aztan atadjuk a viewknak a megfelelo modellt
         scheduleView = new ScheduleView(scheduleModel, frame);
 
+    }
 
+    public void initializeViews(){
+        initializeFrame();
         taskView = new TaskView(taskModel,frame,this);
-
         shell = new JScrollPane(taskView);
         shell.getVerticalScrollBar().setUnitIncrement(16);
 
@@ -40,17 +42,6 @@ public class Controller {
         frame.revalidate();
         frame.repaint();
         frame.setVisible(true);
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        //taskView.addUnit();
-
-
-
     }
 
     private void initializeFrame(){

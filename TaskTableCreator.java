@@ -38,7 +38,7 @@ public class TaskTableCreator {
 
                     subUnitTs[unit][su][0] = Finals.SUB_UNIT_TABLE_HEADER;
 
-                    for (int row = 1; row <= subUnitTs[unit][su].length; row++) {
+                    for (int row = 1; row < subUnitTs[unit][su].length; row++) {
                         subUnitTs[unit][su][row] = taskModel.getTaskUnits().get(unit).getSubUnits().get(su).getTaskRows().get(row).getTableHeader();
                         subUnitTs[unit][su][row][0] = "" + row; //set index
                     }
@@ -46,7 +46,7 @@ public class TaskTableCreator {
                 else {  //manopera or utilaj
                     subUnitTs[unit][su][0] = Finals.EXTENDED_SUB_UNIT_TABLE_HEADER;
 
-                    for (int row = 1; row <= subUnitTs[unit][su].length; row++) {
+                    for (int row = 1; row < subUnitTs[unit][su].length; row++) {
                         subUnitTs[unit][su][row] = taskModel.getTaskUnits().get(unit).getSubUnits().get(su).getTaskRows().get(row).getExtendedTableHeader();
                         subUnitTs[unit][su][row][0] = "" + row; //set index
                     }

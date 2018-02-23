@@ -9,9 +9,10 @@ public class Main {
         Controller controller = new Controller("uj_tesztike");
         try {
             controller.loadTaskFromFile();
+            controller.initializeViews();
             //controller.insertUnit(0);
-            controller.saveUnits();
-            controller.saveProject();
+            //controller.saveUnits();
+           // controller.saveProject();
 
 
             ///<INSERT TEST>
