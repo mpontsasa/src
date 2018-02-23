@@ -65,20 +65,11 @@ public class Controller {
 
 
     public void loadTaskFromFile() throws FileNotFoundException{
-
-        Scanner scan = new Scanner(new File(Finals.PROJECTS_PATH + projectName + "_task.txt"));
-        while(scan.hasNextLine()){
-            //ez a line egy unicode lesz
-            String line = scan.nextLine();
-
-            try {
-                taskModel.loadLine(line);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+        try{
+            taskModel.loadProject(projectName);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        scan.close();
     }
 
     public void saveProject() throws IOException{

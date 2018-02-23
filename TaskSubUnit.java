@@ -5,6 +5,7 @@ public class TaskSubUnit {
 
     private ArrayList<TaskRow> taskRows;
     private Iterator<TaskRow> saveIterator;
+
     private int subUnitIndex;
     private TaskUnit parent;
 
@@ -32,23 +33,24 @@ public class TaskSubUnit {
     }
 
     public void processHeader(String line) throws Exception{
-        String[] tokens = line.split(Finals.TOK_D);
 
-        if (tokens.length != Finals.NR_OF_FIELDS_IN_SUB_UNIT){
-            System.out.println("" + tokens.length);
-
-            for (String token : tokens)
-            {
-                System.out.println("sor: " + token);
-            }
-
-            throw new InvalidSubUnitHeaderException("incorrect number of fields in subunit");
-        }
-
-        int i = 1;
-        String nextTok = tokens[i];
-        sumPretTotalUnitar = Float.parseFloat(nextTok);
-        i++;
+//        String[] tokens = line.split(Finals.TOK_D);
+//
+//        if (tokens.length != Finals.NR_OF_FIELDS_IN_SUB_UNIT){
+//            System.out.println("" + tokens.length);
+//
+//            for (String token : tokens)
+//            {
+//                System.out.println("sor: " + token);
+//            }
+//
+//            throw new InvalidSubUnitHeaderException("incorrect number of fields in subunit");
+//        }
+//
+//        int i = 1;
+//        String nextTok = tokens[i];
+//        sumPretTotalUnitar = Float.parseFloat(nextTok);
+//        //i++;
 
     }
 
@@ -92,4 +94,36 @@ public class TaskSubUnit {
         taskRows.remove(rowIndex);
     }
 
+    public TaskUnit getParent() {
+        return parent;
+    }
+
+    public void calculateSumPretTotalUnitar() {
+
+        float res = 0;
+
+        for(TaskRow tr : taskRows){
+            res += tr.getPretTotalUnitara();
+        }
+
+        sumPretTotalUnitar = res;
+
+        parent.calculatePretUnitar();
+
+        switch (subUnitIndex)
+        {
+            case 0:
+                parent.calculateMaterial();
+            case 1:
+                parent.calculateManopera();
+            case 2:
+                parent.calculateUtilaj();
+            case 3:
+                parent.calculateTransport();
+        }
+    }
+
+    public float getSumPretTotalUnitar() {
+        return sumPretTotalUnitar;
+    }
 }

@@ -9,6 +9,7 @@ public class TaskUnit {
 
     private ArrayList<TaskSubUnit> subUnits;
     private String unitCode;
+    private TaskModel parent;
 
     private String unitTitle;
     private float pretUnitar;
@@ -22,14 +23,16 @@ public class TaskUnit {
     private float transport;
 
 
-    public TaskUnit() {
+    public TaskUnit(TaskModel parent) {
         subUnits = new ArrayList<>();
+        this.parent = parent;
         this.unitCode = "new";
         initialiseSubUnits();
     }
 
-    public TaskUnit(String unitCode) throws Exception {
+    public TaskUnit(String unitCode, TaskModel parent) throws Exception {
         this.unitCode = unitCode;
+        this.parent = parent;
         subUnits = new ArrayList<>();
         initialiseSubUnits();
         loadUnit(unitCode);
@@ -204,4 +207,110 @@ public class TaskUnit {
 //    private void setUnitCode(String unitCode) {
 //        this.unitCode = unitCode;
 //    }
+
+//.........................setters
+
+    public void setUnitCode(String unitCode) {
+        this.unitCode = unitCode;
+    }
+
+    public void setUnitTitle(String unitTitle) {
+        this.unitTitle = unitTitle;
+    }
+
+    public void setUnitateMetric(String unitateMetric) {
+        this.unitateMetric = unitateMetric;
+    }
+
+    public void setCantitate(float cantitate) {
+        this.cantitate = cantitate;
+
+        calculatePretTotal();
+
+        calculateMaterial();
+        calculateManopera();
+        calculateUtilaj();
+        calculateTransport();
+    }
+
+    public void setOre(float ore) {
+        this.ore = ore;
+    }
+
+//.........................calculations
+    public void calculatePretUnitar(){
+        float res = 0;
+
+        for (TaskSubUnit tsu : subUnits){
+            res += tsu.getSumPretTotalUnitar();
+        }
+
+        pretUnitar = res;
+        calculatePretTotal();
+    }
+
+    public void calculatePretTotal() {
+        pretTotal = cantitate * pretUnitar;
+    }
+
+    public void calculateMaterial(){
+        material = subUnits.get(0).getSumPretTotalUnitar() * cantitate;
+        parent.calculateMaterial();
+    }
+
+    public void calculateManopera(){
+        manopera = subUnits.get(1).getSumPretTotalUnitar() * cantitate;
+        parent.calculateManopera();
+    }
+
+    public void calculateUtilaj(){
+        utilaj = subUnits.get(2).getSumPretTotalUnitar() * cantitate;
+        parent.calculateUtilaj();
+    }
+
+    public void calculateTransport(){
+        transport = subUnits.get(3).getSumPretTotalUnitar() * cantitate;
+        parent.calculateTransport();
+    }
+//.............................GETTERS
+
+    public String getUnitTitle() {
+        return unitTitle;
+    }
+
+    public float getPretUnitar() {
+        return pretUnitar;
+    }
+
+    public String getUnitateMetric() {
+        return unitateMetric;
+    }
+
+    public float getCantitate() {
+        return cantitate;
+    }
+
+    public float getOre() {
+        return ore;
+    }
+
+    public float getPretTotal() {
+        return pretTotal;
+    }
+
+    public float getMaterial() {
+        return material;
+    }
+
+    public float getManopera() {
+        return manopera;
+    }
+
+    public float getUtilaj() {
+        return utilaj;
+    }
+
+    public float getTransport() {
+        return transport;
+    }
 }
