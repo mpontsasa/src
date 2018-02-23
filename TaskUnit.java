@@ -272,6 +272,14 @@ public class TaskUnit {
         transport = subUnits.get(3).getSumPretTotalUnitar() * cantitate;
         parent.calculateTransport();
     }
+
+    public void clculateAll() {
+        for (TaskSubUnit tsu : subUnits){
+            tsu.calculateAll();
+        }
+
+        calculatePretUnitar();
+    }
 //.............................GETTERS
 
     public String getUnitTitle() {

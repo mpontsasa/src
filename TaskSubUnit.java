@@ -123,6 +123,12 @@ public class TaskSubUnit {
         }
     }
 
+    public void calculateAll() {
+        for (TaskRow tr : taskRows) {
+            tr.clculateAll();
+        }
+    }
+
     public float getSumPretTotalUnitar() {
         return sumPretTotalUnitar;
     }

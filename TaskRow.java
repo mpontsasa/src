@@ -118,8 +118,9 @@ public class TaskRow {
         numarDeOreNecesare = numarDeAlocati * cantitateTotala * 1/60;
     }
 
-    public TaskUnit getParentUnit(){
-        return parent.getParent();
+    public void clculateAll() {
+        calculatePretTotalUnitar();
+        calculateCantitateTotala();
     }
 
 //............setters
@@ -192,4 +193,9 @@ public class TaskRow {
     public float getNumarDeOreNecesare() {
         return numarDeOreNecesare;
     }
+
+    public TaskUnit getParentUnit(){
+        return parent.getParent();
+    }
+
 }

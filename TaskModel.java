@@ -290,4 +290,11 @@ public class TaskModel implements SuperModel {
     public void calculateTotalValoareLucareCuTVA () {
         totalValoareLucrareCuTVA = totalValoareLucrareFaraTVA + TVA;
     }
+
+    public  void calculateAll() {
+        for (TaskUnit tu :taskUnits){
+            tu.clculateAll();
+        }
+    }
+
 }
