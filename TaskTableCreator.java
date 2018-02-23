@@ -43,7 +43,7 @@ public class TaskTableCreator {
                     subUnitTs[unit][su][0] = Finals.SUB_UNIT_TABLE_HEADER;
 
                     for (int row = 1; row < subUnitTs[unit][su].length; row++) {
-                        subUnitTs[unit][su][row] = taskModel.getTaskUnits().get(unit).getSubUnits().get(su).getTaskRows().get(row).getTableHeader();
+                        subUnitTs[unit][su][row] = taskModel.getTaskUnits().get(unit).getSubUnits().get(su).getTaskRows().get(row-1).getTableHeader();  //row -1 mert a modellben 0-tol megy, itt a header miatt 1-tol
                         subUnitTs[unit][su][row][0] = "" + row; //set index
                     }
                 }
@@ -51,7 +51,7 @@ public class TaskTableCreator {
                     subUnitTs[unit][su][0] = Finals.EXTENDED_SUB_UNIT_TABLE_HEADER;
 
                     for (int row = 1; row < subUnitTs[unit][su].length; row++) {
-                        subUnitTs[unit][su][row] = taskModel.getTaskUnits().get(unit).getSubUnits().get(su).getTaskRows().get(row).getExtendedTableHeader();
+                        subUnitTs[unit][su][row] = taskModel.getTaskUnits().get(unit).getSubUnits().get(su).getTaskRows().get(row -1).getExtendedTableHeader();//row -1 mert a modellben 0-tol megy, itt a header miatt 1-tol
                         subUnitTs[unit][su][row][0] = "" + row; //set index
                     }
                 }
