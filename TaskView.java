@@ -24,7 +24,7 @@ public class TaskView extends JPanel {
 //        UnitView uv3 = new UnitView(this);
 //
 //        unitViews.add(uv1); //unitViews.add(uv2); unitViews.add(uv3);
-
+        
         //idaig tartott
 
 
