@@ -9,6 +9,7 @@ public class SubUnitView extends JPanel {
 
     private JScrollPane scrollPane;
     private JTable table;
+    private SubUnitTableModel subUnitTableModel;
 
     public SubUnitView(String header) {
 
@@ -26,14 +27,14 @@ public class SubUnitView extends JPanel {
 
         String[][] data = {
                 {"1", "", "", "", "", "",
-                        "", "", ""},
-
-                {"2", "", "", "", "", "",
-                        "", "", ""}};
+                        "", "", ""}
+        };
 
 
         table = new JTable(data,columns);
         table.getTableHeader().setReorderingAllowed(false);
+        subUnitTableModel = new SubUnitTableModel(data,columns);
+        table.setModel(subUnitTableModel);
 
        // https://stackoverflow.com/questions/7433602/how-to-center-in-jtable-cell-a-value
         JTableUtilities.setCellsAlignment(table, SwingConstants.CENTER);

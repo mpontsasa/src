@@ -23,9 +23,6 @@ public class ExtendedSubUnitView extends JPanel {
 
         String[][] data = {
                 {"1", "", "", "", "", "",
-                        "", "", "", "", ""},
-
-                {"2", "", "", "", "", "",
                         "", "", "", "", ""}
         };
 
