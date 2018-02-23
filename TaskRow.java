@@ -97,12 +97,105 @@ public class TaskRow {
         return getHeader();
     }
 
+//.........calculations
     public void calculatePretTotalUnitar(){
         pretTotalUnitara = cantitateUnitara * pretUnitara;
+
+        parent.calculateSumPretTotalUnitar();
     }
 
     public void calculateCantitateTotala() {
-        
+        cantitateTotala = cantitateUnitara * getParentUnit().getCantitate();
+        calculatePretTotal();   // fuggoseg miatt
+        calculateNumarDeOreNecesare();  // fuggoseg miatt
+    }
+
+    public void calculatePretTotal() {
+        pretTotal = cantitateTotala * pretUnitara;
+    }
+
+    public void calculateNumarDeOreNecesare(){
+        numarDeOreNecesare = numarDeAlocati * cantitateTotala * 1/60;
+    }
+
+    public void clculateAll() {
+        calculatePretTotalUnitar();
+        calculateCantitateTotala();
+    }
+
+//............setters
+
+    public void setRowTitle(String rowTitle) {
+        this.rowTitle = rowTitle;
+    }
+
+    public void setUnitateDeMasura(String unitateDeMasura) {
+        this.unitateDeMasura = unitateDeMasura;
+    }
+
+    public void setCantitateUnitara(float cantitateUnitara) {
+        this.cantitateUnitara = cantitateUnitara;
+        calculatePretTotalUnitar();   //fuggoseg
+        calculateCantitateTotala();
+    }
+
+    public void setPretUnitara(float pretUnitara) {
+        this.pretUnitara = pretUnitara;
+        calculatePretTotalUnitar();
+        calculatePretTotal();
+    }
+
+    public void setNumarDeAlocati(float numarDeAlocati) {
+        this.numarDeAlocati = numarDeAlocati;
+        calculateNumarDeOreNecesare();
+    }
+
+
+//............getters
+
+
+    public String getRowTitle() {
+        return rowTitle;
+    }
+
+    public String getUnitateDeMasura() {
+        return unitateDeMasura;
+    }
+
+    public float getCantitateUnitara() {
+        return cantitateUnitara;
+    }
+
+    public float getPretUnitara() {
+        return pretUnitara;
+    }
+
+    public float getPretTotalUnitara() {
+        return pretTotalUnitara;
+    }
+
+    public float getCantitateTotala() {
+        return cantitateTotala;
+    }
+
+    public float getPretTotal() {
+        return pretTotal;
+    }
+
+    public String getFurnizor() {
+        return furnizor;
+    }
+
+    public float getNumarDeAlocati() {
+        return numarDeAlocati;
+    }
+
+    public float getNumarDeOreNecesare() {
+        return numarDeOreNecesare;
+    }
+
+    public TaskUnit getParentUnit(){
+        return parent.getParent();
     }
 
 }

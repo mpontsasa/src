@@ -11,7 +11,7 @@ public class UnitHeaderTableModel extends DefaultTableModel {
         for(int i = 0; i < editable_cells.length;i++){
             editable_cells[0][i] = false;
         }
-        
+
     }
 
     @Override

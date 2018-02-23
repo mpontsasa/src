@@ -9,6 +9,7 @@ public class TaskUnit {
 
     private ArrayList<TaskSubUnit> subUnits;
     private String unitCode;
+    private TaskModel parent;
 
     private String unitTitle;
     private float pretUnitar;
@@ -22,14 +23,16 @@ public class TaskUnit {
     private float transport;
 
 
-    public TaskUnit() {
+    public TaskUnit(TaskModel parent) {
         subUnits = new ArrayList<>();
+        this.parent = parent;
         this.unitCode = "new";
         initialiseSubUnits();
     }
 
-    public TaskUnit(String unitCode) throws Exception {
+    public TaskUnit(String unitCode, TaskModel parent) throws Exception {
         this.unitCode = unitCode;
+        this.parent = parent;
         subUnits = new ArrayList<>();
         initialiseSubUnits();
         loadUnit(unitCode);
@@ -50,6 +53,24 @@ public class TaskUnit {
 //
         return Finals.UNIT_INITAL + Finals.TOK_D + unitTitle + Finals.TOK_D + unitateMetric
                 + Finals.TOK_D + cantitate + Finals.TOK_D + ore + Finals.TOK_D;
+    }
+
+    public String[] getTableHeader(){
+        String[] res = new String[Finals.LENGTH_OF_UNIT_TABLE_HEADER];
+
+        res[1] = unitTitle;
+        res[2] = unitCode;
+        res[3] = "" + pretUnitar;
+        res[4] = unitateMetric;
+        res[5] = "" + cantitate;
+        res[6] = "" + ore;
+        res[7] = "" + pretTotal;
+        res[8] = "" + material;
+        res[9] = "" + manopera;
+        res[10] = "" + utilaj;
+        res[11] = "" + transport;
+
+        return res;
     }
 
     public void processHeader(String line) throws Exception{
@@ -204,4 +225,118 @@ public class TaskUnit {
 //    private void setUnitCode(String unitCode) {
 //        this.unitCode = unitCode;
 //    }
+
+//.........................setters
+
+    public void setUnitCode(String unitCode) {
+        this.unitCode = unitCode;
+    }
+
+    public void setUnitTitle(String unitTitle) {
+        this.unitTitle = unitTitle;
+    }
+
+    public void setUnitateMetric(String unitateMetric) {
+        this.unitateMetric = unitateMetric;
+    }
+
+    public void setCantitate(float cantitate) {
+        this.cantitate = cantitate;
+
+        calculatePretTotal();
+
+        calculateMaterial();
+        calculateManopera();
+        calculateUtilaj();
+        calculateTransport();
+    }
+
+    public void setOre(float ore) {
+        this.ore = ore;
+    }
+
+//.........................calculations
+    public void calculatePretUnitar(){
+        float res = 0;
+
+        for (TaskSubUnit tsu : subUnits){
+            res += tsu.getSumPretTotalUnitar();
+        }
+
+        pretUnitar = res;
+        calculatePretTotal();
+    }
+
+    public void calculatePretTotal() {
+        pretTotal = cantitate * pretUnitar;
+    }
+
+    public void calculateMaterial(){
+        material = subUnits.get(0).getSumPretTotalUnitar() * cantitate;
+        parent.calculateMaterial();
+    }
+
+    public void calculateManopera(){
+        manopera = subUnits.get(1).getSumPretTotalUnitar() * cantitate;
+        parent.calculateManopera();
+    }
+
+    public void calculateUtilaj(){
+        utilaj = subUnits.get(2).getSumPretTotalUnitar() * cantitate;
+        parent.calculateUtilaj();
+    }
+
+    public void calculateTransport(){
+        transport = subUnits.get(3).getSumPretTotalUnitar() * cantitate;
+        parent.calculateTransport();
+    }
+
+    public void clculateAll() {
+        for (TaskSubUnit tsu : subUnits){
+            tsu.calculateAll();
+        }
+
+        calculatePretUnitar();
+    }
+//.............................GETTERS
+
+    public String getUnitTitle() {
+        return unitTitle;
+    }
+
+    public float getPretUnitar() {
+        return pretUnitar;
+    }
+
+    public String getUnitateMetric() {
+        return unitateMetric;
+    }
+
+    public float getCantitate() {
+        return cantitate;
+    }
+
+    public float getOre() {
+        return ore;
+    }
+
+    public float getPretTotal() {
+        return pretTotal;
+    }
+
+    public float getMaterial() {
+        return material;
+    }
+
+    public float getManopera() {
+        return manopera;
+    }
+
+    public float getUtilaj() {
+        return utilaj;
+    }
+
+    public float getTransport() {
+        return transport;
+    }
 }

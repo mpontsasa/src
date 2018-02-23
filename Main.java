@@ -58,6 +58,6 @@ public class Main {
 //
 //       // t.remove(-1);
 //        t.remove(2)
-        System.out.println();
+
     }
 }
