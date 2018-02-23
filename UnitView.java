@@ -22,7 +22,7 @@ public class UnitView extends JPanel implements SuperView {
         paddingPanel.setPreferredSize(new Dimension(this.getWidth(), 60));
         //paddingPanel.setBackground(Color.BLUE);
         TaskTableCreator taskTableCreator = new TaskTableCreator(parent.getMyModel());
-        String[][] uhvData = taskTableCreator.unitHeaderTs[myIndex];
+        String[][] uhvData = taskTableCreator.getUnitHeaderTs()[myIndex];
         UnitHeaderView uhv = new UnitHeaderView(this, uhvData);
 
         SubUnitView suv = new SubUnitView("MATERIAL");

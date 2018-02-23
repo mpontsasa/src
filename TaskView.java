@@ -18,12 +18,12 @@ public class TaskView extends JPanel {
 
         //  ez egy ures teszt model
 
-//        //test
-//        UnitView uv1 = new UnitView(this);
-//        UnitView uv2 = new UnitView(this);
-//        UnitView uv3 = new UnitView(this);
-//
-//        unitViews.add(uv1); //unitViews.add(uv2); unitViews.add(uv3);
+        //test
+        UnitView uv1 = new UnitView(this);
+        UnitView uv2 = new UnitView(this);
+        UnitView uv3 = new UnitView(this);
+
+        unitViews.add(uv1); //unitViews.add(uv2); unitViews.add(uv3);
 
 
 
@@ -31,7 +31,7 @@ public class TaskView extends JPanel {
 
 
 
-        buildFromModel();
+        //buildFromModel();
 
 
         this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
