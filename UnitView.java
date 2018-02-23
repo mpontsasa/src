@@ -10,10 +10,12 @@ public class UnitView extends JPanel implements SuperView {
     private JTable jt;
 
     private ArrayList<JPanel> subUnitViews;
+    private  TaskView parent;
 
-    public UnitView() {
+    public UnitView(TaskView parent) {
         //this.myModel = myModel;
         //this.myFrame = myFrame;
+        this.parent = parent;
         subUnitViews = new ArrayList<>();
 
 //        String[] columns= {"name", "age"};
@@ -26,7 +28,8 @@ public class UnitView extends JPanel implements SuperView {
         JPanel paddingPanel = new JPanel();
         paddingPanel.setPreferredSize(new Dimension(this.getWidth(), 60));
         //paddingPanel.setBackground(Color.BLUE);
-        UnitHeaderView uhv = new UnitHeaderView();
+        UnitHeaderView uhv = new UnitHeaderView(this);
+
         SubUnitView suv = new SubUnitView("MATERIAL");
         ExtendedSubUnitView suv2 = new ExtendedSubUnitView("MANOPERA");
         ExtendedSubUnitView suv3 = new ExtendedSubUnitView("UTILAJ");
@@ -73,4 +76,7 @@ public class UnitView extends JPanel implements SuperView {
     }
 
 
+    public void notifyController(String candidateCode){
+        parent.notifyController(candidateCode);
+    }
 }

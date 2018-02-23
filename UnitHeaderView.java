@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import java.awt.*;
 import java.awt.event.MouseWheelEvent;
 
@@ -7,15 +9,43 @@ public class UnitHeaderView extends JPanel {
 
     private JTable table;
     private JScrollPane scrollPane;
+    private UnitView parent;
 
-    public UnitHeaderView() {
+    public UnitHeaderView(UnitView parent) {
+        this.parent = parent;
         this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
         String[] columns= {"Index", "Titlu", "Cod", "    PRET UNITAR    ", "UM", "CANTITATE",
                 "ore", "PRET TOTAL", "material","manopera","utilaj","transport"};
-        String[][] data = {{"6","Cofrare fundatii demisol cota -3,05", "C456", "85.00", "mp",
-                            "112.68","20.00","6.00","5.00","8.00","5.00","9.00"}};
+//        String[][] data = {{"6","Cofrare fundatii demisol cota -3,05", "C456", "85.00", "mp",
+//                            "112.68","20.00","6.00","5.00","8.00","5.00","9.00"}};
+
+        String[][] data = {{"1","", "", "", "",
+                "","","","","","",""}};
+
         table = new JTable(data,columns);
         table.getTableHeader().setReorderingAllowed(false);
+
+        table.setModel(new UnitHeaderTableModel(data,columns));
+
+
+
+        table.getModel().addTableModelListener(e -> {
+
+            if(e.getColumn() == 2){
+                // "Cod" changed
+                String candidateCode = table.getModel().getValueAt(0,2).toString();//getValueAt returns Object
+
+
+                notifyController(candidateCode);
+            }
+        });
+//        if (e.getClickCount() == 2) {
+//            JTable target = (JTable)e.getSource();
+//            int row = target.getSelectedRow();
+//            int column = target.getSelectedColumn();
+//            // do some action if appropriate column
+
+
 
 
         scrollPane = new JScrollPane(table){
@@ -60,5 +90,10 @@ public class UnitHeaderView extends JPanel {
 
 
         this.add(scrollPane);
+    }
+
+
+    private void notifyController(String candidateCode){
+        parent.notifyController(candidateCode);
     }
 }

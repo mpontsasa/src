@@ -29,7 +29,7 @@ public class Controller {
         scheduleView = new ScheduleView(scheduleModel, frame);
 
 
-        taskView = new TaskView(taskModel,frame);
+        taskView = new TaskView(taskModel,frame,this);
 
         shell = new JScrollPane(taskView);
         shell.getVerticalScrollBar().setUnitIncrement(16);
@@ -47,7 +47,7 @@ public class Controller {
             e.printStackTrace();
         }
 
-        taskView.addUnit(new UnitView());
+        taskView.addUnit();
 
 
 
@@ -199,6 +199,12 @@ public class Controller {
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
+    }
+
+
+
+    public void newUnitCodeInserted(String candidateCode){
+        System.out.println("New code insterted:"+candidateCode);
     }
 
 }

@@ -7,17 +7,19 @@ public class TaskView extends JPanel {
     SuperModel myModel;
     JFrame myFrame;
     SumTableView sumTableView;
+    Controller myController;
 
-    public TaskView(SuperModel myModel, JFrame myFrame) {
+    public TaskView(SuperModel myModel, JFrame myFrame, Controller myController) {
 
         this.myFrame = myFrame;
         this.myModel = myModel;
+        this.myController= myController;
         unitViews = new ArrayList<>();
 
         //test
-        UnitView uv1 = new UnitView();
-        UnitView uv2 = new UnitView();
-        UnitView uv3 = new UnitView();
+        UnitView uv1 = new UnitView(this);
+        UnitView uv2 = new UnitView(this);
+        UnitView uv3 = new UnitView(this);
 
         unitViews.add(uv1); unitViews.add(uv2); unitViews.add(uv3);
 
@@ -47,12 +49,16 @@ public class TaskView extends JPanel {
         this.repaint();
     }
 
-    public void addUnit(UnitView unitView){
-        unitViews.add(unitView);
+    public void addUnit(){
+        unitViews.add(new UnitView(this));
         refreshUnits();
     }
 
     public void addEmptyUnit(){
         //to-do
+    }
+
+    public void notifyController(String candidateCode){
+        myController.newUnitCodeInserted(candidateCode);
     }
 }
