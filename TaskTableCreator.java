@@ -1,15 +1,19 @@
 public class TaskTableCreator {
 
-    String[][][] unitHeaderTs;  //[unit][sor][mezo]
-    String[][][][] subUnitTs;   //[unitszama][subunitszama][sor][mezo]
+    private String[][][] unitHeaderTs;  //[unit][sor][mezo]
+    private String[][][][] subUnitTs;   //[unitszama][subunitszama][sor][mezo]
+    private String[][] sumTotalT;
+    private String[][] sumMMUTT;
 
-    TaskModel taskModel;
+    private TaskModel taskModel;
 
     public TaskTableCreator(TaskModel taskModel) {
         this.taskModel = taskModel;
 
         crateUnitHeaderTs();
         createSubUnitTs();
+        createSumTotalT();
+        createMMUTT();
     }
 
     public void crateUnitHeaderTs() {
@@ -38,7 +42,7 @@ public class TaskTableCreator {
 
                     subUnitTs[unit][su][0] = Finals.SUB_UNIT_TABLE_HEADER;
 
-                    for (int row = 1; row <= subUnitTs[unit][su].length; row++) {
+                    for (int row = 1; row < subUnitTs[unit][su].length; row++) {
                         subUnitTs[unit][su][row] = taskModel.getTaskUnits().get(unit).getSubUnits().get(su).getTaskRows().get(row).getTableHeader();
                         subUnitTs[unit][su][row][0] = "" + row; //set index
                     }
@@ -46,13 +50,25 @@ public class TaskTableCreator {
                 else {  //manopera or utilaj
                     subUnitTs[unit][su][0] = Finals.EXTENDED_SUB_UNIT_TABLE_HEADER;
 
-                    for (int row = 1; row <= subUnitTs[unit][su].length; row++) {
+                    for (int row = 1; row < subUnitTs[unit][su].length; row++) {
                         subUnitTs[unit][su][row] = taskModel.getTaskUnits().get(unit).getSubUnits().get(su).getTaskRows().get(row).getExtendedTableHeader();
                         subUnitTs[unit][su][row][0] = "" + row; //set index
                     }
                 }
             }
         }
+    }
+
+    public void createSumTotalT() {
+        sumTotalT = new String[2][];
+
+        sumTotalT[0] = Finals.SUM_TOTAL_TABLE_HEADER;
+        sumTotalT[1] = taskModel.getSumTotalTableHeader();
+
+    }
+
+    public void createMMUTT() {
+
     }
 
     public String[][][] getUnitHeaderTs() {

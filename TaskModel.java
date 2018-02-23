@@ -128,6 +128,10 @@ public class TaskModel implements SuperModel {
                 + totalValoareLucrareCuTVA + Finals.TOK_D;
     }
 
+    public String[] getSumTotalTableHeader() {
+        String
+    }
+
     public void saveUnits() throws Exception {
        for (TaskUnit unit : taskUnits) {
            unit.saveUnit();

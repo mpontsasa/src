@@ -24,13 +24,16 @@ public class Finals {
     public final static String[] UNIT_TABLE_HEADER = {"Nr.", "Titlu", "Cod", "Pret Unitar", "um",
             "Cantitate", "Ore", "Pret Total", "Material", "Manopera", "Utilaj", "Transport"};
 
-    public final static int LENGTH_OF_SUB_UNIT_TABLE = 9;   // +1 ha manopera vagy utilaj
+    public final static int LENGTH_OF_SUB_UNIT_TABLE = 9;
     public final static String[] SUB_UNIT_TABLE_HEADER = {"Nr.", "Element", "um", "Cantitate Unitara",
             "Pret Unitar", "Pret Total Untar", "Cantitate Totala", "Pret Total", "Furnizor"};
 
-    public final static int LENGTH_OF_EXTENDED_SUB_UNIT_TABLE = 11;   // +1 ha manopera vagy utilaj
+    public final static int LENGTH_OF_EXTENDED_SUB_UNIT_TABLE = 11;
     public final static String[] EXTENDED_SUB_UNIT_TABLE_HEADER = {"Nr.", "Element", "um", "Cantitate Unitara",
             "Pret Unitar", "Pret Total Untar", "Cantitate Totala", "Pret Total", "Furnizor", "Nr. de alocatii", "Nr. de ore necesare"};
+
+    public final static int LENGTH_OF_SUM_TOTAL_TABLE = 5;
+    public final static String[] SUM_TOTAL_TABLE_HEADER = {"Material", "Manopera", "Utilaj", "Transport", "Total cost direct"};
 
 
 }
