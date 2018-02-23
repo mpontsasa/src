@@ -6,6 +6,7 @@ public class TaskView extends JPanel {
     ArrayList<UnitView> unitViews;
     SuperModel myModel;
     JFrame myFrame;
+    SumTableView sumTableView;
 
     public TaskView(SuperModel myModel, JFrame myFrame) {
 
@@ -24,7 +25,8 @@ public class TaskView extends JPanel {
         for(UnitView unitView : unitViews){
             this.add(unitView);
         }
-
+        sumTableView = new SumTableView();
+        this.add(sumTableView);
         //test vege
 
 
@@ -40,6 +42,7 @@ public class TaskView extends JPanel {
         for(UnitView unitView : unitViews){
             this.add(unitView);
         }
+        this.add(sumTableView);
         this.revalidate();
         this.repaint();
     }
