@@ -129,7 +129,15 @@ public class TaskModel implements SuperModel {
     }
 
     public String[] getSumTotalTableHeader() {
-        String
+        String[] res = new String[Finals.LENGTH_OF_SUM_TOTAL_TABLE];
+
+        res[0] = "" + material;
+        res[1] = "" + manopera;
+        res[2] = "" + utilaj;
+        res[3] = "" + transport;
+        res[4] = "" + totalCostDirect;
+
+        return res;
     }
 
     public void saveUnits() throws Exception {
