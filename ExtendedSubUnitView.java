@@ -12,14 +12,23 @@ public class ExtendedSubUnitView extends JPanel {
         this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
         String[] columns= {"Nr.", "Element", "um", "cantitate unitara", "pret unitar", "pret total unitar",
                 "cantitate totala", "pret total", "furnizor", "nr. de alocatii", ""};
-        String[][] data = {
-                {"1", "oi", "kg", "51", "1.23", "845",
-                        "78", "0", "matyi", "vagany ceg", "szeeerussz"},
+//        String[][] data = {
+//                {"1", "oi", "kg", "51", "1.23", "845",
+//                        "78", "0", "matyi", "vagany ceg", "szeeerussz"},
+//
+//                {"2", "yeah", "meter", "5", "77", "777",
+//                        "7777", "yess", "sasa", "vagany ceg", "szeeerussz"},
+//                {"2", "yeah", "meter", "5", "77", "777",
+//                        "7777", "yess", "sasa", "vagany ceg", "szeeerussz"}};
 
-                {"2", "yeah", "meter", "5", "77", "777",
-                        "7777", "yess", "sasa", "vagany ceg", "szeeerussz"},
-                {"2", "yeah", "meter", "5", "77", "777",
-                        "7777", "yess", "sasa", "vagany ceg", "szeeerussz"}};
+        String[][] data = {
+                {"1", "", "", "", "", "",
+                        "", "", "", "", ""},
+
+                {"2", "", "", "", "", "",
+                        "", "", "", "", ""}
+        };
+
         table = new JTable(data,columns);
         table.getTableHeader().setReorderingAllowed(false);
 
