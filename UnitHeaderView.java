@@ -10,6 +10,7 @@ public class UnitHeaderView extends JPanel {
     private JTable table;
     private JScrollPane scrollPane;
     private UnitView parent;
+    UnitHeaderTableModel unitHeaderTableModel;
 
     public UnitHeaderView(UnitView parent) {
         this.parent = parent;
@@ -24,8 +25,8 @@ public class UnitHeaderView extends JPanel {
 
         table = new JTable(data,columns);
         table.getTableHeader().setReorderingAllowed(false);
-
-        table.setModel(new UnitHeaderTableModel(data,columns));
+        unitHeaderTableModel = new UnitHeaderTableModel(data,columns);
+        table.setModel(unitHeaderTableModel);
 
 
 
@@ -35,7 +36,7 @@ public class UnitHeaderView extends JPanel {
                 // "Cod" changed
                 String candidateCode = table.getModel().getValueAt(0,2).toString();//getValueAt returns Object
 
-
+                unitHeaderTableModel.setCellEditable(0,2,false);
                 notifyController(candidateCode);
             }
         });
@@ -94,6 +95,7 @@ public class UnitHeaderView extends JPanel {
 
 
     private void notifyController(String candidateCode){
+
         parent.notifyController(candidateCode);
     }
 }

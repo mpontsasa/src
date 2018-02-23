@@ -47,7 +47,7 @@ public class Controller {
             e.printStackTrace();
         }
 
-        taskView.addUnit();
+        //taskView.addUnit();
 
 
 
@@ -189,6 +189,7 @@ public class Controller {
 
     public void newUnitCodeInserted(String candidateCode){
         System.out.println("New code insterted:"+candidateCode);
+        taskView.addUnit();
     }
-    
+
 }

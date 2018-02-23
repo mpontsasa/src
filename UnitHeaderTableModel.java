@@ -8,9 +8,13 @@ public class UnitHeaderTableModel extends DefaultTableModel {
     public UnitHeaderTableModel(String[][] data, String[] columns) { // constructor
         super(data, columns);
         this.editable_cells = new boolean[data.length][columns.length];
-        for(int i = 0; i < editable_cells.length;i++){
-            editable_cells[0][i] = false;
-        }
+
+
+        editable_cells[0][1] = true;
+        editable_cells[0][2] = true;
+        editable_cells[0][4] = true;
+        editable_cells[0][5] = true;
+        editable_cells[0][6] = true;
 
     }
 
@@ -21,6 +25,6 @@ public class UnitHeaderTableModel extends DefaultTableModel {
 
     public void setCellEditable(int row, int col, boolean value) {
         this.editable_cells[row][col] = value; // set cell true/false
-        this.fireTableCellUpdated(row, col);
+        //this.fireTableCellUpdated(row, col);//ha ezt kiszedem mukodik. nagyon szegyellem magam
     }
 }
