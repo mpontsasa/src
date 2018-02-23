@@ -56,7 +56,7 @@ public class TaskUnit {
     }
 
     public String[] getTableHeader(){
-        String[] res = new String[Finals.LENGTH_OF_UNIT_TABLE_HEADER];
+        String[] res = new String[Finals.LENGTH_OF_UNIT_TABLE];
 
         res[1] = unitTitle;
         res[2] = unitCode;
@@ -338,5 +338,9 @@ public class TaskUnit {
 
     public float getTransport() {
         return transport;
+    }
+
+    public ArrayList<TaskSubUnit> getSubUnits() {
+        return subUnits;
     }
 }

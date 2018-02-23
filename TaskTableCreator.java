@@ -9,6 +9,7 @@ public class TaskTableCreator {
         this.taskModel = taskModel;
 
         crateUnitHeaderTs();
+        createSubUnitTs();
     }
 
     public void crateUnitHeaderTs() {
@@ -22,5 +23,43 @@ public class TaskTableCreator {
 
             unitHeaderTs[i][1][0] = "" + i; // set index
         }
+    }
+
+    public void createSubUnitTs() {
+        subUnitTs = new String[taskModel.getTaskUnits().size()][][][];
+
+        for (int unit = 0; unit < subUnitTs.length; unit ++){
+            subUnitTs[unit] = new String[Finals.NUMBER_OF_SUBUNITS][][];    //letrehozzuk a subunit matrixokat
+
+            for (int su = 0; su < subUnitTs[unit].length; su++) {
+                subUnitTs[unit][su] = new String[taskModel.getTaskUnits().get(unit).getSubUnits().get(su).getTaskRows().size() + 1][];  //letrehozunk egy subunitot(sorok + 1 header)
+
+                if (su == 0 || su == 3){    //material or transport
+
+                    subUnitTs[unit][su][0] = Finals.SUB_UNIT_TABLE_HEADER;
+
+                    for (int row = 1; row <= subUnitTs[unit][su].length; row++) {
+                        subUnitTs[unit][su][row] = taskModel.getTaskUnits().get(unit).getSubUnits().get(su).getTaskRows().get(row).getTableHeader();
+                        subUnitTs[unit][su][row][0] = "" + row; //set index
+                    }
+                }
+                else {  //manopera or utilaj
+                    subUnitTs[unit][su][0] = Finals.EXTENDED_SUB_UNIT_TABLE_HEADER;
+
+                    for (int row = 1; row <= subUnitTs[unit][su].length; row++) {
+                        subUnitTs[unit][su][row] = taskModel.getTaskUnits().get(unit).getSubUnits().get(su).getTaskRows().get(row).getExtendedTableHeader();
+                        subUnitTs[unit][su][row][0] = "" + row; //set index
+                    }
+                }
+            }
+        }
+    }
+
+    public String[][][] getUnitHeaderTs() {
+        return unitHeaderTs;
+    }
+
+    public String[][][][] getSubUnitTs() {
+        return subUnitTs;
     }
 }

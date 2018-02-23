@@ -93,6 +93,38 @@ public class TaskRow {
                 + numarDeAlocati + Finals.TOK_D;
     }
 
+    public String[] getTableHeader() {
+        String[] res = new String[Finals.LENGTH_OF_SUB_UNIT_TABLE];
+
+        res[1] = rowTitle;
+        res[2] = unitateDeMasura;
+        res[3] = "" + cantitateUnitara;
+        res[4] = "" + pretUnitara;
+        res[5] = "" + pretTotalUnitara;
+        res[6] = "" + cantitateTotala;
+        res[7] = "" + pretTotal;
+        res[8] = furnizor;
+
+        return res;
+    }
+
+    public String[] getExtendedTableHeader() {
+        String[] res = new String[Finals.LENGTH_OF_EXTENDED_SUB_UNIT_TABLE];
+
+        res[1] = rowTitle;
+        res[2] = unitateDeMasura;
+        res[3] = "" + cantitateUnitara;
+        res[4] = "" + pretUnitara;
+        res[5] = "" + pretTotalUnitara;
+        res[6] = "" + cantitateTotala;
+        res[7] = "" + pretTotal;
+        res[8] = furnizor;
+        res[9] = "" + numarDeAlocati;
+        res[10] = "" + numarDeOreNecesare;
+
+        return res;
+    }
+
     public String saveLine(){
         return getHeader();
     }

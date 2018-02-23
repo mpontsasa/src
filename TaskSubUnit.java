@@ -132,4 +132,8 @@ public class TaskSubUnit {
     public float getSumPretTotalUnitar() {
         return sumPretTotalUnitar;
     }
+
+    public ArrayList<TaskRow> getTaskRows() {
+        return taskRows;
+    }
 }
