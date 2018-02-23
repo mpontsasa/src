@@ -297,4 +297,9 @@ public class TaskModel implements SuperModel {
         }
     }
 
+    //........getters
+
+    public ArrayList<TaskUnit> getTaskUnits() {
+        return taskUnits;
+    }
 }

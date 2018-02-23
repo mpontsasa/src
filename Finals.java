@@ -19,4 +19,8 @@ public class Finals {
     public final static int NR_OF_FIELDS_IN_SUB_UNIT = 1;
     public final static int NR_OF_FIELDS_IN_ROW = 7;
     public final static String TOK_D = "@"; //token delimiter
+
+    public final static int LENGTH_OF_UNIT_TABLE_HEADER = 12;
+    public final static String[] UNIT_TABLE_HEADER = {"Nr.", "Titlu", "Cod", "Pret Unitar", "um",
+            "Cantitate", "Ore", "Pret Total", "Material", "Manopera", "Utilaj", "Transport"};
 }

@@ -63,7 +63,6 @@ public class Controller {
 
     }
 
-
     public void loadTaskFromFile() throws FileNotFoundException{
         try{
             taskModel.loadProject(projectName);
@@ -184,12 +183,7 @@ public class Controller {
         }
     }
 
-
-
-
-
     public void setProjectName(String projectName) {
         this.projectName = projectName;
     }
-
 }

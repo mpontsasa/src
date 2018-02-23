@@ -55,6 +55,24 @@ public class TaskUnit {
                 + Finals.TOK_D + cantitate + Finals.TOK_D + ore + Finals.TOK_D;
     }
 
+    public String[] getTableHeader(){
+        String[] res = new String[Finals.LENGTH_OF_UNIT_TABLE_HEADER];
+
+        res[1] = unitTitle;
+        res[2] = unitCode;
+        res[3] = "" + pretUnitar;
+        res[4] = unitateMetric;
+        res[5] = "" + cantitate;
+        res[6] = "" + ore;
+        res[7] = "" + pretTotal;
+        res[8] = "" + material;
+        res[9] = "" + manopera;
+        res[10] = "" + utilaj;
+        res[11] = "" + transport;
+
+        return res;
+    }
+
     public void processHeader(String line) throws Exception{
 
         String[] tokens = line.split(Finals.TOK_D);
