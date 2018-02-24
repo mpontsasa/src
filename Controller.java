@@ -160,29 +160,44 @@ public class Controller {
         }
     }
 
-//    public void loadScheduleFromFile() throws FileNotFoundException{
-//
-//        Scanner scan = new Scanner(new File(projectName + "_schedule.txt"));
-//        while(scan.hasNextLine()){
-//            String line = scan.nextLine();
-//            scheduleModel.loadLine(line);
-//        }
-//        scan.close();
-//    }
+    public void saveButtonClicked(){
+        try{
+            saveProject();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
 
+        saveUnits();
+
+        System.out.println("saved!");
+    }
+
+    //        scan.close();
+    //        }
+    //            scheduleModel.loadLine(line);
+    //            String line = scan.nextLine();
+    //        while(scan.hasNextLine()){
+    //        Scanner scan = new Scanner(new File(projectName + "_schedule.txt"));
+    //
+//    public void loadScheduleFromFile() throws FileNotFoundException{
+
+//    }
+    //
+    //        fw.close();
+    //
+    //        }
+    //            currentLine = scheduleModel.saveLine();
+    //            fw.write(currentLine + "\n");
+    //        while(!currentLine.equals(Finals.END_OF_PROJECT)) {
+    //
+    //        String currentLine = scheduleModel.saveLine();
+    //
+    //        FileWriter fw = new FileWriter(projectName + "_schedule.txt");
+    //
 //    public void saveScheduleToFile() throws IOException{
-//
-//        FileWriter fw = new FileWriter(projectName + "_schedule.txt");
-//
-//        String currentLine = scheduleModel.saveLine();
-//
-//        while(!currentLine.equals(Finals.END_OF_PROJECT)) {
-//            fw.write(currentLine + "\n");
-//            currentLine = scheduleModel.saveLine();
-//        }
-//
-//        fw.close();
-//
+
 //    }
 
     public void insertUnit(int unitIndex){
@@ -264,17 +279,6 @@ public class Controller {
     public void newUnitCodeInserted(String candidateCode){
         System.out.println("New code insterted:"+candidateCode);
         //taskView.addUnit();
-    }
-
-    public void saveButtonClicked(){
-        System.out.println("saved!");
-//        try {
-//            saveProject();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            //LE KELL KEZELNI
-//        }
-//        saveUnits();
     }
 
     public void printUnits() {
