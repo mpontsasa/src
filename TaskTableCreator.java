@@ -49,7 +49,7 @@ public class TaskTableCreator {
                 }
                 else {  //manopera or utilaj
                     //subUnitTs[unit][su][0] = Finals.EXTENDED_SUB_UNIT_TABLE_HEADER;
-                    
+
                     for (int row = 0; row < subUnitTs[unit][su].length; row++) {
                         subUnitTs[unit][su][row] = taskModel.getTaskUnits().get(unit).getSubUnits().get(su).getTaskRows().get(row).getExtendedTableHeader();
                         subUnitTs[unit][su][row][0] = "" + (row + 1); //set index
@@ -61,11 +61,11 @@ public class TaskTableCreator {
     }
 
     public void createSumTotalT() {
-        sumTotalT = new String[1][];
+        sumTotalT = new String[2][];
 
         //sumTotalT[0] = Finals.SUM_TOTAL_TABLE_HEADER;
         sumTotalT[0] = taskModel.getSumTotalTableHeader();
-
+        sumTotalT[1] = taskModel.getSumAmplifierTableHeader();
     }
 
     public void createSumMMUTT() {

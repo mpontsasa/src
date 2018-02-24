@@ -32,10 +32,10 @@ public class Finals {
     public final static String[] EXTENDED_SUB_UNIT_TABLE_HEADER = {"Nr.", "Element", "um", "Cantitate Unitara",
             "Pret Unitar", "Pret Total Untar", "Cantitate Totala", "Pret Total", "Furnizor", "Nr. de alocatii", "Nr. de ore necesare"};
 
-    public final static int LENGTH_OF_SUM_TOTAL_TABLE = 5;
+    public final static int LENGTH_OF_SUM_TOTAL_TABLE = 6;
     public final static String[] SUM_TOTAL_TABLE_HEADER = {"Material", "Manopera", "Utilaj", "Transport", "Total cost direct"};
 
-    public final static int LENGTH_OF_SUM_MMUT_TABLE = 5;
-    public final static String[] SUM_MMUT_TABLE_HEADER = {"Material", "Manopera", "Utilaj", "Transport", "Total cost direct"};
+    public final static int LENGTH_OF_SUM_MMUT_TABLE = 4;
+    public final static String[] SUM_MMUT_TABLE_HEADER = {"Material", "Manopera", "Utilaj", "Transport"};
 
 }

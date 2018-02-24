@@ -131,11 +131,25 @@ public class TaskModel implements SuperModel {
     public String[] getSumTotalTableHeader() {
         String[] res = new String[Finals.LENGTH_OF_SUM_TOTAL_TABLE];
 
-        res[0] = "" + material;
-        res[1] = "" + manopera;
-        res[2] = "" + utilaj;
-        res[3] = "" + transport;
-        res[4] = "" + totalCostDirect;
+        res[0] = "" + totalCostDirect;
+        res[1] = "" + cheltuileIndirecte;
+        res[2] = "" + profit;
+        res[3] = "" + totalValoareLucrareFaraTVA;
+        res[4] = "" + TVA;
+        res[5] = "" + totalValoareLucrareCuTVA;
+
+        return res;
+    }
+
+    public String[] getSumAmplifierTableHeader() {
+        String[] res = new String[Finals.LENGTH_OF_SUM_TOTAL_TABLE];
+
+        res[0] = "";
+        res[1] = "" + cheltuileIndirecteAmplifier;
+        res[2] = "" + profitAmplifier;
+        res[3] = "";
+        res[4] = "" + TVAAmplifier;
+        res[5] = "";
 
         return res;
     }
@@ -147,7 +161,7 @@ public class TaskModel implements SuperModel {
         res[1] = "" + manopera;
         res[2] = "" + utilaj;
         res[3] = "" + transport;
-        res[4] = "" + totalCostDirect;
+        //res[4] = "" + totalCostDirect;
         return res;
     }
 
