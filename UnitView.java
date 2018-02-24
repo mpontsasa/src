@@ -23,10 +23,10 @@ public class UnitView extends JPanel implements SuperView {
         String[][] uhvData = taskTableCreator.getUnitHeaderTs()[myIndex];//a unitokat egytol indexeljuk
         UnitHeaderView uhv = new UnitHeaderView(this, uhvData);
 
-        SubUnitView suv = new SubUnitView("MATERIAL");
+        SubUnitView suv = new SubUnitView("MATERIAL", this, myIndex, 0);
         ExtendedSubUnitView suv2 = new ExtendedSubUnitView("MANOPERA");
         ExtendedSubUnitView suv3 = new ExtendedSubUnitView("UTILAJ");
-        SubUnitView suv4 = new SubUnitView("TRANSPORT");
+        SubUnitView suv4 = new SubUnitView("TRANSPORT",this, myIndex, 3);
         subUnitViews.add(suv);subUnitViews.add(suv2);subUnitViews.add(suv3);subUnitViews.add(suv4);
 
 
@@ -38,8 +38,13 @@ public class UnitView extends JPanel implements SuperView {
         }
 
 
+
+
+        paddingPanel.setPreferredSize(new Dimension(paddingPanel.getWidth(),10));
+
         this.add(paddingPanel);
 
+        this.setBorder(BorderFactory.createLineBorder(Color.black));
     }
 
 
@@ -70,9 +75,14 @@ public class UnitView extends JPanel implements SuperView {
             this.add(subUnitView);
         }
 
+
+
+
+        paddingPanel.setPreferredSize(new Dimension(paddingPanel.getWidth(),10));
+
         this.add(paddingPanel);
 
-
+        this.setBorder(BorderFactory.createLineBorder(Color.black));
     }
 
     @Override
@@ -83,5 +93,10 @@ public class UnitView extends JPanel implements SuperView {
 
     public void notifyController(String candidateCode){
         parent.notifyController(candidateCode);
+    }
+
+    @Override
+    public TaskView getParent() {
+        return parent;
     }
 }

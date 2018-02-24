@@ -13,11 +13,15 @@ public class SubUnitTableModel extends DefaultTableModel {
         this.editable_cells = new boolean[data.length][columns.length];
 
 
+
         editable_cells[0][1] = true;
         editable_cells[0][2] = true;
         editable_cells[0][3] = true;
         editable_cells[0][4] = true;
         editable_cells[0][8] = true;
+
+
+
 
 
     }

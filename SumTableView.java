@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.swing.event.TableModelEvent;
+import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.awt.event.MouseWheelEvent;
 
@@ -27,9 +28,21 @@ public class SumTableView extends JPanel {
 
         totalsTable = new JTable(data,columns);
         totalsTable.getTableHeader().setReorderingAllowed(false);
+        totalsTable.setRowSelectionAllowed(false);
+
+        SumsTableModel stm = new SumsTableModel(data,columns);
+        totalsTable.setModel(stm);//bellitom azt hogy csak a szrozokat lehet editalni
+
 
         MMUTTable = new JTable(MMUTData,MMUTColumns);
         MMUTTable.getTableHeader().setReorderingAllowed(false);
+        MMUTTable.setRowSelectionAllowed(false);
+
+
+        //set the editing of cells in mmutable to false
+        MMUTTable.setDefaultEditor(Object.class, null);
+
+        //
 
         // https://stackoverflow.com/questions/7433602/how-to-center-in-jtable-cell-a-value
         JTableUtilities.setCellsAlignment(totalsTable, SwingConstants.CENTER);

@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.MouseWheelEvent;
 
@@ -19,35 +20,37 @@ public class UnitHeaderView extends JPanel {
         this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
         String[] columns = Finals.UNIT_TABLE_HEADER;
 
-//        String[][] data = {{"6","Cofrare fundatii demisol cota -3,05", "C456", "85.00", "mp",
-//                            "112.68","20.00","6.00","5.00","8.00","5.00","9.00"}};
 
 
 
         table = new JTable(data,columns);
+
+
+
+
         table.getTableHeader().setReorderingAllowed(false);
+        table.setRowSelectionAllowed(false);
+
         unitHeaderTableModel = new UnitHeaderTableModel(data,columns);
         table.setModel(unitHeaderTableModel);
 
         unitHeaderTableModel.setCellEditable(0,2,false);
 
-//        table.getModel().addTableModelListener(e -> {
-//
-//            if(e.getColumn() == 2){
-//                // "Cod" changed
-//                String candidateCode = table.getModel().getValueAt(0,2).toString();//getValueAt returns Object
-//                if(!candidateCode.equals("")){
-//                    unitHeaderTableModel.setCellEditable(0,2,false);
-//                    notifyController(candidateCode);
-//                }
-//
-//            }
-//        });
-//        if (e.getClickCount() == 2) {
-//            JTable target = (JTable)e.getSource();
-//            int row = target.getSelectedRow();
-//            int column = target.getSelectedColumn();
-//            // do some action if appropriate column
+        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
+            //https://stackoverflow.com/questions/35431232/jtable-cell-text-color-changing
+            @Override
+            public Component getTableCellRendererComponent(JTable table,Object value,boolean isSelected,boolean hasFocus,
+                                                           int row,int column) {
+                Component c = super.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
+                if(unitHeaderTableModel.isCellEditable(row,column)){
+                    c.setForeground(Color.GREEN);
+                }
+                else{
+                    c.setForeground(Color.RED);
+                }
+                return c;
+            }
+        });
 
 
 
@@ -105,11 +108,13 @@ public class UnitHeaderView extends JPanel {
         String[] columns = Finals.UNIT_TABLE_HEADER;
 
 
-        String[][] data = {{"1","", "", "", "",
+        String[][] data = {{"","", "", "", "",
                 "","","","","","",""}};
 
         table = new JTable(data,columns);
         table.getTableHeader().setReorderingAllowed(false);
+        table.setRowSelectionAllowed(false);
+
         unitHeaderTableModel = new UnitHeaderTableModel(data,columns);
         table.setModel(unitHeaderTableModel);
 
@@ -127,12 +132,23 @@ public class UnitHeaderView extends JPanel {
 
             }
         });
-//        if (e.getClickCount() == 2) {
-//            JTable target = (JTable)e.getSource();
-//            int row = target.getSelectedRow();
-//            int column = target.getSelectedColumn();
-//            // do some action if appropriate column
 
+
+        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
+            //https://stackoverflow.com/questions/35431232/jtable-cell-text-color-changing
+            @Override
+            public Component getTableCellRendererComponent(JTable table,Object value,boolean isSelected,boolean hasFocus,
+                                                           int row,int column) {
+                Component c = super.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
+                if(unitHeaderTableModel.isCellEditable(row,column)){
+                    c.setForeground(Color.GREEN);
+                }
+                else{
+                    c.setForeground(Color.RED);
+                }
+                return c;
+            }
+        });
 
 
 

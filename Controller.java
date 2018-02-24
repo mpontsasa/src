@@ -36,6 +36,7 @@ public class Controller {
     }
 
     public void initializeViews(){
+        //ahhoz, hogy lehessen scrollozni az ablakban, egy scrollpane-be teszem az egesz taskViewt, s azt a burkot a framebe
         initializeFrame();
         taskView = new TaskView(taskModel,frame,this);
         shell = new JScrollPane(taskView);
