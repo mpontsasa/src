@@ -38,7 +38,8 @@ public class UnitView extends JPanel implements SuperView {
         }
 
 
-        this.add(paddingPanel);
+        this.setBorder(BorderFactory.createLineBorder(Color.black));
+        //this.add(paddingPanel);
 
     }
 
@@ -70,7 +71,8 @@ public class UnitView extends JPanel implements SuperView {
             this.add(subUnitView);
         }
 
-        this.add(paddingPanel);
+        this.setBorder(BorderFactory.createLineBorder(Color.black));
+        //this.add(paddingPanel);
 
 
     }
