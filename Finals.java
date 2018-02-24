@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class Finals {
     public final static String END_OF_PROJECT = "END_OF_PROJECT";
     public final static String NO_MORE_ITEMS = "NO_MORE_ITEMS";
@@ -37,5 +39,7 @@ public class Finals {
 
     public final static int LENGTH_OF_SUM_MMUT_TABLE = 5;
     public final static String[] SUM_MMUT_TABLE_HEADER = {"Material", "Manopera", "Utilaj", "Transport", "Total cost direct"};
+
+    public final static Color UNIT_PADDING_COLOR = new Color(180,209,7);
 
 }

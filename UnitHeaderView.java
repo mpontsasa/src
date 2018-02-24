@@ -29,20 +29,20 @@ public class UnitHeaderView extends JPanel {
         unitHeaderTableModel = new UnitHeaderTableModel(data,columns);
         table.setModel(unitHeaderTableModel);
 
+        unitHeaderTableModel.setCellEditable(0,2,false);
 
-
-        table.getModel().addTableModelListener(e -> {
-
-            if(e.getColumn() == 2){
-                // "Cod" changed
-                String candidateCode = table.getModel().getValueAt(0,2).toString();//getValueAt returns Object
-                if(!candidateCode.equals("")){
-                    unitHeaderTableModel.setCellEditable(0,2,false);
-                    notifyController(candidateCode);
-                }
-
-            }
-        });
+//        table.getModel().addTableModelListener(e -> {
+//
+//            if(e.getColumn() == 2){
+//                // "Cod" changed
+//                String candidateCode = table.getModel().getValueAt(0,2).toString();//getValueAt returns Object
+//                if(!candidateCode.equals("")){
+//                    unitHeaderTableModel.setCellEditable(0,2,false);
+//                    notifyController(candidateCode);
+//                }
+//
+//            }
+//        });
 //        if (e.getClickCount() == 2) {
 //            JTable target = (JTable)e.getSource();
 //            int row = target.getSelectedRow();
@@ -98,12 +98,12 @@ public class UnitHeaderView extends JPanel {
 
 
     public UnitHeaderView(UnitView parent) {
+        //URES HEADER KONSTRUKTOR
         this.parent = parent;
         this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
-        String[] columns= {"Index", "Titlu", "Cod", "    PRET UNITAR    ", "UM", "CANTITATE",
-                "ore", "PRET TOTAL", "material","manopera","utilaj","transport"};
-//        String[][] data = {{"6","Cofrare fundatii demisol cota -3,05", "C456", "85.00", "mp",
-//                            "112.68","20.00","6.00","5.00","8.00","5.00","9.00"}};
+
+        String[] columns = Finals.UNIT_TABLE_HEADER;
+
 
         String[][] data = {{"1","", "", "", "",
                 "","","","","","",""}};
