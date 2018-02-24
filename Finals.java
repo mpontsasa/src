@@ -35,5 +35,7 @@ public class Finals {
     public final static int LENGTH_OF_SUM_TOTAL_TABLE = 5;
     public final static String[] SUM_TOTAL_TABLE_HEADER = {"Material", "Manopera", "Utilaj", "Transport", "Total cost direct"};
 
+    public final static int LENGTH_OF_SUM_MMUT_TABLE = 5;
+    public final static String[] SUM_MMUT_TABLE_HEADER = {"Material", "Manopera", "Utilaj", "Transport", "Total cost direct"};
 
 }

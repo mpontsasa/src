@@ -13,19 +13,19 @@ public class TaskTableCreator {
         crateUnitHeaderTs();
         createSubUnitTs();
         createSumTotalT();
-        createMMUTT();
+        createSumMMUTT();
     }
 
     public void crateUnitHeaderTs() {
         unitHeaderTs = new String[taskModel.getTaskUnits().size()][][];
 
         for (int i = 0; i < unitHeaderTs.length; i ++) {
-            unitHeaderTs[i] = new String[2][];
+            unitHeaderTs[i] = new String[1][];
 
-            unitHeaderTs[i][0] = Finals.UNIT_TABLE_HEADER;
-            unitHeaderTs[i][1] = taskModel.getTaskUnits().get(i).getTableHeader();
+            //unitHeaderTs[i][0] = Finals.UNIT_TABLE_HEADER;
+            unitHeaderTs[i][0] = taskModel.getTaskUnits().get(i).getTableHeader();
 
-            unitHeaderTs[i][1][0] = "" + i; // set index
+            unitHeaderTs[i][0][0] = "" + (i + 1); // set index, 1-tol indexelve
         }
     }
 
@@ -36,23 +36,23 @@ public class TaskTableCreator {
             subUnitTs[unit] = new String[Finals.NUMBER_OF_SUBUNITS][][];    //letrehozzuk a subunit matrixokat
 
             for (int su = 0; su < subUnitTs[unit].length; su++) {
-                subUnitTs[unit][su] = new String[taskModel.getTaskUnits().get(unit).getSubUnits().get(su).getTaskRows().size() + 1][];  //letrehozunk egy subunitot(sorok + 1 header)
+                subUnitTs[unit][su] = new String[taskModel.getTaskUnits().get(unit).getSubUnits().get(su).getTaskRows().size()][];
 
                 if (su == 0 || su == 3){    //material or transport
 
-                    subUnitTs[unit][su][0] = Finals.SUB_UNIT_TABLE_HEADER;
+                    //subUnitTs[unit][su][0] = Finals.SUB_UNIT_TABLE_HEADER;
 
-                    for (int row = 1; row < subUnitTs[unit][su].length; row++) {
-                        subUnitTs[unit][su][row] = taskModel.getTaskUnits().get(unit).getSubUnits().get(su).getTaskRows().get(row-1).getTableHeader();  //row -1 mert a modellben 0-tol megy, itt a header miatt 1-tol
-                        subUnitTs[unit][su][row][0] = "" + row; //set index
+                    for (int row = 0; row < subUnitTs[unit][su].length; row++) {
+                        subUnitTs[unit][su][row] = taskModel.getTaskUnits().get(unit).getSubUnits().get(su).getTaskRows().get(row).getTableHeader();
+                        subUnitTs[unit][su][row][0] = "" + (row + 1); //set index
                     }
                 }
                 else {  //manopera or utilaj
-                    subUnitTs[unit][su][0] = Finals.EXTENDED_SUB_UNIT_TABLE_HEADER;
+                    //subUnitTs[unit][su][0] = Finals.EXTENDED_SUB_UNIT_TABLE_HEADER;
 
-                    for (int row = 1; row < subUnitTs[unit][su].length; row++) {
-                        subUnitTs[unit][su][row] = taskModel.getTaskUnits().get(unit).getSubUnits().get(su).getTaskRows().get(row -1).getExtendedTableHeader();//row -1 mert a modellben 0-tol megy, itt a header miatt 1-tol
-                        subUnitTs[unit][su][row][0] = "" + row; //set index
+                    for (int row = 0; row < subUnitTs[unit][su].length; row++) {
+                        subUnitTs[unit][su][row] = taskModel.getTaskUnits().get(unit).getSubUnits().get(su).getTaskRows().get(row).getExtendedTableHeader();
+                        subUnitTs[unit][su][row][0] = "" + (row + 1); //set index
                     }
                 }
             }
@@ -60,15 +60,16 @@ public class TaskTableCreator {
     }
 
     public void createSumTotalT() {
-        sumTotalT = new String[2][];
+        sumTotalT = new String[1][];
 
-        sumTotalT[0] = Finals.SUM_TOTAL_TABLE_HEADER;
-        sumTotalT[1] = taskModel.getSumTotalTableHeader();
+        //sumTotalT[0] = Finals.SUM_TOTAL_TABLE_HEADER;
+        sumTotalT[0] = taskModel.getSumTotalTableHeader();
 
     }
 
-    public void createMMUTT() {
-
+    public void createSumMMUTT() {
+        sumTotalT = new String[1][];
+        sumTotalT[0] = taskModel.getSumMMUTTableHeader();
     }
 
     public String[][][] getUnitHeaderTs() {
