@@ -198,7 +198,14 @@ public class Controller {
 //        saveUnits();
     }
 
-    public void printComponenet(){
+    public void printUnits() {
+        for (JPanel unit : taskView.getUnitViews()){
+            printComponenet(unit);
+        }
+        //JPanel unit = taskView.getUnitViews().get(0);
+    }
+
+    public void printComponenet(JComponent component){
 
         PrinterJob pj = PrinterJob.getPrinterJob();
         pj.setJobName(" Print Component ");
@@ -216,10 +223,13 @@ public class Controller {
 
                 Graphics2D g2 = (Graphics2D) pg;
                 g2.translate(pf.getImageableX(), pf.getImageableY());
-                taskView.paint(g2);
+                g2.scale(0.7,0.7);
+                component.paint(g2);
+
                 return Printable.PAGE_EXISTS;
             }
         },pf);
+
         if (pj.printDialog() == false)
             return;
 
@@ -228,5 +238,9 @@ public class Controller {
         } catch (PrinterException ex) {
             // handle exception
         }
+    }
+
+    public TaskView getTaskView() {
+        return taskView;
     }
 }
