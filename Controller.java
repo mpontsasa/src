@@ -59,7 +59,7 @@ public class Controller {
         else    //row edited
         {
             if (rowIndex < taskModel.getTaskUnits().get(unitIndex).getSubUnits().get(subUnitIndex).getTaskRows().size()){   // edited, not added
-                rowEdited(unitIndex, columnIndex, data);
+                rowEdited(unitIndex, subUnitIndex, rowIndex, columnIndex, data);
             }
             else if(rowIndex == taskModel.getTaskUnits().get(unitIndex).getSubUnits().get(subUnitIndex).getTaskRows().size()) // new row added
             {
@@ -111,6 +111,7 @@ public class Controller {
                 System.out.println("hibas columnIndex unit header editalasanal");
         }
 
+        System.out.println("Cell edit: " + unitIndex + " " +subUnitIndex +" " + rowIndex + " " + columnIndex + " " + data);
     }
 
     public void initializeViews(){
@@ -262,7 +263,7 @@ public class Controller {
 
     public void newUnitCodeInserted(String candidateCode){
         System.out.println("New code insterted:"+candidateCode);
-        taskView.addUnit();
+        //taskView.addUnit();
     }
 
     public void saveButtonClicked(){

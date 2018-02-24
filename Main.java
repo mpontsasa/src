@@ -12,8 +12,8 @@ public class Main {
             controller.initializeViews();
             //controller.insertUnit(0);
             //controller.saveUnits();
-            controller.saveProject();
-            controller.printUnits();
+            //controller.saveProject();
+            //controller.printUnits();
 
 
             ///<INSERT TEST>

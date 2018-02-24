@@ -13,7 +13,7 @@ public class UnitView extends JPanel implements SuperView {
     public UnitView(TaskView parent, int myIndex){
         //NEM URES UNIT KONSTRUKTOR
         this.parent = parent;
-        //this.myIndex = myIndex;
+        this.myIndex = myIndex;
         subUnitViews = new ArrayList<>();
 
 
@@ -100,5 +100,9 @@ public class UnitView extends JPanel implements SuperView {
     @Override
     public TaskView getParent() {
         return parent;
+    }
+
+    public Integer getMyIndex() {
+        return myIndex;
     }
 }

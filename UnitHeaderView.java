@@ -3,6 +3,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseWheelEvent;
 
 public class UnitHeaderView extends JPanel {
@@ -37,6 +38,17 @@ public class UnitHeaderView extends JPanel {
         JTableUtilities.setCellsAlignment(table, SwingConstants.CENTER,unitHeaderTableModel);
 
         unitHeaderTableModel.setCellEditable(0,2,false);
+
+        Action action = new AbstractAction()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                TableCellListener tcl = (TableCellListener)e.getSource();
+                parent.getParent().myController.taskViewEdited(parent.getMyIndex(),-1,-1,
+                        tcl.getColumn(),(String) tcl.getNewValue());
+            }
+        };
+        TableCellListener tcl = new TableCellListener(table, action);
 
 //        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
 //            //https://stackoverflow.com/questions/35431232/jtable-cell-text-color-changing
@@ -125,18 +137,32 @@ public class UnitHeaderView extends JPanel {
 
 
 
-        table.getModel().addTableModelListener(e -> {
+        Action action = new AbstractAction()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                TableCellListener tcl = (TableCellListener)e.getSource();
+                if(tcl.getColumn() == 2){
+                    // "Cod" changed
+                    String candidateCode = table.getModel().getValueAt(0,2).toString();//getValueAt returns Object
 
-            if(e.getColumn() == 2){
-                // "Cod" changed
-                String candidateCode = table.getModel().getValueAt(0,2).toString();//getValueAt returns Object
-                if(!candidateCode.equals("")){
+                    //nem kell ellenorizni hogy ures string-e mert ures string beutesenel nem triggerelodik az action
                     unitHeaderTableModel.setCellEditable(0,2,false);
                     notifyController(candidateCode);
+
+
+
+                }
+                else{
+                    table.getModel().setValueAt("",tcl.getRow(),tcl.getColumn());
                 }
 
             }
-        });
+        };
+        TableCellListener tcl = new TableCellListener(table, action);
+
+
+
 
 
         table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){

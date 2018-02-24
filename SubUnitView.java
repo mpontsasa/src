@@ -16,12 +16,14 @@ public class SubUnitView extends JPanel {
     private SubUnitTableModel subUnitTableModel;
     private String header;
     private UnitView parent;
+    private int myIndex;
     private int type;
 
     public SubUnitView(String header, int type) {
         //URES KONSTRUKTOR
         this.type = type;
         this.header = header;
+
 
         this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 
@@ -63,6 +65,7 @@ public class SubUnitView extends JPanel {
 
     public SubUnitView(String header, UnitView parent, int parentIndex, int myIndex, int type ){
         //NEM URES KONSTRUKTOR
+        this.myIndex = myIndex;
         this.type = type;
         this.header = header;
         this.parent = parent;
@@ -152,6 +155,8 @@ public class SubUnitView extends JPanel {
                     Integer newIndex = Integer.parseInt(oldRow[0]) + 1;
                     insertBlankRow(newIndex);
                 }
+                parent.getParent().myController.taskViewEdited(parent.getMyIndex(),myIndex,tcl.getRow(),tcl.getColumn(),
+                        (String)tcl.getNewValue());
                 resizeSubunit();
             }
         };

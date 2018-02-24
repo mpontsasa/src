@@ -58,17 +58,25 @@ public class TaskView extends JPanel {
         this.repaint();
     }
 
-    public void addUnit(){
+//    public void addUnit(){
+//        addEmptyUnit();
+//        //KELL MODOSITANI
+//
+//        refreshUnits();
+//    }
+
+    public void addEmptyUnit(){
+        //to-do
         unitViews.add(new UnitView(this));
         refreshUnits();
     }
 
-    public void addEmptyUnit(){
-        //to-do
-    }
-
     public void notifyController(String candidateCode){
-        myController.newUnitCodeInserted(candidateCode);
+        System.out.println("New code insterted:"+candidateCode);
+        Integer newIndex = unitViews.size();
+        myController.taskViewEdited(newIndex,-1,-1,2,candidateCode);
+
+        addEmptyUnit();
     }
 
 
@@ -78,7 +86,7 @@ public class TaskView extends JPanel {
             int unitIndex = Integer.parseInt(taskTableCreator.getUnitHeaderTs()[i][0][0]) - 1;//1tol indexelunk a headerekben
             unitViews.add(new UnitView(this,unitIndex));
         }
-        addUnit();
+        addEmptyUnit();
     }
 
 
