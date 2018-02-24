@@ -1,4 +1,6 @@
-// az orarend tablazathoz hasznaljuk
+// nem hasznaljuk deloc
 public class ScheduleModel implements  SuperModel{
+
+
 
 }

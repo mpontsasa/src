@@ -12,7 +12,7 @@ public class Main {
             controller.initializeViews();
             //controller.insertUnit(0);
             //controller.saveUnits();
-           // controller.saveProject();
+            controller.saveProject();
 
 
             ///<INSERT TEST>

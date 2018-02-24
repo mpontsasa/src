@@ -177,7 +177,7 @@ public class TaskModel implements SuperModel {
         fw.write(getHeader() + "\n");
 
         for(TaskUnit tu : taskUnits) {
-            fw.write(tu.getUnitCode() + "\n");
+            fw.write(tu.getProjectFileLine() + "\n");
         }
 
         fw.close();

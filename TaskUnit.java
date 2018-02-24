@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 public class TaskUnit {
 
     private ArrayList<TaskSubUnit> subUnits;
+    private ArrayList<Integer> schedules;
     private String unitCode;
     private TaskModel parent;
 
@@ -30,12 +31,32 @@ public class TaskUnit {
         initialiseSubUnits();
     }
 
-    public TaskUnit(String unitCode, TaskModel parent) throws Exception {
-        this.unitCode = unitCode;
+    public TaskUnit(String projectFileLine, TaskModel parent) throws Exception {   // line = 'unitCode@tablemark1@tablemark2@...'
+        schedules = new ArrayList<Integer>();
+        processProjectFileLine(projectFileLine);
         this.parent = parent;
         subUnits = new ArrayList<>();
         initialiseSubUnits();
         loadUnit(unitCode);
+    }
+
+    public void processProjectFileLine(String line) {
+
+        String[] tokens = line.split(Finals.TOK_D);
+        unitCode = tokens[0];
+
+        for (int i = 1; i < tokens.length; i++) {
+            schedules.add(Integer.parseInt(tokens[i]));
+        }
+    }
+
+    public String getProjectFileLine(){
+        String res = "" + unitCode + Finals.TOK_D;
+
+        for (Integer i : schedules) {
+            res += i + Finals.TOK_D;
+        }
+        return res;
     }
 
     public void initialiseSubUnits() {
