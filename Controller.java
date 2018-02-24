@@ -1,5 +1,10 @@
+import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -50,8 +55,6 @@ public class Controller {
         frame.setBounds(0,0,600,450);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setTitle("Test");
-
-
     }
 
     public void loadTaskFromFile() throws FileNotFoundException{
@@ -194,4 +197,35 @@ public class Controller {
 //        saveUnits();
     }
 
+    public void printComponenet(){
+
+        PrinterJob pj = PrinterJob.getPrinterJob();
+        pj.setJobName(" Print Component ");
+        PageFormat pf = pj.defaultPage();
+        pf.setOrientation(PageFormat.LANDSCAPE);
+        //pj.setPrintable(new Printable(), pf);
+
+        //printRequestAttributeSet.add(OrientationRequested.LANDSCAPE);
+
+        pj.setPrintable (new Printable() {
+            public int print(Graphics pg, PageFormat pf, int pageNum){
+                if (pageNum > 0){
+                    return Printable.NO_SUCH_PAGE;
+                }
+
+                Graphics2D g2 = (Graphics2D) pg;
+                g2.translate(pf.getImageableX(), pf.getImageableY());
+                taskView.paint(g2);
+                return Printable.PAGE_EXISTS;
+            }
+        },pf);
+        if (pj.printDialog() == false)
+            return;
+
+        try {
+            pj.print();
+        } catch (PrinterException ex) {
+            // handle exception
+        }
+    }
 }
