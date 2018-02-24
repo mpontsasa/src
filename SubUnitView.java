@@ -5,6 +5,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseWheelEvent;
 
 public class SubUnitView extends JPanel {
@@ -38,6 +39,25 @@ public class SubUnitView extends JPanel {
         table.getTableHeader().setReorderingAllowed(false);
         subUnitTableModel = new SubUnitTableModel(data,columns);
         table.setModel(subUnitTableModel);
+
+
+        Action action = new AbstractAction()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                TableCellListener tcl = (TableCellListener)e.getSource();
+                if(subUnitTableModel.getRowCount() - 1 == tcl.getRow()){//last row was edited
+                    //insert new row
+                    String[] oldRow = (String[])getRowAt(tcl.getRow());
+                    Integer newIndex = Integer.parseInt(oldRow[0]) + 1;
+                    subUnitTableModel.addRowToBooleanMatrix();
+                    subUnitTableModel.addRow(new String[]{newIndex.toString(), "", "", "", "", "", "", "", ""});
+                    resizeSubunit();
+                }
+            }
+        };
+        TableCellListener tcl = new TableCellListener(table, action);
+
 
 
         //ez nem megy :(
@@ -105,6 +125,23 @@ public class SubUnitView extends JPanel {
         this.add(scrollPane);
     }
 
+    public void resizeSubunit(){
+        //resize after changes have been made
+
+        TableColumnAdjuster tca = new TableColumnAdjuster(table);
+        tca.adjustColumns();
+
+
+        int numOfRows = table.getRowCount() + 2;
+        int rowHeight = table.getRowHeight();
+
+        int width = 559;
+        int height = numOfRows * rowHeight + 30;
+        scrollPane.setPreferredSize(new Dimension(width,height));
+        this.setPreferredSize(new Dimension(width,height));
+        this.revalidate();
+        this.repaint();
+    }
 
     public Object[] getRowAt(int row) {
         Object[] result = new String[Finals.LENGTH_OF_SUB_UNIT_TABLE];

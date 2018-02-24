@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.event.TableModelEvent;
 import java.awt.*;
 import java.awt.event.MouseWheelEvent;
 
@@ -75,6 +76,11 @@ public class SumTableView extends JPanel {
 
         totalsTable.setFillsViewportHeight(true);
         totalsTable.setPreferredScrollableViewportSize(new Dimension(600,450));
+
+//        totalsTable.getModel().addTableModelListener(e -> {
+//            System.out.println(e.getFirstRow() + " " + e.getColumn() + " " + e.getType());
+//
+//        });
 
         MMUTTable.setFillsViewportHeight(true);
         MMUTTable.setPreferredScrollableViewportSize(new Dimension(600,450));

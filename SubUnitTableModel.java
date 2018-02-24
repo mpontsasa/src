@@ -17,6 +17,7 @@ public class SubUnitTableModel extends DefaultTableModel {
         editable_cells[0][2] = true;
         editable_cells[0][3] = true;
         editable_cells[0][4] = true;
+        editable_cells[0][8] = true;
 
 
     }
@@ -35,6 +36,25 @@ public class SubUnitTableModel extends DefaultTableModel {
     public void setCellEditable(int row, int col, boolean value) {
         this.editable_cells[row][col] = value; // set cell true/false
         //this.fireTableCellUpdated(row, col);//ha ezt kiszedem mukodik. nagyon szegyellem magam
+    }
+
+    public void addRowToBooleanMatrix(){
+        boolean[][] editable_cells_new = new boolean[editable_cells.length + 1][editable_cells[0].length];
+        for(int i = 0; i < editable_cells.length; i++){
+            for (int j = 0; j < editable_cells[0].length; j++){
+                editable_cells_new[i][j] = editable_cells[i][j];
+            }
+        }
+        editable_cells = editable_cells_new;
+
+        //beallitom hogy a szerkesztheto mezok szerkeszthetoek legyenek
+        int lastRowIndex = editable_cells.length - 1;
+        editable_cells[lastRowIndex][1] = true;
+        editable_cells[lastRowIndex][2] = true;
+        editable_cells[lastRowIndex][3] = true;
+        editable_cells[lastRowIndex][4] = true;
+        editable_cells[lastRowIndex][8] = true;
+
     }
 
 
