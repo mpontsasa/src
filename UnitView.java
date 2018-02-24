@@ -17,10 +17,10 @@ public class UnitView extends JPanel implements SuperView {
 
         JPanel paddingPanel = new JPanel();
         paddingPanel.setPreferredSize(new Dimension(this.getWidth(), 60));
-        paddingPanel.setBackground(Color.BLUE);
+        paddingPanel.setBackground(Finals.UNIT_PADDING_COLOR);
 
         TaskTableCreator taskTableCreator = new TaskTableCreator(parent.getMyModel());
-        String[][] uhvData = taskTableCreator.getUnitHeaderTs()[myIndex-1];//a unitokat egytol indexeljuk
+        String[][] uhvData = taskTableCreator.getUnitHeaderTs()[myIndex];//a unitokat egytol indexeljuk
         UnitHeaderView uhv = new UnitHeaderView(this, uhvData);
 
         SubUnitView suv = new SubUnitView("MATERIAL");
@@ -52,7 +52,7 @@ public class UnitView extends JPanel implements SuperView {
 
         JPanel paddingPanel = new JPanel();
         paddingPanel.setPreferredSize(new Dimension(this.getWidth(), 60));
-        paddingPanel.setBackground(Color.BLUE);
+        paddingPanel.setBackground(Finals.UNIT_PADDING_COLOR);
 
         UnitHeaderView uhv = new UnitHeaderView(this);
 
