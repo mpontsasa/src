@@ -35,8 +35,8 @@ public class Controller {
 
     }
 
-    public void viewEdited(Integer unitIndex, Integer subUnitIndex, Integer rowIndex, Integer columnIndex, String data){
-        System.out.println(unitIndex + " " +subUnitIndex +" " + rowIndex + " " + columnIndex + " " + data);
+    public void taskViewEdited(Integer unitIndex, Integer subUnitIndex, Integer rowIndex, Integer columnIndex, String data){
+        System.out.println("Cell edit: " + unitIndex + " " +subUnitIndex +" " + rowIndex + " " + columnIndex + " " + data);
     }
 
     public void initializeViews(){
@@ -188,7 +188,7 @@ public class Controller {
 
     public void newUnitCodeInserted(String candidateCode){
         System.out.println("New code insterted:"+candidateCode);
-        taskView.addUnit();
+        //taskView.addUnit();
     }
 
     public void saveButtonClicked(){

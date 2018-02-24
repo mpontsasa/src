@@ -10,7 +10,7 @@ public class UnitHeaderTableModel extends DefaultTableModel {
         this.editable_cells = new boolean[data.length][columns.length];
 
 
-        editable_cells[0][0] = true;
+        //editable_cells[0][0] = true;
         editable_cells[0][1] = true;
         editable_cells[0][2] = true;
         editable_cells[0][4] = true;
