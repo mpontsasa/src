@@ -87,6 +87,7 @@ public class TaskView extends JPanel {
             unitViews.add(new UnitView(this,unitIndex));
         }
         addEmptyUnit();
+        refreshUnits();
     }
 
 

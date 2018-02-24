@@ -149,16 +149,18 @@ public class SubUnitView extends JPanel {
             public void actionPerformed(ActionEvent e)
             {
                 TableCellListener tcl = (TableCellListener)e.getSource();
+                if(myIndex == null){
+                    table.getModel().setValueAt("",tcl.getRow(),tcl.getColumn());
+
+                    return;
+                }
                 if(subUnitTableModel.getRowCount() - 1 == tcl.getRow()){//last row was edited
                     //insert new row
                     String[] oldRow = (String[])getRowAt(tcl.getRow());
                     Integer newIndex = Integer.parseInt(oldRow[0]) + 1;
                     insertBlankRow(newIndex);
                 }
-                if(myIndex == null){
-                    table.getModel().setValueAt("",tcl.getRow(),tcl.getColumn());
-                    return;
-                }
+
                 parent.getParent().myController.taskViewEdited(parent.getMyIndex(),myIndex,tcl.getRow(),tcl.getColumn(),
                         (String)tcl.getNewValue());
                 resizeSubunit();
@@ -223,7 +225,7 @@ public class SubUnitView extends JPanel {
         int rowHeight = table.getRowHeight();
 
         int width = 559;
-        int height = numOfRows * rowHeight + 30;
+        int height = numOfRows * rowHeight + 50;
         scrollPane.setPreferredSize(new Dimension(width,height));
         this.setPreferredSize(new Dimension(width,height));
         this.revalidate();
