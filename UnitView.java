@@ -5,9 +5,6 @@ import java.util.ArrayList;
 public class UnitView extends JPanel implements SuperView {
 
 
-    //private SuperModel myModel;
-    //private JFrame myFrame;
-    private JTable jt;
 
     private ArrayList<JPanel> subUnitViews;
     private  TaskView parent;
@@ -20,9 +17,10 @@ public class UnitView extends JPanel implements SuperView {
 
         JPanel paddingPanel = new JPanel();
         paddingPanel.setPreferredSize(new Dimension(this.getWidth(), 60));
-        //paddingPanel.setBackground(Color.BLUE);
+        paddingPanel.setBackground(Color.BLUE);
+
         TaskTableCreator taskTableCreator = new TaskTableCreator(parent.getMyModel());
-        String[][] uhvData = taskTableCreator.getUnitHeaderTs()[myIndex];
+        String[][] uhvData = taskTableCreator.getUnitHeaderTs()[myIndex-1];//a unitokat egytol indexeljuk
         UnitHeaderView uhv = new UnitHeaderView(this, uhvData);
 
         SubUnitView suv = new SubUnitView("MATERIAL");
@@ -39,6 +37,7 @@ public class UnitView extends JPanel implements SuperView {
             this.add(subUnitView);
         }
 
+
         this.add(paddingPanel);
 
     }
@@ -53,7 +52,8 @@ public class UnitView extends JPanel implements SuperView {
 
         JPanel paddingPanel = new JPanel();
         paddingPanel.setPreferredSize(new Dimension(this.getWidth(), 60));
-        //paddingPanel.setBackground(Color.BLUE);
+        paddingPanel.setBackground(Color.BLUE);
+
         UnitHeaderView uhv = new UnitHeaderView(this);
 
         SubUnitView suv = new SubUnitView("MATERIAL");
