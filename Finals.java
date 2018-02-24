@@ -1,3 +1,5 @@
+//import org.omg.CORBA.PUBLIC_MEMBER;
+
 import java.awt.*;
 
 public class Finals {
@@ -41,5 +43,8 @@ public class Finals {
     public final static String[] SUM_MMUT_TABLE_HEADER = {"Material", "Manopera", "Utilaj", "Transport"};
 
     public final static Color UNIT_PADDING_COLOR = new Color(180,209,7);
+
+    public final static int SUB_UNIT_TYPE = 0;
+    public final static int EXTENDED_SUB_UNIT_TYPE = 1;
 
 }

@@ -16,16 +16,27 @@ public class SubUnitView extends JPanel {
     private SubUnitTableModel subUnitTableModel;
     private String header;
     private UnitView parent;
+    private int type;
 
-    public SubUnitView(String header) {
+    public SubUnitView(String header, int type) {
         //URES KONSTRUKTOR
-
+        this.type = type;
         this.header = header;
 
         this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 
+        String[][] data;
+        switch (type){
+            case Finals.SUB_UNIT_TYPE:
+                 data = new String[][]{{"1", "", "", "", "", "", "", "", ""}};
+                break;
+            case Finals.EXTENDED_SUB_UNIT_TYPE:
+                data = new String[][]{{"1", "", "", "", "", "", "", "", "", "", ""}};
+                break;
+            default:
+                    data = null;//kene valami exception
+        }
 
-        String[][] data = {{"1", "", "", "", "", "", "", "", ""}};
 
         setupTable(data);
 
@@ -50,8 +61,9 @@ public class SubUnitView extends JPanel {
 
     }
 
-    public SubUnitView(String header, UnitView parent, int parentIndex, int myIndex ){
+    public SubUnitView(String header, UnitView parent, int parentIndex, int myIndex, int type ){
         //NEM URES KONSTRUKTOR
+        this.type = type;
         this.header = header;
         this.parent = parent;
 
@@ -62,7 +74,17 @@ public class SubUnitView extends JPanel {
         String[][] data = ttc.getSubUnitTs()[parentIndex][myIndex];//kinyerem a sorok matrixat
 
         if(data.length == 0){//ha nincs egy sor sem beszurom az elso sort
-            data = new String[][]{{"1","","","","","","","",""}};
+            switch (type){
+                case Finals.SUB_UNIT_TYPE:
+                    data = new String[][]{{"1", "", "", "", "", "", "", "", ""}};
+                    break;
+                case Finals.EXTENDED_SUB_UNIT_TYPE:
+                    data = new String[][]{{"1", "", "", "", "", "", "", "", "", "", ""}};
+                    break;
+                default:
+                    data = null;//kene valami exception
+            }
+
             setupTable(data);
         }
         else{//ha van sor, betesze  oket s beszurok egy ures sort
@@ -92,6 +114,7 @@ public class SubUnitView extends JPanel {
         };
         scrollPane.setWheelScrollingEnabled(false); ;
 
+
         adjustSizeAndPadding();
 
 
@@ -99,7 +122,14 @@ public class SubUnitView extends JPanel {
 
     public void setupTable(String[][] data){
 
-        String[] columns = Finals.SUB_UNIT_TABLE_HEADER;
+
+        String[] columns;
+        if(type == Finals.SUB_UNIT_TYPE){
+            columns=Finals.SUB_UNIT_TABLE_HEADER;
+        }
+        else{
+            columns = Finals.EXTENDED_SUB_UNIT_TABLE_HEADER;
+        }
 
         //ne lehessen athelyezni az oszlopokat es egy egesz sort kibalasztani
         table = new JTable(data,columns);
@@ -109,24 +139,6 @@ public class SubUnitView extends JPanel {
         //lehessen csak bizonyos cellakat modositni
         subUnitTableModel = new SubUnitTableModel(data,columns);
         table.setModel(subUnitTableModel);
-
-
-
-//        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
-////            //https://stackoverflow.com/questions/35431232/jtable-cell-text-color-changing
-////            @Override
-////            public Component getTableCellRendererComponent(JTable table,Object value,boolean isSelected,boolean hasFocus,
-////                                                           int row,int column) {
-////                Component c = super.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
-////                if(subUnitTableModel.isCellEditable(row,column)){
-////                    c.setForeground(Color.GREEN);
-////                }
-////                else{
-////                    c.setForeground(Color.RED);
-////                }
-////                return c;
-////            }
-////        });
 
 
         Action action = new AbstractAction()
@@ -163,19 +175,17 @@ public class SubUnitView extends JPanel {
 
     public void insertBlankRow(Integer newIndex){
         subUnitTableModel.addRowToBooleanMatrix();
-        subUnitTableModel.addRow(new String[]{newIndex.toString(), "", "", "", "", "", "", "", ""});
+        if(type == Finals.SUB_UNIT_TYPE){
+            subUnitTableModel.addRow(new String[]{newIndex.toString(), "", "", "", "", "", "", "", ""});
+        }
+        else{
+            subUnitTableModel.addRow(new String[]{newIndex.toString(), "", "", "", "", "", "", "", "", "", "", ""});
+        }
+
     }
 
     public void adjustSizeAndPadding(){
         // sok flaska a sizeal kapcsolatosan
-        int numOfRows = table.getRowCount() + 2;
-        int rowHeight = table.getRowHeight();
-
-        int width = 559;
-        int height = numOfRows * rowHeight + 30;
-        scrollPane.setPreferredSize(new Dimension(width,height));
-        this.setPreferredSize(new Dimension(width,height));
-
 
         //this.setBackground(Color.BLACK);
         this.add(new JLabel(header));
@@ -190,6 +200,7 @@ public class SubUnitView extends JPanel {
         JPanel paddingPanel = new JPanel();
         this.add(paddingPanel);
         //this.setBorder(new LineBorder(Color.black));
+        resizeSubunit();
     }
 
     public void resizeSubunit(){

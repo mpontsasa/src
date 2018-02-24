@@ -4,17 +4,100 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseWheelEvent;
 
+
+//CURRENTLY OBSOLETE
 public class ExtendedSubUnitView extends JPanel {
 
     private JScrollPane scrollPane;
     private JTable table;
     private SubUnitTableModel subUnitTableModel;
+    private String header;
 
     public ExtendedSubUnitView(String header) {
+        //URES KONSTRUKTOR
 
+        this.header = header;
         this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
-        String[] columns = Finals.EXTENDED_SUB_UNIT_TABLE_HEADER;
+
+
         String[][] data = {{"1", "", "", "", "", "", "", "", "", "", ""}};
+        setupTable(data);
+
+
+        scrollPane = new JScrollPane(table){
+
+            @Override
+            protected void processMouseWheelEvent(MouseWheelEvent e) {
+                //https://stackoverflow.com/questions/12911506/why-jscrollpane-does-not-react-to-mouse-wheel-events
+                if (!isWheelScrollingEnabled()) {
+                    if (getParent() != null)
+                        getParent().dispatchEvent(
+                                SwingUtilities.convertMouseEvent(this, e, getParent()));
+                    return;
+                }
+                super.processMouseWheelEvent(e);
+            }
+
+        };
+        scrollPane.setWheelScrollingEnabled(false); ;
+
+
+        adjustSizeAndPadding();
+
+
+    }
+
+    public ExtendedSubUnitView(String header,UnitView parent, int parentIndex, int myIndex) {
+        //NEM URES KONSTRUKTOR
+
+        this.header = header;
+        this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
+
+        //LOAD DATA
+        TaskTableCreator ttc = new TaskTableCreator(parent.getParent().getMyModel());
+        String[][] data = ttc.getSubUnitTs()[parentIndex][myIndex];//kinyerem a sorok matrixat
+
+        if(data.length == 0){//ha nincs egy sor sem beszurom az elso sort
+            data = new String[][]{{"1","","","","","","","","","",""}};
+            setupTable(data);
+        }
+        else{//ha van sor, betesze  oket s beszurok egy ures sort
+            setupTable(data);
+            Integer newIndex = data.length + 1;
+            insertBlankRow(newIndex);
+        }
+        //END OF LOAD
+
+
+        scrollPane = new JScrollPane(table){
+
+            @Override
+            protected void processMouseWheelEvent(MouseWheelEvent e) {
+                //https://stackoverflow.com/questions/12911506/why-jscrollpane-does-not-react-to-mouse-wheel-events
+                if (!isWheelScrollingEnabled()) {
+                    if (getParent() != null)
+                        getParent().dispatchEvent(
+                                SwingUtilities.convertMouseEvent(this, e, getParent()));
+                    return;
+                }
+                super.processMouseWheelEvent(e);
+            }
+
+        };
+        scrollPane.setWheelScrollingEnabled(false); ;
+
+
+        adjustSizeAndPadding();
+
+
+    }
+
+
+    public void setupTable(String[][] data){
+
+        String[] columns = Finals.EXTENDED_SUB_UNIT_TABLE_HEADER;
+
+
 
         table = new JTable(data,columns);
         table.getTableHeader().setReorderingAllowed(false);
@@ -37,35 +120,13 @@ public class ExtendedSubUnitView extends JPanel {
                     //insert new row
                     String[] oldRow = (String[])getRowAt(tcl.getRow());
                     Integer newIndex = Integer.parseInt(oldRow[0]) + 1;
-                    subUnitTableModel.addRowToBooleanMatrix();
-                    subUnitTableModel.addRow(new String[]{newIndex.toString(), "", "", "", "", "", "", "", "", ""});
+                    insertBlankRow(newIndex);
 
                 }
                 resizeSubunit();
             }
         };
         TableCellListener tcl = new TableCellListener(table, action);
-
-
-
-        scrollPane = new JScrollPane(table){
-
-            @Override
-            protected void processMouseWheelEvent(MouseWheelEvent e) {
-                //https://stackoverflow.com/questions/12911506/why-jscrollpane-does-not-react-to-mouse-wheel-events
-                if (!isWheelScrollingEnabled()) {
-                    if (getParent() != null)
-                        getParent().dispatchEvent(
-                                SwingUtilities.convertMouseEvent(this, e, getParent()));
-                    return;
-                }
-                super.processMouseWheelEvent(e);
-            }
-
-        };
-        scrollPane.setWheelScrollingEnabled(false); ;
-
-
 
         table.setFillsViewportHeight(true);
         table.setPreferredScrollableViewportSize(new Dimension(600,450));
@@ -75,16 +136,12 @@ public class ExtendedSubUnitView extends JPanel {
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         TableColumnAdjuster tca = new TableColumnAdjuster(table);
         tca.adjustColumns();
-
-        int numOfRows = table.getRowCount() + 2;
-        int rowHeight = table.getRowHeight();
-
-        int width = 559;
-        int height = numOfRows * rowHeight + 30;
-        scrollPane.setPreferredSize(new Dimension(width,height));
-        this.setPreferredSize(new Dimension(width,height));
+    }
 
 
+
+
+    public void adjustSizeAndPadding(){
         //this.setBackground(Color.BLACK);
         this.add(new JLabel(header));
         this.add(scrollPane);
@@ -97,17 +154,13 @@ public class ExtendedSubUnitView extends JPanel {
         this.add(paddingPanel);
         //this.setBorder(new LineBorder(Color.black));
 
-
+        resizeSubunit();
     }
 
-
-
-
-
-
-
-
-
+    public void insertBlankRow(Integer newIndex){
+        subUnitTableModel.addRowToBooleanMatrix();
+        subUnitTableModel.addRow(new String[]{newIndex.toString(), "", "", "", "", "", "", "", "", "", ""});
+    }
 
     public void resizeSubunit(){
         //resize after changes have been made

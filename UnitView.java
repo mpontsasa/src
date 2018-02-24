@@ -8,10 +8,12 @@ public class UnitView extends JPanel implements SuperView {
 
     private ArrayList<JPanel> subUnitViews;
     private  TaskView parent;
+    private Integer myIndex;
 
     public UnitView(TaskView parent, int myIndex){
         //NEM URES UNIT KONSTRUKTOR
         this.parent = parent;
+        //this.myIndex = myIndex;
         subUnitViews = new ArrayList<>();
 
 
@@ -23,10 +25,10 @@ public class UnitView extends JPanel implements SuperView {
         String[][] uhvData = taskTableCreator.getUnitHeaderTs()[myIndex];//a unitokat egytol indexeljuk
         UnitHeaderView uhv = new UnitHeaderView(this, uhvData);
 
-        SubUnitView suv = new SubUnitView("MATERIAL", this, myIndex, 0);
-        ExtendedSubUnitView suv2 = new ExtendedSubUnitView("MANOPERA");
-        ExtendedSubUnitView suv3 = new ExtendedSubUnitView("UTILAJ");
-        SubUnitView suv4 = new SubUnitView("TRANSPORT",this, myIndex, 3);
+        SubUnitView suv = new SubUnitView("MATERIAL", this, myIndex, 0,Finals.SUB_UNIT_TYPE);
+        SubUnitView suv2 = new SubUnitView("MANOPERA",this,myIndex,1,Finals.EXTENDED_SUB_UNIT_TYPE);
+        SubUnitView suv3 = new SubUnitView("UTILAJ",this, myIndex, 2,Finals.EXTENDED_SUB_UNIT_TYPE);
+        SubUnitView suv4 = new SubUnitView("TRANSPORT",this, myIndex, 3,Finals.SUB_UNIT_TYPE);
         subUnitViews.add(suv);subUnitViews.add(suv2);subUnitViews.add(suv3);subUnitViews.add(suv4);
 
 
@@ -61,10 +63,10 @@ public class UnitView extends JPanel implements SuperView {
 
         UnitHeaderView uhv = new UnitHeaderView(this);
 
-        SubUnitView suv = new SubUnitView("MATERIAL");
-        ExtendedSubUnitView suv2 = new ExtendedSubUnitView("MANOPERA");
-        ExtendedSubUnitView suv3 = new ExtendedSubUnitView("UTILAJ");
-        SubUnitView suv4 = new SubUnitView("TRANSPORT");
+        SubUnitView suv = new SubUnitView("MATERIAL",Finals.SUB_UNIT_TYPE);
+        SubUnitView suv2 = new SubUnitView("MANOPERA",Finals.EXTENDED_SUB_UNIT_TYPE);
+        SubUnitView suv3 = new SubUnitView("UTILAJ", Finals.EXTENDED_SUB_UNIT_TYPE);
+        SubUnitView suv4 = new SubUnitView("TRANSPORT",Finals.SUB_UNIT_TYPE);
         subUnitViews.add(suv);subUnitViews.add(suv2);subUnitViews.add(suv3);subUnitViews.add(suv4);
 
 
