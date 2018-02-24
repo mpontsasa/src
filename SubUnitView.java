@@ -16,7 +16,7 @@ public class SubUnitView extends JPanel {
     private SubUnitTableModel subUnitTableModel;
     private String header;
     private UnitView parent;
-    private int myIndex;
+    private Integer myIndex;
     private int type;
 
     public SubUnitView(String header, int type) {
@@ -154,6 +154,10 @@ public class SubUnitView extends JPanel {
                     String[] oldRow = (String[])getRowAt(tcl.getRow());
                     Integer newIndex = Integer.parseInt(oldRow[0]) + 1;
                     insertBlankRow(newIndex);
+                }
+                if(myIndex == null){
+                    table.getModel().setValueAt("",tcl.getRow(),tcl.getColumn());
+                    return;
                 }
                 parent.getParent().myController.taskViewEdited(parent.getMyIndex(),myIndex,tcl.getRow(),tcl.getColumn(),
                         (String)tcl.getNewValue());
