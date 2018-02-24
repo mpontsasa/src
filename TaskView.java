@@ -85,4 +85,8 @@ public class TaskView extends JPanel {
     public TaskModel getMyModel() {
         return (TaskModel)myModel;
     }
+
+    public ArrayList<UnitView> getUnitViews() {
+        return unitViews;
+    }
 }

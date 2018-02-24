@@ -13,7 +13,7 @@ public class Main {
             //controller.insertUnit(0);
             //controller.saveUnits();
             controller.saveProject();
-            controller.printComponenet();
+            controller.printUnits();
 
 
             ///<INSERT TEST>
