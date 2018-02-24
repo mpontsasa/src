@@ -1,21 +1,19 @@
 import javax.swing.table.DefaultTableModel;
 
-public class UnitHeaderTableModel extends DefaultTableModel {
+public class SumsTableModel extends DefaultTableModel {
     //https://stackoverflow.com/questions/12776021/how-to-make-jtable-cell-editable-noneditable-dynamically
 
     private boolean[][] editable_cells; // 2d array to represent rows and columns
 
-    public UnitHeaderTableModel(String[][] data, String[] columns) { // constructor
+    public SumsTableModel(String[][] data, String[] columns) { // constructor
         super(data, columns);
         this.editable_cells = new boolean[data.length][columns.length];
 
 
-        editable_cells[0][0] = true;
-        editable_cells[0][1] = true;
-        editable_cells[0][2] = true;
-        editable_cells[0][4] = true;
-        editable_cells[0][5] = true;
-        editable_cells[0][6] = true;
+        editable_cells[1][1] = true;
+        editable_cells[1][2] = true;
+        editable_cells[1][4] = true;
+
 
     }
 

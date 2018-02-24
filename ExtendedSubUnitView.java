@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseWheelEvent;
@@ -17,6 +18,7 @@ public class ExtendedSubUnitView extends JPanel {
 
         table = new JTable(data,columns);
         table.getTableHeader().setReorderingAllowed(false);
+        table.setRowSelectionAllowed(false);
 
 
         subUnitTableModel = new SubUnitTableModel(data,columns);
@@ -86,6 +88,16 @@ public class ExtendedSubUnitView extends JPanel {
         //this.setBackground(Color.BLACK);
         this.add(new JLabel(header));
         this.add(scrollPane);
+
+        JLabel pretTotalLabel = new JLabel("PRET TOTAL UNITAR: 256.2569");
+        pretTotalLabel.setFont(new Font("Arial",Font.PLAIN,10));
+        this.add(pretTotalLabel);
+
+        JPanel paddingPanel = new JPanel();
+        this.add(paddingPanel);
+        //this.setBorder(new LineBorder(Color.black));
+
+
     }
 
 
