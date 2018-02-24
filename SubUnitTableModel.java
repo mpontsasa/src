@@ -14,15 +14,13 @@ public class SubUnitTableModel extends DefaultTableModel {
 
 
 
-        editable_cells[0][1] = true;
-        editable_cells[0][2] = true;
-        editable_cells[0][3] = true;
-        editable_cells[0][4] = true;
-        editable_cells[0][8] = true;
-
-
-
-
+        for(int i = 0; i < editable_cells.length; i++){
+            editable_cells[i][1] = true;
+            editable_cells[i][2] = true;
+            editable_cells[i][3] = true;
+            editable_cells[i][4] = true;
+            editable_cells[i][8] = true;
+        }
 
     }
 

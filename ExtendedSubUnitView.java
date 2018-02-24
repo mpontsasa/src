@@ -25,7 +25,7 @@ public class ExtendedSubUnitView extends JPanel {
         table.setModel(subUnitTableModel);
 
         // https://stackoverflow.com/questions/7433602/how-to-center-in-jtable-cell-a-value
-        JTableUtilities.setCellsAlignment(table, SwingConstants.CENTER);
+        JTableUtilities.setCellsAlignment(table, SwingConstants.CENTER,subUnitTableModel);
 
 
         Action action = new AbstractAction()

@@ -45,8 +45,8 @@ public class SumTableView extends JPanel {
         //
 
         // https://stackoverflow.com/questions/7433602/how-to-center-in-jtable-cell-a-value
-        JTableUtilities.setCellsAlignment(totalsTable, SwingConstants.CENTER);
-        JTableUtilities.setCellsAlignment(MMUTTable, SwingConstants.CENTER);
+        JTableUtilities.setCellsAlignment(totalsTable, SwingConstants.CENTER,stm);
+        //JTableUtilities.setCellsAlignment(MMUTTable, SwingConstants.CENTER,stm);
 
 
 

@@ -34,23 +34,25 @@ public class UnitHeaderView extends JPanel {
         unitHeaderTableModel = new UnitHeaderTableModel(data,columns);
         table.setModel(unitHeaderTableModel);
 
+        JTableUtilities.setCellsAlignment(table, SwingConstants.CENTER,unitHeaderTableModel);
+
         unitHeaderTableModel.setCellEditable(0,2,false);
 
-        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
-            //https://stackoverflow.com/questions/35431232/jtable-cell-text-color-changing
-            @Override
-            public Component getTableCellRendererComponent(JTable table,Object value,boolean isSelected,boolean hasFocus,
-                                                           int row,int column) {
-                Component c = super.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
-                if(unitHeaderTableModel.isCellEditable(row,column)){
-                    c.setForeground(Color.GREEN);
-                }
-                else{
-                    c.setForeground(Color.RED);
-                }
-                return c;
-            }
-        });
+//        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
+//            //https://stackoverflow.com/questions/35431232/jtable-cell-text-color-changing
+//            @Override
+//            public Component getTableCellRendererComponent(JTable table,Object value,boolean isSelected,boolean hasFocus,
+//                                                           int row,int column) {
+//                Component c = super.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
+//                if(unitHeaderTableModel.isCellEditable(row,column)){
+//                    c.setForeground(Color.GREEN);
+//                }
+//                else{
+//                    c.setForeground(Color.RED);
+//                }
+//                return c;
+//            }
+//        });
 
 
 
@@ -82,6 +84,7 @@ public class UnitHeaderView extends JPanel {
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         TableColumnAdjuster tca = new TableColumnAdjuster(table);
         tca.adjustColumns();
+        //JTableUtilities.setCellsAlignment(table, SwingConstants.CENTER);
 
         int numOfRows = table.getRowCount() + 2;
         int rowHeight = table.getRowHeight();
@@ -117,6 +120,8 @@ public class UnitHeaderView extends JPanel {
 
         unitHeaderTableModel = new UnitHeaderTableModel(data,columns);
         table.setModel(unitHeaderTableModel);
+
+        JTableUtilities.setCellsAlignment(table, SwingConstants.CENTER,unitHeaderTableModel);
 
 
 
@@ -177,6 +182,7 @@ public class UnitHeaderView extends JPanel {
 
 
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
         TableColumnAdjuster tca = new TableColumnAdjuster(table);
         tca.adjustColumns();
 

@@ -111,21 +111,22 @@ public class SubUnitView extends JPanel {
         table.setModel(subUnitTableModel);
 
 
-        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
-            //https://stackoverflow.com/questions/35431232/jtable-cell-text-color-changing
-            @Override
-            public Component getTableCellRendererComponent(JTable table,Object value,boolean isSelected,boolean hasFocus,
-                                                           int row,int column) {
-                Component c = super.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
-                if(subUnitTableModel.isCellEditable(row,column)){
-                    c.setForeground(Color.GREEN);
-                }
-                else{
-                    c.setForeground(Color.RED);
-                }
-                return c;
-            }
-        });
+
+//        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
+////            //https://stackoverflow.com/questions/35431232/jtable-cell-text-color-changing
+////            @Override
+////            public Component getTableCellRendererComponent(JTable table,Object value,boolean isSelected,boolean hasFocus,
+////                                                           int row,int column) {
+////                Component c = super.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
+////                if(subUnitTableModel.isCellEditable(row,column)){
+////                    c.setForeground(Color.GREEN);
+////                }
+////                else{
+////                    c.setForeground(Color.RED);
+////                }
+////                return c;
+////            }
+////        });
 
 
         Action action = new AbstractAction()
@@ -147,7 +148,7 @@ public class SubUnitView extends JPanel {
 
         //a szmaok kozepen jelenjenek meg
         // https://stackoverflow.com/questions/7433602/how-to-center-in-jtable-cell-a-value
-        JTableUtilities.setCellsAlignment(table, SwingConstants.CENTER);
+        JTableUtilities.setCellsAlignment(table, SwingConstants.CENTER,subUnitTableModel);
 
 
         table.setFillsViewportHeight(true);
