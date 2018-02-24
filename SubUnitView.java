@@ -52,8 +52,9 @@ public class SubUnitView extends JPanel {
                     Integer newIndex = Integer.parseInt(oldRow[0]) + 1;
                     subUnitTableModel.addRowToBooleanMatrix();
                     subUnitTableModel.addRow(new String[]{newIndex.toString(), "", "", "", "", "", "", "", ""});
-                    resizeSubunit();
+
                 }
+                resizeSubunit();
             }
         };
         TableCellListener tcl = new TableCellListener(table, action);
