@@ -77,30 +77,30 @@ public class Controller {
         }
     }
 
-    public void loadScheduleFromFile() throws FileNotFoundException{
+//    public void loadScheduleFromFile() throws FileNotFoundException{
+//
+//        Scanner scan = new Scanner(new File(projectName + "_schedule.txt"));
+//        while(scan.hasNextLine()){
+//            String line = scan.nextLine();
+//            scheduleModel.loadLine(line);
+//        }
+//        scan.close();
+//    }
 
-        Scanner scan = new Scanner(new File(projectName + "_schedule.txt"));
-        while(scan.hasNextLine()){
-            String line = scan.nextLine();
-            scheduleModel.loadLine(line);
-        }
-        scan.close();
-    }
-
-    public void saveScheduleToFile() throws IOException{
-
-        FileWriter fw = new FileWriter(projectName + "_schedule.txt");
-
-        String currentLine = scheduleModel.saveLine();
-
-        while(!currentLine.equals(Finals.END_OF_PROJECT)) {
-            fw.write(currentLine + "\n");
-            currentLine = scheduleModel.saveLine();
-        }
-
-        fw.close();
-
-    }
+//    public void saveScheduleToFile() throws IOException{
+//
+//        FileWriter fw = new FileWriter(projectName + "_schedule.txt");
+//
+//        String currentLine = scheduleModel.saveLine();
+//
+//        while(!currentLine.equals(Finals.END_OF_PROJECT)) {
+//            fw.write(currentLine + "\n");
+//            currentLine = scheduleModel.saveLine();
+//        }
+//
+//        fw.close();
+//
+//    }
 
     public void insertUnit(int unitIndex){
 
