@@ -35,8 +35,82 @@ public class Controller {
 
     }
 
-    public void viewEdited(Integer unitIndex, Integer subUnitIndex, Integer rowIndex, Integer columnIndex, String data){
+    public void taskViewEdited(Integer unitIndex, Integer subUnitIndex, Integer rowIndex, Integer columnIndex, String data){
         System.out.println(unitIndex + " " +subUnitIndex +" " + rowIndex + " " + columnIndex + " " + data);
+
+        if (unitIndex == -1) {  //sum table edited
+
+        }
+        else if (subUnitIndex == -1)  //unit edited
+        {
+            if (unitIndex < taskModel.getTaskUnits().size()){   // edited, not added
+                unitEdited(unitIndex, columnIndex, data);
+            }
+            else if(unitIndex == taskModel.getTaskUnits().size()) // new unit added
+            {
+                taskModel.getTaskUnits().add(new TaskUnit(taskModel, data));
+                unitEdited(unitIndex, columnIndex, data);
+            }
+            else    // hibas parameterek
+            {
+                System.out.println("hibas unitszam taskViewEditedben");
+            }
+        }
+        else    //row edited
+        {
+            if (rowIndex < taskModel.getTaskUnits().get(unitIndex).getSubUnits().get(subUnitIndex).getTaskRows().size()){   // edited, not added
+                rowEdited(unitIndex, columnIndex, data);
+            }
+            else if(rowIndex == taskModel.getTaskUnits().get(unitIndex).getSubUnits().get(subUnitIndex).getTaskRows().size()) // new row added
+            {
+                taskModel.getTaskUnits().get(unitIndex).getSubUnits().get(subUnitIndex).getTaskRows().add(new TaskRow(taskModel.getTaskUnits().get(unitIndex).getSubUnits().get(subUnitIndex)));
+                rowEdited(unitIndex, subUnitIndex, rowIndex, columnIndex, data);
+            }
+        }
+    }
+
+    public void unitEdited(int unitIndex, int columnIndex, String data){
+
+        switch(columnIndex){
+            case 1:
+                taskModel.getTaskUnits().get(unitIndex).setUnitTitle(data);
+            case 2:
+                taskModel.getTaskUnits().get(unitIndex).setUnitCode(data);
+            case 4:
+                taskModel.getTaskUnits().get(unitIndex).setUnitateMetric(data);
+            case 5:
+                taskModel.getTaskUnits().get(unitIndex).setCantitate(Float.parseFloat(data));
+            case 6:
+                taskModel.getTaskUnits().get(unitIndex).setOre(Float.parseFloat(data));
+            default:
+                System.out.println("hibas columnIndex unit header editalasanal");
+        }
+
+    }
+
+    public void rowEdited(int unitIndex, int subUnitIndex, int rowIndex, int columnIndex, String data){
+
+        TaskRow row = taskModel.getTaskUnits().get(unitIndex).getSubUnits().get(subUnitIndex).getTaskRows().get(rowIndex);
+
+        switch(columnIndex){
+            case 1:
+                row.setRowTitle(data);
+            case 2:
+                row.setUnitateDeMasura(data);
+            case 3:
+                row.setCantitateUnitara(Float.parseFloat(data));
+            case 4:
+                row.setPretUnitara(Float.parseFloat(data));
+            case 8:
+                row.setFurnizor(data);
+            case 9:
+                row.setNumarDeAlocati(Float.parseFloat(data));
+            case 10:
+                row.setNumarDeOreNecesare(Float.parseFloat(data));
+            default:
+                System.out.println("hibas columnIndex unit header editalasanal");
+        }
+
     }
 
     public void initializeViews(){
