@@ -23,13 +23,14 @@ public class TaskUnit {
     private float utilaj;
     private float transport;
 
-
-    public TaskUnit(TaskModel parent) {
-        subUnits = new ArrayList<>();
-        this.parent = parent;
-        this.unitCode = "new";
-        initialiseSubUnits();
-    }
+//
+//    public TaskUnit(TaskModel parent) {
+//        schedules = new ArrayList<Integer>();
+//        subUnits = new ArrayList<>();
+//        this.parent = parent;
+//        this.unitCode = "new";
+//        initialiseSubUnits();
+//    }
 
     public TaskUnit(String projectFileLine, TaskModel parent) throws Exception {   // line = 'unitCode@tablemark1@tablemark2@...'
         schedules = new ArrayList<Integer>();
@@ -38,6 +39,13 @@ public class TaskUnit {
         subUnits = new ArrayList<>();
         initialiseSubUnits();
         loadUnit(unitCode);
+    }
+
+    public TaskUnit(TaskModel parent, String unitCode){
+        schedules = new ArrayList<Integer>();
+        this.parent = parent;
+        this.unitCode = unitCode;
+        initialiseSubUnits();
     }
 
     public void processProjectFileLine(String line) {

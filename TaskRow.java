@@ -177,6 +177,14 @@ public class TaskRow {
         calculatePretTotal();
     }
 
+    public void setFurnizor(String furnizor) {
+        this.furnizor = furnizor;
+    }
+
+    public void setNumarDeOreNecesare(float numarDeOreNecesare) {
+        this.numarDeOreNecesare = numarDeOreNecesare;
+    }
+
     public void setNumarDeAlocati(float numarDeAlocati) {
         this.numarDeAlocati = numarDeAlocati;
         calculateNumarDeOreNecesare();
