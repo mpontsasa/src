@@ -86,6 +86,7 @@ public class Controller {
                 return false;
             }
         }
+        //taskView.buildFromModel();
     }
 
     public boolean amplifiersEdited(int amplifierIndex, String data){
