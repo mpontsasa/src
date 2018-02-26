@@ -87,9 +87,14 @@ public class OrarGridView extends JPanel {
         final String[] days = {"L", "M", "M", "J", "V"};
 
         String[] res = new String[numOfDays + 5];
+        res[0] = "Nr.";
+        res[1] = "Articol de lucrare";
+        res[2] = "um";
+        res[3] = "cantitate";
+        res[4] = "ore";
 
         Integer week = 1;
-        int dayIndex  = 0;
+        int dayIndex  = 5;
         while(numOfDays > 0){
 
             if (numOfDays >= 5) {
