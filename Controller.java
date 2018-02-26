@@ -174,6 +174,17 @@ public class Controller {
         System.out.println("saved!");
     }
 
+    public void makeHtmlTaskFile(){
+        try{
+            HtmlFileCreator htmlCreator = new HtmlFileCreator(taskModel, projectName);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
     //        scan.close();
     //        }
     //            scheduleModel.loadLine(line);
@@ -281,47 +292,47 @@ public class Controller {
         //taskView.addUnit();
     }
 
-    public void printUnits() {
-        for (JPanel unit : taskView.getUnitViews()){
-            printComponenet(unit);
-        }
-        //JPanel unit = taskView.getUnitViews().get(0);
-    }
 
-    public void printComponenet(JComponent component){
+//    public void printComponenet(JComponent component){
 
-        PrinterJob pj = PrinterJob.getPrinterJob();
-        pj.setJobName(" Print Component ");
-        PageFormat pf = pj.defaultPage();
-        pf.setOrientation(PageFormat.LANDSCAPE);
-        //pj.setPrintable(new Printable(), pf);
-
-        //printRequestAttributeSet.add(OrientationRequested.LANDSCAPE);
-
-        pj.setPrintable (new Printable() {
-            public int print(Graphics pg, PageFormat pf, int pageNum){
-                if (pageNum > 0){
-                    return Printable.NO_SUCH_PAGE;
-                }
-
-                Graphics2D g2 = (Graphics2D) pg;
-                g2.translate(pf.getImageableX(), pf.getImageableY());
-                g2.scale(0.7,0.7);
-                component.paint(g2);
-
-                return Printable.PAGE_EXISTS;
-            }
-        },pf);
-
-        if (pj.printDialog() == false)
-            return;
-
-        try {
-            pj.print();
-        } catch (PrinterException ex) {
-            // handle exception
-        }
-    }
+//        PrintUtil pu = new PrintUtil(component);
+//        pu.print();
+//
+//
+////        PrinterJob pj = PrinterJob.getPrinterJob();
+////        pj.setJobName(" Print Component ");
+////        PageFormat pf = pj.defaultPage();
+////        pf.setOrientation(PageFormat.LANDSCAPE);
+////        //pj.setPrintable(new Printable(), pf);
+////
+////        //printRequestAttributeSet.add(OrientationRequested.LANDSCAPE);
+////
+////
+////
+////        pj.setPrintable (new Printable() {
+////            public int print(Graphics pg, PageFormat pf, int pageNum){
+////                if (pageNum > 0){
+////                    return Printable.NO_SUCH_PAGE;
+////                }
+////
+////                Graphics2D g2 = (Graphics2D) pg;
+////                g2.translate(pf.getImageableX(), pf.getImageableY());
+////                g2.scale(0.7,0.7);
+////                component.paint(g2);
+////
+////                return Printable.PAGE_EXISTS;
+////            }
+////        },pf);
+////
+////        if (pj.printDialog() == false)
+////            return;
+////
+////        try {
+////            pj.print();
+////        } catch (PrinterException ex) {
+////            // handle exception
+////        }
+//    }
 
     public TaskView getTaskView() {
         return taskView;
