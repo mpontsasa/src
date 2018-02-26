@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseWheelEvent;
 
 public class SumTableView extends JPanel {
@@ -9,22 +10,21 @@ public class SumTableView extends JPanel {
     private JScrollPane MMUTScrollPane;
     private JTable totalsTable;
     private JTable MMUTTable;// material manopera utilaj transport
+    private TaskView parent;
 
-    public SumTableView() {
+    public SumTableView(TaskView parent) {
+
+        this.parent = parent;
 
         this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
-        String[] columns= {" TOTAL COST DIRECT (RON) ", " CHELTUIELI INDIRECTE (RON) ", " PROFIT (RON) ",
-                " TOTAL VALOARE LUCRARE FARA TVA (RON) ", " TVA (RON) ", " TOTAL LUCRARE VALOARE CU TVA (RON) "
-                };
-        String[][] data = {
-                {"589,6587.46","589,6587.46","589,6587.46","589,6587.46","589,6587.46","589,6587.46"},
-                {"","0.12","0.03","","0.19","","","","","",""}
-                };
+        TaskTableCreator taskTableCreator = new TaskTableCreator(parent.getMyModel());
 
-        String[] MMUTColumns = {" MATERIAL ", " MANOPERA ", " UTILAJ ", " TRANSPORT ",
-                " Total cost direct de recapitulat "};
-        String[][] MMUTData = {{"589,6587.46",
-                "589,6587.46","589,6587.46","589,6587.46","589,6587.46"}};
+        String[] columns = Finals.SUM_TOTAL_TABLE_HEADER;
+        String[][] data = taskTableCreator.getSumTotalT();
+
+
+        String [] MMUTColumns = Finals.SUM_MMUT_TABLE_HEADER;
+        String[][] MMUTData = taskTableCreator.getSumMMUTT();
 
         totalsTable = new JTable(data,columns);
         totalsTable.getTableHeader().setReorderingAllowed(false);
@@ -34,19 +34,35 @@ public class SumTableView extends JPanel {
         totalsTable.setModel(stm);//bellitom azt hogy csak a szrozokat lehet editalni
 
 
+
+        //jelezd a valtozasokat a szorzokon
+        Action action = new AbstractAction()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                TableCellListener tcl = (TableCellListener)e.getSource();
+                amplifiersEdited(tcl.getColumn(), (String)tcl.getNewValue());
+
+            }
+        };
+        TableCellListener tcl = new TableCellListener(totalsTable, action);
+
+
         MMUTTable = new JTable(MMUTData,MMUTColumns);
         MMUTTable.getTableHeader().setReorderingAllowed(false);
         MMUTTable.setRowSelectionAllowed(false);
 
 
         //set the editing of cells in mmutable to false
-        MMUTTable.setDefaultEditor(Object.class, null);
+        MMUTTableModel mmutTableModel = new MMUTTableModel(MMUTData,MMUTColumns);
+        MMUTTable.setModel(mmutTableModel);
+        //MMUTTable.setDefaultEditor(Object.class, null);
 
         //
 
         // https://stackoverflow.com/questions/7433602/how-to-center-in-jtable-cell-a-value
         JTableUtilities.setCellsAlignment(totalsTable, SwingConstants.CENTER,stm);
-        //JTableUtilities.setCellsAlignment(MMUTTable, SwingConstants.CENTER,stm);
+        JTableUtilities.setCellsAlignment(MMUTTable, SwingConstants.CENTER,mmutTableModel);
 
 
 
@@ -123,4 +139,9 @@ public class SumTableView extends JPanel {
         this.add(MMUTScrollPane);
         this.add(totalScrollPane);
     }
+
+    public void amplifiersEdited(int amplifierIndex, String data){
+        parent.amplifiersEdited(amplifierIndex,data);
+    }
+
 }

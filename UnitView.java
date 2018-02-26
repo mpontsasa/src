@@ -97,6 +97,11 @@ public class UnitView extends JPanel implements SuperView {
         parent.notifyController(candidateCode);
     }
 
+    public void cellChanged(Integer unitIndex, Integer subUnitIndex, Integer rowIndex, Integer columnIndex, String data){
+        parent.cellChanged(unitIndex,subUnitIndex,rowIndex,columnIndex,data);
+    }
+
+
     @Override
     public TaskView getParent() {
         return parent;

@@ -27,7 +27,7 @@ public class TaskView extends JPanel {
 
         //idaig tartott
 
-        sumTableView = new SumTableView();
+        sumTableView = new SumTableView(this);
 
         buildFromModel();
 
@@ -53,6 +53,7 @@ public class TaskView extends JPanel {
         for(UnitView unitView : unitViews){
             this.add(unitView);
         }
+
         this.add(sumTableView);
         this.revalidate();
         this.repaint();
@@ -83,11 +84,20 @@ public class TaskView extends JPanel {
     public void buildFromModel() {
         TaskTableCreator taskTableCreator = new TaskTableCreator((TaskModel) myModel);
         for(int i = 0; i < taskTableCreator.getUnitHeaderTs().length; i++){
-            int unitIndex = Integer.parseInt(taskTableCreator.getUnitHeaderTs()[i][0][0]) - 1;//1tol indexelunk a headerekben
-            unitViews.add(new UnitView(this,unitIndex));
+            //int unitIndex = Integer.parseInt(taskTableCreator.getUnitHeaderTs()[i][0][0]) - 1;//1tol indexelunk a headerekben
+            unitViews.add(new UnitView(this,i));
         }
         addEmptyUnit();
         refreshUnits();
+    }
+
+
+    public void cellChanged(Integer unitIndex, Integer subUnitIndex, Integer rowIndex, Integer columnIndex, String data){
+        myController.taskViewEdited(unitIndex,subUnitIndex,rowIndex,columnIndex,data);
+    }
+
+    public void amplifiersEdited(int amplifierIndex, String data){
+        myController.amplifiersEdited(amplifierIndex,data);
     }
 
 
