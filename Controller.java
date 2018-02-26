@@ -69,6 +69,10 @@ public class Controller {
         }
     }
 
+    public void amplifiersEdited(int amplifierIndex, String data){
+        System.out.println("yoyo");
+    }
+
     public void unitEdited(int unitIndex, int columnIndex, String data){
 
         switch(columnIndex){
@@ -122,7 +126,8 @@ public class Controller {
         shell.getVerticalScrollBar().setUnitIncrement(16);
 
 
-        frame.add(shell,BorderLayout.CENTER);
+        //frame.add(shell,BorderLayout.CENTER);
+        frame.add(new OrarGridView(),BorderLayout.CENTER);
 
         frame.revalidate();
         frame.repaint();

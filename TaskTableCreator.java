@@ -66,11 +66,14 @@ public class TaskTableCreator {
         //sumTotalT[0] = Finals.SUM_TOTAL_TABLE_HEADER;
         sumTotalT[0] = taskModel.getSumTotalTableHeader();
         sumTotalT[1] = taskModel.getSumAmplifierTableHeader();
+
     }
 
     public void createSumMMUTT() {
-        sumTotalT = new String[1][];
-        sumTotalT[0] = taskModel.getSumMMUTTableHeader();
+        sumMMUTT = new String[1][];
+        sumMMUTT[0] = taskModel.getSumMMUTTableHeader();
+
+
     }
 
     public String[][][] getUnitHeaderTs() {
@@ -79,5 +82,13 @@ public class TaskTableCreator {
 
     public String[][][][] getSubUnitTs() {
         return subUnitTs;
+    }
+
+    public String[][] getSumTotalT() {
+        return sumTotalT;
+    }
+
+    public String[][] getSumMMUTT() {
+        return sumMMUTT;
     }
 }

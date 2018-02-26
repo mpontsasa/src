@@ -18,6 +18,7 @@ public class SubUnitView extends JPanel {
     private UnitView parent;
     private Integer myIndex;
     private int type;
+    private float pretTotalUnitar = 258.456f;
 
     public SubUnitView(String header, int type) {
         //URES KONSTRUKTOR
@@ -40,6 +41,7 @@ public class SubUnitView extends JPanel {
         }
 
 
+        pretTotalUnitar = 0.0f;
         setupTable(data);
 
         scrollPane = new JScrollPane(table){
@@ -75,6 +77,8 @@ public class SubUnitView extends JPanel {
         //LOAD DATA
         TaskTableCreator ttc = new TaskTableCreator(parent.getParent().getMyModel());
         String[][] data = ttc.getSubUnitTs()[parentIndex][myIndex];//kinyerem a sorok matrixat
+        //pretTotalUnitar = parent.getParent().myController.ITT A PRET TOTAL UNITART BE KELL TOLTENI
+
 
         if(data.length == 0){//ha nincs egy sor sem beszurom az elso sort
             switch (type){
@@ -161,8 +165,8 @@ public class SubUnitView extends JPanel {
                     insertBlankRow(newIndex);
                 }
 
-                parent.getParent().myController.taskViewEdited(parent.getMyIndex(),myIndex,tcl.getRow(),tcl.getColumn(),
-                        (String)tcl.getNewValue());
+
+                cellChanged(parent.getMyIndex(),myIndex,tcl.getRow(),tcl.getColumn(), (String)tcl.getNewValue());
                 resizeSubunit();
             }
         };
@@ -204,7 +208,8 @@ public class SubUnitView extends JPanel {
         this.add(scrollPane);
 
 
-        JLabel pretTotalLabel = new JLabel("PRET TOTAL UNITAR: 256.2569");
+
+        JLabel pretTotalLabel = new JLabel(Finals.PRET_TOTAL_UNITAR_TEXT + pretTotalUnitar);
         pretTotalLabel.setFont(new Font("Arial",Font.PLAIN,10));
         this.add(pretTotalLabel);
 
@@ -240,5 +245,10 @@ public class SubUnitView extends JPanel {
         }
 
         return result;
+    }
+
+
+    public void cellChanged(Integer unitIndex, Integer subUnitIndex, Integer rowIndex, Integer columnIndex, String data){
+        parent.cellChanged(unitIndex,subUnitIndex,rowIndex,columnIndex,data);
     }
 }
