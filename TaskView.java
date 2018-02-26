@@ -83,6 +83,7 @@ public class TaskView extends JPanel {
 
     public void buildFromModel() {
         TaskTableCreator taskTableCreator = new TaskTableCreator((TaskModel) myModel);
+        unitViews.clear();
         for(int i = 0; i < taskTableCreator.getUnitHeaderTs().length; i++){
             //int unitIndex = Integer.parseInt(taskTableCreator.getUnitHeaderTs()[i][0][0]) - 1;//1tol indexelunk a headerekben
             unitViews.add(new UnitView(this,i));

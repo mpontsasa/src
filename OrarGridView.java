@@ -43,11 +43,11 @@ public class OrarGridView extends JPanel {
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
                                                            int row, int column) {
                 Component c = super.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
-                if(orarGridViewTableModel.getEditRights(row,column)){
+                if(orarGridViewTableModel.getEditRights(row,column) && column >= 5){
                     c.setBackground(Color.GREEN);
                 }
                 else{
-                    c.setBackground(Color.RED);
+                    c.setBackground(Color.WHITE);
                 }
                 return c;
             }

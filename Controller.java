@@ -67,6 +67,7 @@ public class Controller {
                 rowEdited(unitIndex, subUnitIndex, rowIndex, columnIndex, data);
             }
         }
+        //taskView.buildFromModel();
     }
 
     public void amplifiersEdited(int amplifierIndex, String data){
