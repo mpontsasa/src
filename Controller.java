@@ -255,27 +255,27 @@ public class Controller {
         }
     }
 
-    public void insertRow(int unitIndex, int subUnitIndex, int rowIndex){
-
-        try{
-            taskModel.insertRow(unitIndex,subUnitIndex,rowIndex);
-        }
-        catch (IndexOutOfBoundsException e){
-            System.out.println("index error!");
-            e.printStackTrace();
-        }
-    }
-
-    public void deleteRow(int unitIndex, int subUnitIndex, int rowIndex){
-
-        try{
-           taskModel.deleteRow(unitIndex,subUnitIndex,rowIndex);
-        }
-        catch (IndexOutOfBoundsException e){
-            System.out.println("index error!");
-            e.printStackTrace();
-        }
-    }
+//    public void insertRow(int unitIndex, int subUnitIndex, int rowIndex){
+//
+//        try{
+//            taskModel.insertRow(unitIndex,subUnitIndex,rowIndex);
+//        }
+//        catch (IndexOutOfBoundsException e){
+//            System.out.println("index error!");
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void deleteRow(int unitIndex, int subUnitIndex, int rowIndex){
+//
+//        try{
+//           taskModel.deleteRow(unitIndex,subUnitIndex,rowIndex);
+//        }
+//        catch (IndexOutOfBoundsException e){
+//            System.out.println("index error!");
+//            e.printStackTrace();
+//        }
+//    }
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
