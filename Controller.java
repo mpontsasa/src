@@ -78,14 +78,19 @@ public class Controller {
         switch(columnIndex){
             case 1:
                 taskModel.getTaskUnits().get(unitIndex).setUnitTitle(data);
+                break;
             case 2:
                 taskModel.getTaskUnits().get(unitIndex).setUnitCode(data);
+                break;
             case 4:
                 taskModel.getTaskUnits().get(unitIndex).setUnitateMetric(data);
+                break;
             case 5:
                 taskModel.getTaskUnits().get(unitIndex).setCantitate(Float.parseFloat(data));
+                break;
             case 6:
                 taskModel.getTaskUnits().get(unitIndex).setOre(Float.parseFloat(data));
+                break;
             default:
                 System.out.println("hibas columnIndex unit header editalasanal");
         }
@@ -99,18 +104,25 @@ public class Controller {
         switch(columnIndex){
             case 1:
                 row.setRowTitle(data);
+                break;
             case 2:
                 row.setUnitateDeMasura(data);
+                break;
             case 3:
                 row.setCantitateUnitara(Float.parseFloat(data));
+                break;
             case 4:
                 row.setPretUnitara(Float.parseFloat(data));
+                break;
             case 8:
                 row.setFurnizor(data);
+                break;
             case 9:
                 row.setNumarDeAlocati(Float.parseFloat(data));
+                break;
             case 10:
                 row.setNumarDeOreNecesare(Float.parseFloat(data));
+                break;
             default:
                 System.out.println("hibas columnIndex unit header editalasanal");
         }
@@ -126,8 +138,8 @@ public class Controller {
         shell.getVerticalScrollBar().setUnitIncrement(16);
 
 
-        //frame.add(shell,BorderLayout.CENTER);
-        frame.add(new OrarGridView(),BorderLayout.CENTER);
+        frame.add(shell,BorderLayout.CENTER);
+        //frame.add(new OrarGridView(),BorderLayout.CENTER);
 
         frame.revalidate();
         frame.repaint();
