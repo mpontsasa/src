@@ -55,6 +55,8 @@ public class TaskModel implements SuperModel {
             taskUnits.add(new TaskUnit(line, this));
         }
         scan.close();
+
+        calculateAll();
     }
 
     public void processHeader(String line) throws Exception{

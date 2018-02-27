@@ -115,15 +115,22 @@ public class HtmlFileCreator {
         content += "</tr>\n";
 
         content += "<tr>\n";
-        for (String field : Finals.SUB_UNIT_TABLE_HEADER){
-            content += "<th>";
-            content += field;
-            content += "</th>\n";
+        if (subUnitIndex == 0 || subUnitIndex == 3) { //hogyha sima subunit(nem extended)
+            for (String field : Finals.SUB_UNIT_TABLE_HEADER) {
+                content += "<th>";
+                content += field;
+                content += "</th>\n";
 
+            }
+        }
+        else{   //extended subunit esete
+            for (String field : Finals.EXTENDED_SUB_UNIT_TABLE_HEADER) {
+                content += "<th>";
+                content += field;
+                content += "</th>\n";
+
+            }
         }
         content += "</tr>\n";
-
-
     }
-
 }

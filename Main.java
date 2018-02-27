@@ -50,7 +50,6 @@ public class Main {
             e.printStackTrace();
         }
 
-
 //        ArrayList<String> t = new ArrayList<>();
 //
 //        t.add("elso");t.add("masodik");t.add("harrmadik");

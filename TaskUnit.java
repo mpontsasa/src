@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -44,9 +45,20 @@ public class TaskUnit {
     public TaskUnit(TaskModel parent, String unitCode){
         schedules = new ArrayList<Integer>();
         this.parent = parent;
+
         this.unitCode = unitCode;
         subUnits = new ArrayList<>();
+
         initialiseSubUnits();
+        try{
+            loadUnit(unitCode);
+        }
+        catch (FileNotFoundException e){
+            this.unitCode = unitCode;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void processProjectFileLine(String line) {

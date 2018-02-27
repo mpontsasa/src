@@ -35,46 +35,93 @@ public class Controller {
 
     }
 
-    public void taskViewEdited(Integer unitIndex, Integer subUnitIndex, Integer rowIndex, Integer columnIndex, String data){
-        System.out.println(unitIndex + " " +subUnitIndex +" " + rowIndex + " " + columnIndex + " " + data);
+    public boolean taskViewEdited(Integer unitIndex, Integer subUnitIndex, Integer rowIndex, Integer columnIndex, String data){
+        //System.out.println(unitIndex + " " +subUnitIndex +" " + rowIndex + " " + columnIndex + " " + data);
 
         if (unitIndex == -1) {  //sum table edited
-
+            return amplifiersEdited(columnIndex, data);
         }
         else if (subUnitIndex == -1)  //unit edited
         {
             if (unitIndex < taskModel.getTaskUnits().size()){   // edited, not added
-                unitEdited(unitIndex, columnIndex, data);
+                return unitEdited(unitIndex, columnIndex, data);
             }
             else if(unitIndex == taskModel.getTaskUnits().size()) // new unit added
             {
                 taskModel.getTaskUnits().add(new TaskUnit(taskModel, data));
-                unitEdited(unitIndex, columnIndex, data);
+                if (unitEdited(unitIndex, columnIndex, data)){
+                    return true;
+                }
+                else{
+                    taskModel.getTaskUnits().remove(unitIndex == taskModel.getTaskUnits().size() - 1);  // remooving last unit
+                    return false;
+                }
             }
             else    // hibas parameterek
             {
-                System.out.println("hibas unitszam taskViewEditedben");
+                System.out.println("hibas unitszam taskViewEditedben: " + unitIndex);
+                return false;
             }
         }
         else    //row edited
         {
             if (rowIndex < taskModel.getTaskUnits().get(unitIndex).getSubUnits().get(subUnitIndex).getTaskRows().size()){   // edited, not added
-                rowEdited(unitIndex, subUnitIndex, rowIndex, columnIndex, data);
+                return rowEdited(unitIndex, subUnitIndex, rowIndex, columnIndex, data);
             }
             else if(rowIndex == taskModel.getTaskUnits().get(unitIndex).getSubUnits().get(subUnitIndex).getTaskRows().size()) // new row added
             {
                 taskModel.getTaskUnits().get(unitIndex).getSubUnits().get(subUnitIndex).getTaskRows().add(new TaskRow(taskModel.getTaskUnits().get(unitIndex).getSubUnits().get(subUnitIndex)));
-                rowEdited(unitIndex, subUnitIndex, rowIndex, columnIndex, data);
+                if (rowEdited(unitIndex, subUnitIndex, rowIndex, columnIndex, data)){
+                    return true;
+                }
+                else{
+                    taskModel.getTaskUnits().get(unitIndex).getSubUnits().get(subUnitIndex).getTaskRows().remove(taskModel.getTaskUnits().get(unitIndex).getSubUnits().get(subUnitIndex).getTaskRows().size() - 1);//remoove last//
+                    return false;
+                }
+
+            }
+            else    // hibas parameterek
+            {
+                System.out.println("hibas unitszam taskViewEditedben");
+                return false;
             }
         }
         taskView.buildFromModel();
     }
 
-    public void amplifiersEdited(int amplifierIndex, String data){
-        System.out.println("yoyo");
+    public boolean amplifiersEdited(int amplifierIndex, String data){
+
+        switch (amplifierIndex)
+        {
+            case 1:
+                try{
+                    taskModel.setCheltuileIndirecteAmplifier(Float.parseFloat(data));
+                }
+                catch (NumberFormatException e)
+                {
+                    return false;
+                }
+            case 2:
+                try{
+                    taskModel.setProfitAmplifier(Float.parseFloat(data));
+                }
+                catch (NumberFormatException e)
+                {
+                    return false;
+                }
+            case 4:
+                try{
+                    taskModel.setTVAAmplifier(Float.parseFloat(data));
+                }
+                catch (NumberFormatException e)
+                {
+                    return false;
+                }
+        }
+        return true;
     }
 
-    public void unitEdited(int unitIndex, int columnIndex, String data){
+    public boolean unitEdited(int unitIndex, int columnIndex, String data){
 
         switch(columnIndex){
             case 1:
@@ -87,18 +134,31 @@ public class Controller {
                 taskModel.getTaskUnits().get(unitIndex).setUnitateMetric(data);
                 break;
             case 5:
-                taskModel.getTaskUnits().get(unitIndex).setCantitate(Float.parseFloat(data));
+                try{
+                    taskModel.getTaskUnits().get(unitIndex).setCantitate(Float.parseFloat(data));
+                }
+                catch(NumberFormatException e)
+                {
+                    return false;
+                }
                 break;
             case 6:
-                taskModel.getTaskUnits().get(unitIndex).setOre(Float.parseFloat(data));
+                try{
+                    taskModel.getTaskUnits().get(unitIndex).setOre(Float.parseFloat(data));
+                }
+                catch(NumberFormatException e)
+                {
+                    return false;
+                }
                 break;
             default:
                 System.out.println("hibas columnIndex unit header editalasanal");
         }
 
+        return false;
     }
 
-    public void rowEdited(int unitIndex, int subUnitIndex, int rowIndex, int columnIndex, String data){
+    public boolean rowEdited(int unitIndex, int subUnitIndex, int rowIndex, int columnIndex, String data){
 
         TaskRow row = taskModel.getTaskUnits().get(unitIndex).getSubUnits().get(subUnitIndex).getTaskRows().get(rowIndex);
 
@@ -110,25 +170,51 @@ public class Controller {
                 row.setUnitateDeMasura(data);
                 break;
             case 3:
-                row.setCantitateUnitara(Float.parseFloat(data));
+                try{
+
+                    row.setCantitateUnitara(Float.parseFloat(data));
+                }
+                catch (NumberFormatException e){
+                    return false;
+                }
                 break;
             case 4:
-                row.setPretUnitara(Float.parseFloat(data));
+                try{
+
+                    row.setPretUnitara(Float.parseFloat(data));
+                }
+                catch (NumberFormatException e){
+                    return false;
+                }
                 break;
             case 8:
-                row.setFurnizor(data);
+                    row.setFurnizor(data);
                 break;
             case 9:
-                row.setNumarDeAlocati(Float.parseFloat(data));
+                try{
+
+                    row.setNumarDeAlocati(Float.parseFloat(data));
+                }
+                catch (NumberFormatException e){
+                    return false;
+                }
                 break;
             case 10:
-                row.setNumarDeOreNecesare(Float.parseFloat(data));
+                try{
+
+                    row.setNumarDeOreNecesare(Float.parseFloat(data));
+                }
+                catch (NumberFormatException e){
+                    return false;
+                }
                 break;
             default:
                 System.out.println("hibas columnIndex unit header editalasanal");
         }
 
         System.out.println("Cell edit: " + unitIndex + " " +subUnitIndex +" " + rowIndex + " " + columnIndex + " " + data);
+        return true;
+
     }
 
     public void initializeViews(){
