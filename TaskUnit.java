@@ -45,6 +45,7 @@ public class TaskUnit {
         schedules = new ArrayList<Integer>();
         this.parent = parent;
         this.unitCode = unitCode;
+        subUnits = new ArrayList<>();
         initialiseSubUnits();
     }
 
