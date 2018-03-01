@@ -95,6 +95,7 @@ public class Controller {
                 {
                     return false;
                 }
+                break;
             case 2:
                 try{
                     taskModel.setProfitAmplifier(Float.parseFloat(data));
@@ -103,6 +104,7 @@ public class Controller {
                 {
                     return false;
                 }
+                break;
             case 4:
                 try{
                     taskModel.setTVAAmplifier(Float.parseFloat(data));
@@ -111,6 +113,10 @@ public class Controller {
                 {
                     return false;
                 }
+                break;
+            default:
+                System.out.println("Hibas index amplifierEdited-nel");
+
         }
         return true;
     }
