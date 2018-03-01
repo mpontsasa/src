@@ -44,7 +44,7 @@ public class Controller {
                     return true;
                 }
                 else{
-                    taskModel.getTaskUnits().remove(unitIndex == taskModel.getTaskUnits().size() - 1);  // remooving last unit
+                    taskModel.getTaskUnits().remove(taskModel.getTaskUnits().size() - 1);  // remooving last unit
                     return false;
                 }
             }
@@ -77,7 +77,6 @@ public class Controller {
                 return false;
             }
         }
-        taskView.buildFromModel();
     }
 
     public boolean amplifiersEdited(int amplifierIndex, String data){
@@ -216,11 +215,11 @@ public class Controller {
         shell.getVerticalScrollBar().setUnitIncrement(16);
 
 
-        //frame.add(shell,BorderLayout.CENTER);
+        frame.add(shell,BorderLayout.CENTER);
 
-        scheduleView = new ScheduleView(scheduleModel,frame);
-        shell = new JScrollPane(scheduleView);
-        frame.add(scheduleView, BorderLayout.CENTER);
+//        scheduleView = new ScheduleView(scheduleModel,frame);
+//        shell = new JScrollPane(scheduleView);
+//        frame.add(scheduleView, BorderLayout.CENTER);
 
         frame.revalidate();
         frame.repaint();

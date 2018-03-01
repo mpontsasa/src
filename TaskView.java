@@ -77,7 +77,7 @@ public class TaskView extends JPanel {
         Integer newIndex = unitViews.size() - 1;// azert kell ide a - 1 mert az utolso unit az szellem unit es en azelotti vagyok, marmint a most beillesztette uj unit az az utolso elotti mivel az utolso az a szellem unit
         System.out.println("new index:" + newIndex);
         myController.taskViewEdited(newIndex,-1,-1,2,candidateCode);
-
+        buildFromModel();
         //addEmptyUnit();
     }
 
@@ -96,10 +96,12 @@ public class TaskView extends JPanel {
 
     public void cellChanged(Integer unitIndex, Integer subUnitIndex, Integer rowIndex, Integer columnIndex, String data){
         myController.taskViewEdited(unitIndex,subUnitIndex,rowIndex,columnIndex,data);
+        buildFromModel();
     }
 
     public void amplifiersEdited(int amplifierIndex, String data){
         myController.amplifiersEdited(amplifierIndex,data);
+        buildFromModel();
     }
 
 
