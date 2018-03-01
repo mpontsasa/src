@@ -310,20 +310,24 @@ public class Controller {
     }
 
     private void askUserInput(){
+        JDialog jd = new JDialog();
+
         textField = new JTextField("");
         textField.setColumns(50);
 
         textField.setVisible(true);
-        textField.addActionListener(e->{
+        textField.addActionListener((ActionEvent e) ->{
 
 
             String text = textField.getText();
 
             System.out.println(text);
 
+            jd.setVisible(false);
+
         });
 
-        JDialog jd = new JDialog();
+
         jd.setTitle("Numele proiectului?");
         jd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         jd.setSize(300, 75);
