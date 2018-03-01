@@ -33,23 +33,25 @@ public class ScheduleHtmlFileCreator {
                 "\n" +
 //                "tr:nth-child(even) {\n" +
 //                "    background-color: #dddddd;\n" +
-                "}\n" +
+//                "}\n" +
                 "#selected {\n" +
                 "    background-color: green;\n" +
                 "}\n" +
                 "</style>\n" +
                 "</head>\n" +
-                "<body>";
+                "<body>\n" +
+                "<table>";
 
 
         for (int i = 0; i < taskModel.getTaskUnits().size(); i++){
             printRow(i);
         }
 
-        content += "</body>\n" +
+        content += "</table>\n" +
+                "</body>\n" +
                 "</html>";
 //..............print to file
-        FileWriter fw = new FileWriter(projectName + ".html");
+        FileWriter fw = new FileWriter(projectName + "_grafic_de_executie.html");
 
         fw.write(content);
 
@@ -78,6 +80,10 @@ public class ScheduleHtmlFileCreator {
         content += tu.getCantitate();
         content += "</th>\n";
 
+        content += "<th>";
+        content += tu.getOre();
+        content += "</th>\n";
+
         int k = 0;
         for (int j = 0; j < tu.getSchedules().size(); j ++) //minden schedul ele beirja az elotte levo ures negyzeteket es magat a kitoltott negyzetet
         {
@@ -86,10 +92,11 @@ public class ScheduleHtmlFileCreator {
                 content += "<th></th>\n";
             }
 
-            content += "<th id = \"selected\"></th>\n";
+            content += "<th id=\"selected\"></th>\n";
+            k++;
         }
 
-        for (; k < stc.getMaxDays(); k++)
+        for (; k <= stc.getMaxDays(); k++)
             content += "<th></th>\n";
 
         content += "</tr>\n";

@@ -7,8 +7,10 @@ public class ScheduleTableCreator {
     private int maxDays;
 
     ScheduleTableCreator(TaskModel taskModel) {
+        this.taskModel = taskModel;
         maxDays = findMaxDays();
-
+        createWeeksTable();
+        createtaskTable();
     }
 
     void createtaskTable () {
@@ -21,6 +23,29 @@ public class ScheduleTableCreator {
             tasksTable[i][2] = taskModel.getTaskUnits().get(i).getUnitateMetric();
             tasksTable[i][3] = "" + taskModel.getTaskUnits().get(i).getCantitate();
             tasksTable[i][4] = "" + taskModel.getTaskUnits().get(i).getOre();
+        }
+    }
+
+    void createWeeksTable(){
+
+        weeksTable = new boolean[taskModel.getTaskUnits().size()][maxDays + 1]; // +1 mert 0-tol indexeljuk a napokat
+
+        for (int i = 0; i < taskModel.getTaskUnits().size(); i++){
+
+            TaskUnit tu = taskModel.getTaskUnits().get(i);
+            int k = 0;
+            for (int j = 0; j < tu.getSchedules().size(); j ++) //minden schedul ele beirja az elotte levo ures negyzeteket es magat a kitoltott negyzetet
+            {
+
+                for ( ;k < tu.getSchedules().get(j); k++){
+                    weeksTable[i][k] = false;
+                }
+
+                weeksTable[i][k] = true;
+            }
+
+            for (; k < maxDays; k++)
+                weeksTable[i][k] = false;
         }
     }
 

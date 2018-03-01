@@ -15,6 +15,7 @@ public class Main {
             //controller.saveProject();
             //controller.printUnits();
             controller.makeHtmlTaskFile();
+            controller.makeHtmlScheduleFile();
 
 
             ///<INSERT TEST>

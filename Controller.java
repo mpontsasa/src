@@ -345,9 +345,17 @@ public class Controller {
         {
             e.printStackTrace();
         }
-
     }
 
+    public void makeHtmlScheduleFile(){
+        try{
+            ScheduleHtmlFileCreator htmlCreator = new ScheduleHtmlFileCreator(taskModel, projectName);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 
     public void switchViews(){
 
