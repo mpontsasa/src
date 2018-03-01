@@ -115,22 +115,42 @@ public class TaskHtmlFileCreator {
         content += "</tr>\n";
 
         content += "<tr>\n";
-        if (subUnitIndex == 0 || subUnitIndex == 3) { //hogyha sima subunit(nem extended)
-            for (String field : Finals.SUB_UNIT_TABLE_HEADER) {
-                content += "<th>";
-                content += field;
-                content += "</th>\n";
 
-            }
-        }
-        else{   //extended subunit esete
-            for (String field : Finals.EXTENDED_SUB_UNIT_TABLE_HEADER) {
-                content += "<th>";
-                content += field;
-                content += "</th>\n";
+        switch(subUnitIndex)
+        {
+            case 0:
+                for (String field : Finals.MATERIAL_TABLE_HEADER) {
+                    content += "<th>";
+                    content += field;
+                    content += "</th>\n";
 
-            }
+                }
+                break;
+            case 1:
+                for (String field : Finals.MANOPERA_TABLE_HEADER) {
+                    content += "<th>";
+                    content += field;
+                    content += "</th>\n";
+
+                }
+                break;
+            case 2:
+                for (String field : Finals.UTILAJ_TABLE_HEADER) {
+                    content += "<th>";
+                    content += field;
+                    content += "</th>\n";
+
+                }
+                break;
+            case 3:
+                for (String field : Finals.TRANSPORT_TABLE_HEADER) {
+                    content += "<th>";
+                    content += field;
+                    content += "</th>\n";
+
+                }
         }
+
         content += "</tr>\n";
     }
 }

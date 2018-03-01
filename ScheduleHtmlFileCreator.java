@@ -4,10 +4,12 @@ public class ScheduleHtmlFileCreator {
     TaskModel taskModel;
     String content = "";
     ScheduleTableCreator stc;
+    int lengthOfGrid;
 
     ScheduleHtmlFileCreator(TaskModel taskModel, String projectName) throws  Exception{
         this.taskModel = taskModel;
         stc = new ScheduleTableCreator(taskModel);
+        lengthOfGrid = stc.getMaxDays();
         createHtmlFile(projectName);
     }
 
@@ -32,14 +34,16 @@ public class ScheduleHtmlFileCreator {
 //                "tr:nth-child(even) {\n" +
 //                "    background-color: #dddddd;\n" +
                 "}\n" +
+                "#selected {\n" +
+                "    background-color: green;\n" +
+                "}\n" +
                 "</style>\n" +
                 "</head>\n" +
                 "<body>";
 
 
         for (int i = 0; i < taskModel.getTaskUnits().size(); i++){
-            //printUnit(i);
-            content += "<br><br>";
+            printRow(i);
         }
 
         content += "</body>\n" +
@@ -50,5 +54,44 @@ public class ScheduleHtmlFileCreator {
         fw.write(content);
 
         fw.close();
+    }
+
+    public void printRow(int i){
+
+        TaskUnit tu = taskModel.getTaskUnits().get(i);
+
+        content += "<tr>\n";
+
+        content += "<th>";
+        content += "" + (i + 1);    // index
+        content += "</th>\n";
+
+        content += "<th>";
+        content += tu.getUnitTitle();
+        content += "</th>\n";
+
+        content += "<th>";
+        content += tu.getUnitateMetric();
+        content += "</th>\n";
+
+        content += "<th>";
+        content += tu.getCantitate();
+        content += "</th>\n";
+
+        int k = 0;
+        for (int j = 0; j < tu.getSchedules().size(); j ++) //minden schedul ele beirja az elotte levo ures negyzeteket es magat a kitoltott negyzetet
+        {
+
+            for ( ;k < tu.getSchedules().get(j); k++){
+                content += "<th></th>\n";
+            }
+
+            content += "<th id = \"selected\"></th>\n";
+        }
+
+        for (; k < stc.getMaxDays(); k++)
+            content += "<th></th>\n";
+
+        content += "</tr>\n";
     }
 }

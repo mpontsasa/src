@@ -44,7 +44,6 @@ public class TaskView extends JPanel {
 
     }
 
-
     public void refreshUnits(){
         //REMOVES ALL UNITS FROM THE PANEL AND READDS ALL UNITS IN THE LIST
 
@@ -80,7 +79,6 @@ public class TaskView extends JPanel {
         buildFromModel();
         //addEmptyUnit();
     }
-
 
     public void buildFromModel() {
         TaskTableCreator taskTableCreator = new TaskTableCreator((TaskModel) myModel);
