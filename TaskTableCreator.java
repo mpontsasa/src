@@ -2,8 +2,10 @@ public class TaskTableCreator {
 
     private String[][][] unitHeaderTs;  //[unit][sor][mezo]
     private String[][][][] subUnitTs;   //[unitszama][subunitszama][sor][mezo]
+    private String[] petTotalUnitars;
     private String[][] sumTotalT;
     private String[][] sumMMUTT;
+
 
     private TaskModel taskModel;
 
@@ -60,6 +62,12 @@ public class TaskTableCreator {
         }
     }
 
+    public void createPretTotalUnitar(){
+        for(TaskUnit tu : taskModel.getTaskUnits()){
+
+        }
+    }
+
     public void createSumTotalT() {
         sumTotalT = new String[2][];
 
@@ -70,10 +78,8 @@ public class TaskTableCreator {
     }
 
     public void createSumMMUTT() {
-        sumMMUTT = new String[1][];
+        sumMMUTT = new String[2][];
         sumMMUTT[0] = taskModel.getSumMMUTTableHeader();
-
-
     }
 
     public String[][][] getUnitHeaderTs() {

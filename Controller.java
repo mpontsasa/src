@@ -1,21 +1,12 @@
-import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.print.PageFormat;
-import java.awt.print.Printable;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Controller {
 
     private ScheduleModel scheduleModel;
     private TaskModel taskModel;
-
 
     private ScheduleView scheduleView;
     private TaskView taskView;
@@ -36,7 +27,7 @@ public class Controller {
     }
 
     public boolean taskViewEdited(Integer unitIndex, Integer subUnitIndex, Integer rowIndex, Integer columnIndex, String data){
-        //System.out.println(unitIndex + " " +subUnitIndex +" " + rowIndex + " " + columnIndex + " " + data);
+        System.out.println(unitIndex + " " +subUnitIndex +" " + rowIndex + " " + columnIndex + " " + data);
 
         if (unitIndex == -1) {  //sum table edited
             return amplifiersEdited(columnIndex, data);
@@ -193,7 +184,7 @@ public class Controller {
             case 9:
                 try{
 
-                    row.setNumarDeAlocati(Float.parseFloat(data));
+                    row.setNumarDeAlocati(Integer.parseInt(data));
                 }
                 catch (NumberFormatException e){
                     return false;
@@ -280,7 +271,7 @@ public class Controller {
 
     public void makeHtmlTaskFile(){
         try{
-            HtmlFileCreator htmlCreator = new HtmlFileCreator(taskModel, projectName);
+            TaskHtmlFileCreator htmlCreator = new TaskHtmlFileCreator(taskModel, projectName);
         }
         catch(Exception e)
         {

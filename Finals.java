@@ -42,8 +42,8 @@ public class Finals {
             " TOTAL VALOARE LUCRARE FARA TVA (RON) ", " TVA (RON) ", " TOTAL LUCRARE VALOARE CU TVA (RON) "
     };
 
-
-
+    public final static int LENGTH_OF_TASKS_TABLE = 5;
+    public final static String[] TASKS_TABLE_HEADER = {"Nr.", "Articol de lucrare", "um", "Cantitate", "Ore"};
 
     public final static int LENGTH_OF_SUM_MMUT_TABLE = 4;
     public final static String[] SUM_MMUT_TABLE_HEADER = {"Material", "Manopera", "Utilaj", "Transport"};
@@ -54,5 +54,7 @@ public class Finals {
     public final static int EXTENDED_SUB_UNIT_TYPE = 1;
 
     public final static String PRET_TOTAL_UNITAR_TEXT = "PRET TOTAL UNITAR: ";
+
+    //public final static int NUMBER_OF_WEEKS_OON_ONE_PAGE = 5;
 
 }
