@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -12,6 +14,9 @@ public class Controller {
     private TaskView taskView;
     private MenuFrame frame;
     private JScrollPane shell;
+    private int activeView;
+
+    private JTextField textField;
 
     private String projectName;
 
@@ -19,7 +24,7 @@ public class Controller {
 
         this.projectName = projectName;
 
-
+        activeView = Finals.NO_VIEW_ACTIVE;
         scheduleModel = new ScheduleModel();
         taskModel = new TaskModel();//eloszor letrehozzuk a modelleket, aztan atadjuk a viewknak a megfelelo modellt
        // scheduleView = new ScheduleView(scheduleModel, frame);
@@ -225,7 +230,9 @@ public class Controller {
         shell.getVerticalScrollBar().setUnitIncrement(16);
 
 
-        frame.add(shell,BorderLayout.CENTER);
+//        frame.add(shell,BorderLayout.CENTER);
+        //frame.setContentPane(shell);
+        //activeView = Finals.TASK_VIEW_ACTIVE;
 
 //        scheduleView = new ScheduleView(scheduleModel,frame);
 //        shell = new JScrollPane(scheduleView);
@@ -281,6 +288,41 @@ public class Controller {
         System.out.println("saved!");
     }
 
+    public void loadButtonClicked(){
+
+
+
+        askUserInput();
+
+        if(activeView == Finals.TASK_VIEW_ACTIVE){
+            taskView.buildFromModel();
+        }
+    }
+
+    private void askUserInput(){
+        textField = new JTextField("");
+        textField.setColumns(50);
+
+        textField.setVisible(true);
+        textField.addActionListener(e->{
+
+
+            String text = textField.getText();
+
+            System.out.println(text);
+
+        });
+
+        JDialog jd = new JDialog();
+        jd.setTitle("Numele proiectului?");
+        jd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        jd.setSize(300, 75);
+        jd.add(textField);
+        jd.requestFocus();
+        jd.setModal(true);
+        jd.setVisible(true);
+    }
+
     public void makeHtmlTaskFile(){
         try{
             TaskHtmlFileCreator htmlCreator = new TaskHtmlFileCreator(taskModel, projectName);
@@ -288,6 +330,44 @@ public class Controller {
         catch(Exception e)
         {
             e.printStackTrace();
+        }
+
+    }
+
+
+    public void switchViews(){
+
+        switch (activeView){
+
+            case Finals.TASK_VIEW_ACTIVE:
+
+
+
+                scheduleView = new ScheduleView(scheduleModel,frame);
+                shell = new JScrollPane(scheduleView);
+
+                frame.setContentPane(shell);
+
+                activeView = Finals.SCHEDULE_VIEW_ACTIVE;
+                frame.revalidate();
+                frame.repaint();
+                break;
+            case Finals.NO_VIEW_ACTIVE:
+            case Finals.SCHEDULE_VIEW_ACTIVE:
+                taskView = new TaskView(taskModel,frame,this);
+                shell = new JScrollPane(taskView);
+                shell.getVerticalScrollBar().setUnitIncrement(16);
+
+
+                frame.setContentPane(shell);
+
+                activeView = Finals.TASK_VIEW_ACTIVE;
+                frame.revalidate();
+                frame.repaint();
+                break;
+
+            default:
+                System.out.println("error on switching views!");
         }
 
     }

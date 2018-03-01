@@ -25,12 +25,19 @@ public class MenuFrame extends JFrame implements MenuListener {
         menuBar = new JMenuBar();
 
         save = new JMenuItem("Salvare proiect");
+        save.addActionListener(e->this.myController.saveButtonClicked());
+
         load = new JMenuItem("Incarcare proiect");
+        load.addActionListener(e->this.myController.loadButtonClicked());
+
         newProject = new JMenuItem("Proiect nou");
+
+
         print = new JMenuItem("Listare");
-        print.addActionListener(e->this.myController.menuTest());
+        print.addActionListener(e->this.myController.makeHtmlTaskFile());
 
         switchViews = new JMenuItem("Schimbare");
+        switchViews.addActionListener(e->this.myController.switchViews());
 
         file = new JMenu("File");
         options = new JMenu("Options");

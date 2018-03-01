@@ -1,5 +1,7 @@
 //import org.omg.CORBA.PUBLIC_MEMBER;
 
+
+
 import java.awt.*;
 
 public class Finals {
@@ -54,6 +56,10 @@ public class Finals {
     public final static int EXTENDED_SUB_UNIT_TYPE = 1;
 
     public final static String PRET_TOTAL_UNITAR_TEXT = "PRET TOTAL UNITAR: ";
+
+    public final static int NO_VIEW_ACTIVE = 0;
+    public final static int TASK_VIEW_ACTIVE = 1;
+    public final static int SCHEDULE_VIEW_ACTIVE = 2;
 
     //public final static int NUMBER_OF_WEEKS_OON_ONE_PAGE = 5;
 
