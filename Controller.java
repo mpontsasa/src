@@ -14,6 +14,9 @@ public class Controller {
     private TaskView taskView;
     private MenuFrame frame;
     private JScrollPane shell;
+
+    private JScrollPane taskShell;
+    private JScrollPane scheduleShell;
     private int activeView;
 
     private JTextField textField;
@@ -225,9 +228,9 @@ public class Controller {
     public void initializeViews(){
         //ahhoz, hogy lehessen scrollozni az ablakban, egy scrollpane-be teszem az egesz taskViewt, s azt a burkot a framebe
         initializeFrame();
-        taskView = new TaskView(taskModel,frame,this);
-        shell = new JScrollPane(taskView);
-        shell.getVerticalScrollBar().setUnitIncrement(16);
+        //taskView = new TaskView(taskModel,frame,this);
+//        taskShell = new JScrollPane(taskView);
+//        taskShell.getVerticalScrollBar().setUnitIncrement(16);
 
 
 //        frame.add(shell,BorderLayout.CENTER);
@@ -237,6 +240,13 @@ public class Controller {
 //        scheduleView = new ScheduleView(scheduleModel,frame);
 //        shell = new JScrollPane(scheduleView);
 //        frame.add(scheduleView, BorderLayout.CENTER);
+
+        taskView = new TaskView(taskModel,frame,this);
+        taskShell = new JScrollPane(taskView);
+        taskShell.getVerticalScrollBar().setUnitIncrement(16);
+
+        scheduleView = new ScheduleView(scheduleModel,frame);
+        scheduleShell = new JScrollPane(scheduleView);
 
         frame.revalidate();
         frame.repaint();
@@ -294,9 +304,9 @@ public class Controller {
 
         askUserInput();
 
-        if(activeView == Finals.TASK_VIEW_ACTIVE){
-            taskView.buildFromModel();
-        }
+//        if(activeView == Finals.TASK_VIEW_ACTIVE){
+//            taskView.buildFromModel();
+//        }
     }
 
     private void askUserInput(){
@@ -343,10 +353,9 @@ public class Controller {
 
 
 
-                scheduleView = new ScheduleView(scheduleModel,frame);
-                shell = new JScrollPane(scheduleView);
 
-                frame.setContentPane(shell);
+
+                frame.setContentPane(scheduleShell);
 
                 activeView = Finals.SCHEDULE_VIEW_ACTIVE;
                 frame.revalidate();
@@ -354,12 +363,10 @@ public class Controller {
                 break;
             case Finals.NO_VIEW_ACTIVE:
             case Finals.SCHEDULE_VIEW_ACTIVE:
-                taskView = new TaskView(taskModel,frame,this);
-                shell = new JScrollPane(taskView);
-                shell.getVerticalScrollBar().setUnitIncrement(16);
 
 
-                frame.setContentPane(shell);
+
+                frame.setContentPane(taskShell);
 
                 activeView = Finals.TASK_VIEW_ACTIVE;
                 frame.revalidate();
