@@ -385,4 +385,8 @@ public class TaskUnit {
     public ArrayList<TaskSubUnit> getSubUnits() {
         return subUnits;
     }
+
+    public ArrayList<Integer> getSchedules() {
+        return schedules;
+    }
 }

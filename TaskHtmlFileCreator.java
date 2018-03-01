@@ -1,12 +1,12 @@
 import java.io.FileWriter;
 
-public class HtmlFileCreator {
+public class TaskHtmlFileCreator {
 
     TaskModel taskModel;
     String content = "";
     TaskTableCreator ttc;
 
-    HtmlFileCreator(TaskModel taskModel, String projectName) throws  Exception{
+    TaskHtmlFileCreator(TaskModel taskModel, String projectName) throws  Exception{
         this.taskModel = taskModel;
         ttc = new TaskTableCreator(taskModel);
         createHtmlFile(projectName);

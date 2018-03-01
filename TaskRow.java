@@ -10,7 +10,7 @@ public class TaskRow {
     private float cantitateTotala;
     private float pretTotal;
     private String furnizor;
-    private float numarDeAlocati;
+    private int numarDeAlocati;
     private float numarDeOreNecesare;
 
     TaskRow (String line, TaskSubUnit parent) throws Exception{
@@ -74,7 +74,7 @@ public class TaskRow {
         i++;
 
         nextTok = tokens[i];
-        numarDeAlocati = Float.parseFloat(nextTok);;
+        numarDeAlocati = Integer.parseInt(nextTok);;
 //        i++;
 
 //        nextTok = tokens[i];
@@ -185,7 +185,7 @@ public class TaskRow {
         this.numarDeOreNecesare = numarDeOreNecesare;
     }
 
-    public void setNumarDeAlocati(float numarDeAlocati) {
+    public void setNumarDeAlocati(int numarDeAlocati) {
         this.numarDeAlocati = numarDeAlocati;
         calculateNumarDeOreNecesare();
     }
