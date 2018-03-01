@@ -22,7 +22,7 @@ public class Controller {
 
         scheduleModel = new ScheduleModel();
         taskModel = new TaskModel();//eloszor letrehozzuk a modelleket, aztan atadjuk a viewknak a megfelelo modellt
-        scheduleView = new ScheduleView(scheduleModel, frame);
+       // scheduleView = new ScheduleView(scheduleModel, frame);
 
     }
     public void menuTest(){
@@ -149,7 +149,7 @@ public class Controller {
                 System.out.println("hibas columnIndex unit header editalasanal");
         }
 
-        return false;
+        return true;
     }
 
     public boolean rowEdited(int unitIndex, int subUnitIndex, int rowIndex, int columnIndex, String data){
