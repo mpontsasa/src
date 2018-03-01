@@ -34,6 +34,9 @@ public class Controller {
         scheduleView = new ScheduleView(scheduleModel, frame);
 
     }
+    public void menuTest(){
+        System.out.println("azigennn");
+    }
 
     public boolean taskViewEdited(Integer unitIndex, Integer subUnitIndex, Integer rowIndex, Integer columnIndex, String data){
         //System.out.println(unitIndex + " " +subUnitIndex +" " + rowIndex + " " + columnIndex + " " + data);
@@ -86,7 +89,7 @@ public class Controller {
                 return false;
             }
         }
-        taskView.buildFromModel();
+        //taskView.buildFromModel();
     }
 
     public boolean amplifiersEdited(int amplifierIndex, String data){

@@ -140,7 +140,12 @@ public class ResumeTableView extends JPanel {
 
         int width = 559;
 
-
+        width = 0;
+        for (int columnIndex = 0; columnIndex < table.getColumnCount(); columnIndex++)
+        {
+            System.out.println(table.getColumnModel().getColumn(columnIndex).getMinWidth() + " ");
+            width += table.getColumnModel().getColumn(columnIndex).getWidth();
+        }
 
         int height = numOfRows * rowHeight + 50;
 

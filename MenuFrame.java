@@ -2,27 +2,48 @@ import javax.swing.*;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 import java.awt.*;
-import java.io.IOException;
 
 public class MenuFrame extends JFrame implements MenuListener {
 
     private JMenuBar menuBar;
-    private JMenu save;
-    private JMenu print;
+    private JMenu file;
+
+    private JMenu options;
+
+    private JMenuItem save;
+    private JMenuItem load;
+    private JMenuItem newProject;
+
+    private JMenuItem print;
+    private JMenuItem switchViews;
+
     private Controller myController;
 
 
     public MenuFrame(Controller myController) throws HeadlessException {
         this.myController = myController;
         menuBar = new JMenuBar();
-        save = new JMenu("Salvare!");
-        save.addMenuListener(this);
 
-        print = new JMenu("Listare!");
-        print.addMenuListener(this);
+        save = new JMenuItem("Salvare proiect");
+        load = new JMenuItem("Incarcare proiect");
+        newProject = new JMenuItem("Proiect nou");
+        print = new JMenuItem("Listare");
+        print.addActionListener(e->this.myController.menuTest());
 
-        menuBar.add(save);
-        menuBar.add(print);
+        switchViews = new JMenuItem("Schimbare");
+
+        file = new JMenu("File");
+        options = new JMenu("Options");
+        //file.addMenuListener(this);
+
+        file.add(newProject);file.add(load);file.add(save);
+
+        options.add(print);options.add(switchViews);
+
+        //options.addMenuListener(this);
+
+        menuBar.add(file);
+        menuBar.add(options);
         this.setJMenuBar(menuBar);
     }
 
