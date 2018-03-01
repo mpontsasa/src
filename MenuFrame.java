@@ -8,6 +8,7 @@ public class MenuFrame extends JFrame implements MenuListener {
 
     private JMenuBar menuBar;
     private JMenu save;
+    private JMenu print;
     private Controller myController;
 
 
@@ -16,7 +17,12 @@ public class MenuFrame extends JFrame implements MenuListener {
         menuBar = new JMenuBar();
         save = new JMenu("Salvare!");
         save.addMenuListener(this);
+
+        print = new JMenu("Listare!");
+        print.addMenuListener(this);
+
         menuBar.add(save);
+        menuBar.add(print);
         this.setJMenuBar(menuBar);
     }
 

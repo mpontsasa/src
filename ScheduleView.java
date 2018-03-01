@@ -9,6 +9,10 @@ public class ScheduleView extends JPanel implements SuperView  {
     public ScheduleView(ScheduleModel myModel, JFrame myFrame) {
         this.myModel = myModel;
         this.myFrame = myFrame;
+        this.setLayout(new BoxLayout(this,BoxLayout.LINE_AXIS));
+
+        this.add(new ResumeTableView());
+        this.add(new OrarGridView());
     }
 
     @Override

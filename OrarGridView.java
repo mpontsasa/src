@@ -1,13 +1,15 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
 import java.awt.*;
 
 public class OrarGridView extends JPanel {
 
-    JTable table;
-    JScrollPane scrollPane;
+    JTable gridTable;
+    JScrollPane gridScrollPane;
+
+//    JTable resumeTable;
+//    JScrollPane resumeScrollPane;
+
 
     public OrarGridView() {
         int ii = 3; int jj = 36;
@@ -21,16 +23,16 @@ public class OrarGridView extends JPanel {
 
         }
 
-         table = new JTable(data,columns);
+         gridTable = new JTable(data,columns);
         OrarGridViewTableModel orarGridViewTableModel = new OrarGridViewTableModel(data,columns);
-        table.setModel(orarGridViewTableModel);
+        gridTable.setModel(orarGridViewTableModel);
 
 
-        table.addMouseListener(new java.awt.event.MouseAdapter() {
+        gridTable.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                int row = table.rowAtPoint(evt.getPoint());
-                int col = table.columnAtPoint(evt.getPoint());
+                int row = gridTable.rowAtPoint(evt.getPoint());
+                int col = gridTable.columnAtPoint(evt.getPoint());
                 System.out.println(row + " " + col);
                 orarGridViewTableModel.setCellEditable(row,col,!orarGridViewTableModel.getEditRights(row,col));
                 orarGridViewTableModel.fireTableDataChanged();
@@ -59,24 +61,24 @@ public class OrarGridView extends JPanel {
 
         for (int columnIndex = 0; columnIndex < orarGridViewTableModel.getColumnCount(); columnIndex++)
         {
-            table.getColumnModel().getColumn(columnIndex).setCellRenderer(rightRenderer);
+            gridTable.getColumnModel().getColumn(columnIndex).setCellRenderer(rightRenderer);
         }
 
 
 
-        scrollPane = new JScrollPane(table);
+        gridScrollPane = new JScrollPane(gridTable);
 
-        table.setFillsViewportHeight(true);
-        table.setRowSelectionAllowed(false);
-        table.setColumnSelectionAllowed(false);
+        gridTable.setFillsViewportHeight(true);
+        gridTable.setRowSelectionAllowed(false);
+        gridTable.setColumnSelectionAllowed(false);
 
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        TableColumnAdjuster tca = new TableColumnAdjuster(table);
+        gridTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        TableColumnAdjuster tca = new TableColumnAdjuster(gridTable);
         tca.adjustColumns();
 
         resize();
 
-        this.add(scrollPane);
+        this.add(gridScrollPane);
 
 
 
@@ -86,15 +88,15 @@ public class OrarGridView extends JPanel {
 
         final String[] days = {"L", "M", "M", "J", "V"};
 
-        String[] res = new String[numOfDays + 5];
-        res[0] = "Nr.";
-        res[1] = "Articol de lucrare";
-        res[2] = "um";
-        res[3] = "cantitate";
-        res[4] = "ore";
+        String[] res = new String[numOfDays];
+//        res[0] = "Nr.";
+//        res[1] = "Articol de lucrare";
+//        res[2] = "um";
+//        res[3] = "cantitate";
+//        res[4] = "ore";
 
         Integer week = 1;
-        int dayIndex  = 5;
+        int dayIndex  = 0;
         while(numOfDays > 0){
 
             if (numOfDays >= 5) {
@@ -127,21 +129,21 @@ public class OrarGridView extends JPanel {
     public void resize(){
         //resize after changes have been made
 
-        TableColumnAdjuster tca = new TableColumnAdjuster(table);
+        TableColumnAdjuster tca = new TableColumnAdjuster(gridTable);
         tca.adjustColumns();
 
 
-        int numOfRows = table.getRowCount() + 2;
-        int rowHeight = table.getRowHeight();
+        int numOfRows = gridTable.getRowCount() + 2;
+        int rowHeight = gridTable.getRowHeight();
 
 
 
-        int width = table.getColumnCount() * 22;
+        int width = gridTable.getColumnCount() * 22;
 
 
 
         int height = numOfRows * rowHeight + 50;
-        scrollPane.setPreferredSize(new Dimension(width,height));
+        gridScrollPane.setPreferredSize(new Dimension(width,height));
         this.setPreferredSize(new Dimension(width,height));
         this.revalidate();
         this.repaint();

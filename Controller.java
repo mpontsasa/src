@@ -77,7 +77,7 @@ public class Controller {
                 return false;
             }
         }
-        //taskView.buildFromModel();
+        taskView.buildFromModel();
     }
 
     public boolean amplifiersEdited(int amplifierIndex, String data){
@@ -216,8 +216,11 @@ public class Controller {
         shell.getVerticalScrollBar().setUnitIncrement(16);
 
 
-        frame.add(shell,BorderLayout.CENTER);
-        //frame.add(new OrarGridView(),BorderLayout.CENTER);
+        //frame.add(shell,BorderLayout.CENTER);
+
+        scheduleView = new ScheduleView(scheduleModel,frame);
+        shell = new JScrollPane(scheduleView);
+        frame.add(scheduleView, BorderLayout.CENTER);
 
         frame.revalidate();
         frame.repaint();

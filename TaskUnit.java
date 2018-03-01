@@ -45,6 +45,10 @@ public class TaskUnit {
     public TaskUnit(TaskModel parent, String unitCode){
         schedules = new ArrayList<Integer>();
         this.parent = parent;
+
+        this.unitCode = unitCode;
+        subUnits = new ArrayList<>();
+
         initialiseSubUnits();
         try{
             loadUnit(unitCode);
