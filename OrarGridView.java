@@ -6,15 +6,17 @@ public class OrarGridView extends JPanel {
 
     JTable gridTable;
     JScrollPane gridScrollPane;
+    OrarGridViewTableModel orarGridViewTableModel;
 
 //    JTable resumeTable;
 //    JScrollPane resumeScrollPane;
 
 
-    public OrarGridView() {
-        int ii = 3; int jj = 36;
-        String[] columns = buildHeader(jj);
-        String[][] data = new String[ii][jj];
+    public OrarGridView(int numOfRows, int numOfColumns) {
+
+        this.setBackground(Color.BLUE);
+        String[] columns = buildHeader(numOfColumns);
+        String[][] data = new String[numOfRows][numOfColumns];
 
         for(int i = 0;i < data.length; i++){
             for(int j = 0; j < data[0].length; j++){
@@ -24,7 +26,7 @@ public class OrarGridView extends JPanel {
         }
 
          gridTable = new JTable(data,columns);
-        OrarGridViewTableModel orarGridViewTableModel = new OrarGridViewTableModel(data,columns);
+        orarGridViewTableModel = new OrarGridViewTableModel(data,columns);
         gridTable.setModel(orarGridViewTableModel);
 
 
@@ -45,7 +47,7 @@ public class OrarGridView extends JPanel {
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
                                                            int row, int column) {
                 Component c = super.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
-                if(orarGridViewTableModel.getEditRights(row,column) && column >= 5){
+                if(orarGridViewTableModel.getEditRights(row,column)){
                     c.setBackground(Color.GREEN);
                 }
                 else{
@@ -78,7 +80,7 @@ public class OrarGridView extends JPanel {
 
         resize();
 
-        this.add(gridScrollPane);
+        this.add(gridScrollPane,BorderLayout.CENTER);
 
 
 
@@ -142,10 +144,17 @@ public class OrarGridView extends JPanel {
 
 
 
-        int height = numOfRows * rowHeight + 50;
-        gridScrollPane.setPreferredSize(new Dimension(width,height));
-        this.setPreferredSize(new Dimension(width,height));
+//        int height = numOfRows * rowHeight + 600;
+//        height = this.getHeight();
+//        gridScrollPane.setPreferredSize(new Dimension(width,height));
+
+        //this.setPreferredSize(new Dimension(width,height));
+        this.setBackground(Color.BLACK);
         this.revalidate();
         this.repaint();
+    }
+
+    public JScrollPane getGridScrollPane() {
+        return gridScrollPane;
     }
 }
