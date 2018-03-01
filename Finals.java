@@ -27,7 +27,7 @@ public class Finals {
     public final static String TOK_D = "@"; //token delimiter
 
     public final static int LENGTH_OF_UNIT_TABLE = 12;
-    public final static String[] UNIT_TABLE_HEADER = {"Nr.", "Titlu", "Cod", "Pret Unitar", "um",
+    public final static String[] UNIT_TABLE_HEADER = {"Nr.", "Articol", "Cod", "Pret Unitar", "um",
             "Cantitate", "Ore", "Pret Total", "Material", "Manopera", "Utilaj", "Transport"};
 
     public final static int LENGTH_OF_SUB_UNIT_TABLE = 9;
@@ -37,6 +37,20 @@ public class Finals {
     public final static int LENGTH_OF_EXTENDED_SUB_UNIT_TABLE = 11;
     public final static String[] EXTENDED_SUB_UNIT_TABLE_HEADER = {"Nr.", "Element", "um", "Cantitate Unitara",
             "Pret Unitar", "Pret Total Untar", "Cantitate Totala", "Pret Total", "Furnizor", "Nr. de alocatii", "Nr. de ore necesare"};
+
+
+    public final static String[] MATERIAL_TABLE_HEADER = {"Nr.", "Material", "um", "Cantitate Unitara",
+            "Pret Unitar", "Pret Total Untar", "Cantitate Totala", "Pret Total", "Furnizor"};
+
+    public final static String[] MANOPERA_TABLE_HEADER = {"Nr.", "Operatiune", "um", "Norma de timp",
+            "Pret Unitar", "Pret Total Untar", "Cantitate Totala", "Pret Total", "Nr. de alocatii", "Nr. de ore necesare"};
+
+    public final static String[] UTILAJ_TABLE_HEADER = {"Nr.", "Denumire utilaj", "um", "Norma de timp",
+            "Pret Unitar", "Pret Total Untar", "Cantitate Totala", "Pret Total", "Nr. de utilaje alocate", "Nr. de ore necesare"};
+
+    public final static String[] TRANSPORT_TABLE_HEADER = {"Nr.", "Operatiune", "um", "Cantitate Unitara",
+            "Pret Unitar", "Pret Total Untar", "Cantitate Totala", "Pret Total", "Furnizor"};
+
 
     public final static int LENGTH_OF_SUM_TOTAL_TABLE = 6;
     public final static String[] SUM_TOTAL_TABLE_HEADER = {" TOTAL COST DIRECT (RON) ",
@@ -62,5 +76,4 @@ public class Finals {
     public final static int SCHEDULE_VIEW_ACTIVE = 2;
 
     //public final static int NUMBER_OF_WEEKS_OON_ONE_PAGE = 5;
-
 }
