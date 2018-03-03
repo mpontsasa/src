@@ -422,8 +422,6 @@ public class Controller {
 
                 frame.getTextArea().setText("");
 
-
-
                 activeView = Finals.NO_VIEW_ACTIVE;
                 switchViews();
 
