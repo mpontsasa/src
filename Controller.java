@@ -32,7 +32,7 @@ public class Controller {
 
 
         activeView = Finals.NO_VIEW_ACTIVE;
-        scheduleModel = new ScheduleModel();
+
         taskModel = new TaskModel();//eloszor letrehozzuk a modelleket, aztan atadjuk a viewknak a megfelelo modellt
         initializeFrame();
        // scheduleView = new ScheduleView(scheduleModel, frame);
