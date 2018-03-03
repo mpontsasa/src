@@ -27,6 +27,8 @@ public class Controller {
 
     private String projectName;
 
+    private boolean isSaved;
+
     public Controller() {
 
 
@@ -281,8 +283,26 @@ public class Controller {
     }
 
     private void initializeFrame(){
+        
         frame = new MenuFrame(this);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                if (JOptionPane.showConfirmDialog(frame,
+                        "Are you sure to close this window?", "Really Closing?",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                    
+                    System.exit(0);
+                }
+            }
+        });
+
+
         frame.setBounds(0,0,600,450);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setTitle("Test");

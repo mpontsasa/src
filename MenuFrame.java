@@ -1,3 +1,4 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -5,6 +6,7 @@ import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 public class MenuFrame extends JFrame {
 
@@ -31,6 +33,8 @@ public class MenuFrame extends JFrame {
         this.myController = myController;
         menuBar = new JMenuBar();
         setupTextArea();
+
+
 
         save = new JMenuItem("Salvare proiect");
         save.addActionListener(e->this.myController.saveButtonClicked());
