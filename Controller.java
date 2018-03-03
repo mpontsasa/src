@@ -309,8 +309,11 @@ public class Controller {
                 JOptionPane.ERROR_MESSAGE);
     }
 
-    public void displayProjectAlredyExists(){
-
+    public void  displayProjectAlreadyExistsError(){
+        JOptionPane.showMessageDialog(frame,
+                "Proiectul selectat exista deja!",
+                "Proiect existent",
+                JOptionPane.ERROR_MESSAGE);
     }
 
     public void saveProject() throws IOException{
@@ -368,7 +371,7 @@ public class Controller {
             String pn = textField.getText().replaceAll(" ","_");
 
             if (Files.isRegularFile(Paths.get(Finals.PROJECTS_PATH + pn))){
-                displayProjectAlredyExists();
+                displayProjectAlreadyExistsError();
             }
             else
             {
