@@ -30,23 +30,18 @@ public class ScheduleTableCreator {
 
         weeksTable = new boolean[taskModel.getTaskUnits().size()][maxDays + Finals.EXTRA_ORAR_DAYS +1]; // +1 mert 0-tol indexeljuk a napokat
 
+        for(boolean[] bt : weeksTable){
+            for (int i = 0; i < bt.length; i++){
+                bt[i] = false;
+            }
+        }
+
         for (int i = 0; i < taskModel.getTaskUnits().size(); i++){
 
             TaskUnit tu = taskModel.getTaskUnits().get(i);
-            int k = 0;
-            for (int j = 0; j < tu.getSchedules().size(); j ++) //minden schedul ele beirja az elotte levo ures negyzeteket es magat a kitoltott negyzetet
-            {
-
-                for ( ;k < tu.getSchedules().get(j); k++){
-                    weeksTable[i][k] = false;
-                }
-
-                weeksTable[i][k] = true;
-                k++;
+            for (int j = 0; j < tu.getSchedules().size(); j ++){
+                weeksTable[i][tu.getSchedules().get(j)] = true;
             }
-
-            for (; k < maxDays; k++)
-                weeksTable[i][k] = false;
         }
     }
 
