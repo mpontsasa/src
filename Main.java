@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 public class Main {
     public static void main(String[] args){
-        Controller controller = new Controller("test_load_button");
+        Controller controller = new Controller();
 
 
 
