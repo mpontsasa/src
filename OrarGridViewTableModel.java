@@ -44,4 +44,8 @@ public class OrarGridViewTableModel extends DefaultTableModel {
     public int getEditedColumn() {
         return editedColumn;
     }
+
+    public void setEditable_cells(boolean[][] editable_cells) {
+        this.editable_cells = editable_cells;
+    }
 }

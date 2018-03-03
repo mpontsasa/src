@@ -7,14 +7,19 @@ public class OrarGridView extends JPanel {
     JTable gridTable;
     JScrollPane gridScrollPane;
     OrarGridViewTableModel orarGridViewTableModel;
+    private Controller myController;
 
 //    JTable resumeTable;
 //    JScrollPane resumeScrollPane;
 
 
-    public OrarGridView(int numOfRows, int numOfColumns) {
+    public OrarGridView(ScheduleTableCreator stc, Controller myController) {
 
-        this.setBackground(Color.BLUE);
+        this.myController = myController;
+
+        int numOfRows = stc.getTasksTable().length;
+        int numOfColumns = stc.getMaxDays() + Finals.EXTRA_ORAR_DAYS;//+ ket het
+
         String[] columns = buildHeader(numOfColumns);
         String[][] data = new String[numOfRows][numOfColumns];
 
@@ -27,6 +32,7 @@ public class OrarGridView extends JPanel {
 
          gridTable = new JTable(data,columns);
         orarGridViewTableModel = new OrarGridViewTableModel(data,columns);
+        orarGridViewTableModel.setEditable_cells(stc.getWeeksTable());
         gridTable.setModel(orarGridViewTableModel);
 
 
@@ -35,7 +41,10 @@ public class OrarGridView extends JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 int row = gridTable.rowAtPoint(evt.getPoint());
                 int col = gridTable.columnAtPoint(evt.getPoint());
-                System.out.println(row + " " + col);
+
+                notifyController(row,col,!orarGridViewTableModel.getEditRights(row,col));
+
+
                 orarGridViewTableModel.setCellEditable(row,col,!orarGridViewTableModel.getEditRights(row,col));
                 orarGridViewTableModel.fireTableDataChanged();
             }
@@ -84,6 +93,10 @@ public class OrarGridView extends JPanel {
 
 
 
+    }
+
+    private void notifyController(int row, int col, boolean value){
+        myController.orarGridChanged(row,col,value);
     }
 
     public String[] buildHeader(int numOfDays){

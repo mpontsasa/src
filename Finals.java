@@ -80,5 +80,7 @@ public class Finals {
     public final static int TASK_VIEW_ACTIVE = 1;
     public final static int SCHEDULE_VIEW_ACTIVE = 2;
 
+    public final static int EXTRA_ORAR_DAYS = 14;
+
     //public final static int NUMBER_OF_WEEKS_OON_ONE_PAGE = 5;
 }

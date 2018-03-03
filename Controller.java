@@ -252,7 +252,7 @@ public class Controller {
         taskShell = new JScrollPane(taskView);
         taskShell.getVerticalScrollBar().setUnitIncrement(16);
 
-        scheduleView = new ScheduleView(scheduleModel,frame);
+        scheduleView = new ScheduleView(taskModel,this);
         scheduleShell = new JScrollPane(scheduleView);
 
 
@@ -271,8 +271,8 @@ public class Controller {
         frame.setVisible(true);
     }
 
-    public void loadProject(String text){
-        projectName = text;
+    public void loadProject(String projectName){
+        this.projectName = projectName;
 
 
         try {
@@ -408,7 +408,8 @@ public class Controller {
 
 
 
-
+                scheduleView = new ScheduleView(taskModel,this);
+                scheduleShell = new JScrollPane(scheduleView);
 
                 frame.setContentPane(scheduleShell);
 
@@ -434,6 +435,9 @@ public class Controller {
 
     }
 
+    public void orarGridChanged(int row, int col, boolean value){
+        System.out.println("orar gird changed. new values:"+ row + " " + col + " " + value);
+    }
     //        scan.close();
     //        }
     //            scheduleModel.loadLine(line);
