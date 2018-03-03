@@ -129,6 +129,10 @@ public class Controller {
         return true;
     }
 
+    public void detaliiProiectChanged(String data){
+        System.out.println(data);
+    }
+
     public boolean unitEdited(int unitIndex, int columnIndex, String data){
 
         switch(columnIndex){

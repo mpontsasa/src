@@ -18,7 +18,7 @@ public class SubUnitView extends JPanel {
     private UnitView parent;
     private Integer myIndex;
     private int type;
-    private float pretTotalUnitar = 258.456f;
+    private String pretTotalUnitar;
 
     public SubUnitView(String header, int type) {
         //URES KONSTRUKTOR
@@ -43,7 +43,7 @@ public class SubUnitView extends JPanel {
         }
 
 
-        pretTotalUnitar = 0.0f;
+        pretTotalUnitar = "0.0";
         setupTable(data);
 
         scrollPane = new JScrollPane(table){
@@ -126,6 +126,8 @@ public class SubUnitView extends JPanel {
         scrollPane.setWheelScrollingEnabled(false); ;
 
 
+
+        pretTotalUnitar = ttc.getPretTotalUnitars()[myIndex];
         adjustSizeAndPadding();
 
 

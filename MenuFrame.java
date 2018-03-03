@@ -1,9 +1,12 @@
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
-public class MenuFrame extends JFrame implements MenuListener {
+public class MenuFrame extends JFrame {
 
     private JMenuBar menuBar;
     private JMenu file;
@@ -14,8 +17,12 @@ public class MenuFrame extends JFrame implements MenuListener {
     private JMenuItem load;
     private JMenuItem newProject;
 
+    private JMenuItem details;
     private JMenuItem print;
     private JMenuItem switchViews;
+
+    private  JDialog jd;
+    private JTextArea textArea;
 
     private Controller myController;
 
@@ -23,6 +30,7 @@ public class MenuFrame extends JFrame implements MenuListener {
     public MenuFrame(Controller myController) throws HeadlessException {
         this.myController = myController;
         menuBar = new JMenuBar();
+        setupTextArea();
 
         save = new JMenuItem("Salvare proiect");
         save.addActionListener(e->this.myController.saveButtonClicked());
@@ -32,6 +40,9 @@ public class MenuFrame extends JFrame implements MenuListener {
 
         newProject = new JMenuItem("Proiect nou");
 
+
+        details = new JMenuItem("Detalii proiect");
+        details.addActionListener(e->jd.setVisible(true));
 
         print = new JMenuItem("Listare");
         print.addActionListener(e->this.myController.makeHtmlTaskFile());
@@ -45,28 +56,48 @@ public class MenuFrame extends JFrame implements MenuListener {
 
         file.add(newProject);file.add(load);file.add(save);
 
-        options.add(print);options.add(switchViews);
+        options.add(details);options.add(print);options.add(switchViews);
 
-        //options.addMenuListener(this);
 
         menuBar.add(file);
         menuBar.add(options);
         this.setJMenuBar(menuBar);
     }
 
-    @Override
-    public void menuSelected(MenuEvent e) {
-        myController.saveButtonClicked();
+
+    private void setupTextArea(){
+
+        jd = new JDialog();
+        textArea = new JTextArea();
+        textArea.setVisible(true);
+        //ITT MEG BE KELL TOLTENI A TTCBOL
+
+        textArea.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                myController.detaliiProiectChanged(textArea.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                myController.detaliiProiectChanged(textArea.getText());
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+            }
+        });
+
+
+
+
+        jd.setTitle("Detalii proiect");
+        jd.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+        jd.setSize(400, 300);
+        jd.add(textArea);
+        jd.requestFocus();
+        jd.setModal(true);
         
-    }
-
-    @Override
-    public void menuDeselected(MenuEvent e) {
-
-    }
-
-    @Override
-    public void menuCanceled(MenuEvent e) {
-
     }
 }
