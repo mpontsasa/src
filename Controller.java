@@ -281,7 +281,10 @@ public class Controller {
     }
 
     private void initializeFrame(){
+        
         frame = new MenuFrame(this);
+
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(0,0,600,450);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
