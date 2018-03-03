@@ -328,7 +328,7 @@ public class Controller {
                 JOptionPane.ERROR_MESSAGE);
     }
 
-    public void  displayProjectAlreadyExistsError(){
+    public void displayProjectAlreadyExistsError(){
         JOptionPane.showMessageDialog(frame,
                 "Proiectul selectat exista deja!",
                 "Proiect existent",
@@ -388,7 +388,7 @@ public class Controller {
         textField.addActionListener((ActionEvent e) ->{
 
             String pn = textField.getText().replaceAll(" ","_");
-
+            //System.out.println(pn);
 
             if (Files.isRegularFile(Paths.get(Finals.PROJECTS_PATH + pn + "_task.txt"))){
                 displayProjectAlreadyExistsError();
@@ -396,7 +396,7 @@ public class Controller {
             }
             else
             {
-                projectName = textField.getText();
+                projectName = pn;
                 taskModel = new TaskModel();
                 initializeViews();
 
