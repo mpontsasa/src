@@ -2,8 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Controller {
 
@@ -306,6 +309,10 @@ public class Controller {
                 JOptionPane.ERROR_MESSAGE);
     }
 
+    public void displayProjectAlredyExists(){
+
+    }
+
     public void saveProject() throws IOException{
 
         taskModel.saveTaskToFile(projectName);
@@ -347,7 +354,6 @@ public class Controller {
         askUserInputNewProject();
     }
 
-
     private void askUserInputNewProject(){
         jd = new JDialog();
 
@@ -356,21 +362,30 @@ public class Controller {
 
 
         textField.setVisible(true);
+
         textField.addActionListener((ActionEvent e) ->{
 
+            String pn = textField.getText().replaceAll(" ","_");
 
-            projectName = textField.getText();
-            taskModel = new TaskModel();
-            initializeViews();
+            if (Files.isRegularFile(Paths.get(Finals.PROJECTS_PATH + pn))){
+                displayProjectAlredyExists();
+            }
+            else
+            {
+                projectName = textField.getText();
+                taskModel = new TaskModel();
+                initializeViews();
 
-            frame.getTextArea().setText("");
+                frame.getTextArea().setText("");
 
 
 
-            activeView = Finals.NO_VIEW_ACTIVE;
-            switchViews();
+                activeView = Finals.NO_VIEW_ACTIVE;
+                switchViews();
 
-            jd.setVisible(false);
+                jd.setVisible(false);
+
+            }
 
         });
 
@@ -382,7 +397,6 @@ public class Controller {
         jd.requestFocus();
         jd.setModal(true);
         jd.setVisible(true);
-
     }
 
     private void askUserInputLoadProject(){
