@@ -47,7 +47,7 @@ public class Main {
             //controller.setProjectName("tesztike_mentes");
             //controller.saveTaskToFile();
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

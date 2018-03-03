@@ -19,6 +19,7 @@ public class Controller {
     private JScrollPane scheduleShell;
     private int activeView;
 
+    private JDialog jd;
     private JTextField textField;
 
     private String projectName;
@@ -30,6 +31,7 @@ public class Controller {
         activeView = Finals.NO_VIEW_ACTIVE;
         scheduleModel = new ScheduleModel();
         taskModel = new TaskModel();//eloszor letrehozzuk a modelleket, aztan atadjuk a viewknak a megfelelo modellt
+
        // scheduleView = new ScheduleView(scheduleModel, frame);
 
     }
@@ -308,13 +310,14 @@ public class Controller {
 
         askUserInput();
 
+
 //        if(activeView == Finals.TASK_VIEW_ACTIVE){
 //            taskView.buildFromModel();
 //        }
     }
 
     private void askUserInput(){
-        JDialog jd = new JDialog();
+        jd = new JDialog();
 
         textField = new JTextField("");
         textField.setColumns(50);
@@ -326,6 +329,14 @@ public class Controller {
             String text = textField.getText();
 
             System.out.println(text);
+            projectName = text;
+            try {
+                loadTaskFromFile();
+            } catch (FileNotFoundException e1) {
+                e1.printStackTrace();
+            }
+
+            initializeViews();
 
             jd.setVisible(false);
 
