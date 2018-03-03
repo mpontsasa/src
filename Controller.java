@@ -322,13 +322,11 @@ public class Controller {
 
     public void saveButtonClicked(){
 
-<<<<<<< HEAD
-=======
+
         if(projectName == null){
             return;
         }
 
->>>>>>> a9fd5b56409f8be1f2a9e6fbfa942b61ba729a90
         try{
             saveProject();
         }
@@ -345,11 +343,6 @@ public class Controller {
         askUserInputLoadProject();
     }
 
-<<<<<<< HEAD
-        askUserInput();
-        loadProject(textField.getText());
-    }
-=======
     public void newProjectClicked(){
         askUserInputNewProject();
     }
@@ -360,16 +353,12 @@ public class Controller {
 
         textField = new JTextField("");
         textField.setColumns(50);
->>>>>>> a9fd5b56409f8be1f2a9e6fbfa942b61ba729a90
+
 
         textField.setVisible(true);
         textField.addActionListener((ActionEvent e) ->{
 
 
-<<<<<<< HEAD
-        activeView = Finals.NO_VIEW_ACTIVE;
-        switchViews();
-=======
             projectName = textField.getText();
             taskModel = new TaskModel();
             initializeViews();
@@ -393,7 +382,7 @@ public class Controller {
         jd.requestFocus();
         jd.setModal(true);
         jd.setVisible(true);
->>>>>>> a9fd5b56409f8be1f2a9e6fbfa942b61ba729a90
+
     }
 
     private void askUserInputLoadProject(){
