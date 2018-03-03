@@ -98,6 +98,6 @@ public class MenuFrame extends JFrame {
         jd.add(textArea);
         jd.requestFocus();
         jd.setModal(true);
-        
+
     }
 }
