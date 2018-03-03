@@ -132,7 +132,7 @@ public class Controller {
     }
 
     public void detaliiProiectChanged(String data){
-        System.out.println(data);
+        taskModel.setDetaliiProiect(data);
     }
 
     public boolean unitEdited(int unitIndex, int columnIndex, String data){
