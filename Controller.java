@@ -452,7 +452,10 @@ public class Controller {
         jd.setVisible(true);
     }
 
-    public void listareButtonClicked(){}
+    public void listareButtonClicked(){
+        makeHtmlTaskFile();
+        makeHtmlScheduleFile();
+    }
 
     public void makeHtmlTaskFile(){
         try{

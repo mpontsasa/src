@@ -121,22 +121,18 @@ public class ScheduleHtmlFileCreator {
         content += "<th>";
         content += tu.getOre();
         content += "</th>\n";
+    //--------------------------------------------------------tasks resz
 
-        int k = 0;
-        for (int j = 0; j < tu.getSchedules().size(); j ++) //minden schedul ele beirja az elotte levo ures negyzeteket es magat a kitoltott negyzetet
-        {
 
-            for ( ;k < tu.getSchedules().get(j); k++){
+        for (int j = 0; j < stc.getMaxDays(); j++){
+            if (stc.getWeeksTable()[i][j]){ // ha zold
+                content += "<th id=\"selected\"></th>\n";
+            }
+            else    // not seleted
+            {
                 content += "<th></th>\n";
             }
-
-            content += "<th id=\"selected\"></th>\n";
-            k++;
         }
-
-        for (; k <= stc.getMaxDays(); k++)
-            content += "<th></th>\n";
-
         content += "</tr>\n";
     }
 }
