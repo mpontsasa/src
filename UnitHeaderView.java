@@ -44,8 +44,7 @@ public class UnitHeaderView extends JPanel {
             public void actionPerformed(ActionEvent e)
             {
                 TableCellListener tcl = (TableCellListener)e.getSource();
-                parent.getParent().myController.taskViewEdited(parent.getMyIndex(),-1,-1,
-                        tcl.getColumn(),(String) tcl.getNewValue());
+                notifyChangeInHeader(tcl);
             }
         };
         TableCellListener tcl = new TableCellListener(table, action);
@@ -230,6 +229,10 @@ public class UnitHeaderView extends JPanel {
     }
 
 
+    private void notifyChangeInHeader(TableCellListener tcl){
+        parent.getParent().myController.taskViewEdited(parent.getMyIndex(),-1,-1,
+                tcl.getColumn(),(String) tcl.getNewValue());
+    }
     private void notifyController(String candidateCode){
 
         parent.notifyController(candidateCode);
