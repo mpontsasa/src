@@ -84,5 +84,7 @@ public class Finals {
 
     public final static String UNIT_DELETE_BUTTON_TEXT = "Stergere articol din proiect";
 
+    //public final static String[] WEEK_HEADER = {"L", "M", "M", "J", "V", "S", "D"};
+
     //public final static int NUMBER_OF_WEEKS_OON_ONE_PAGE = 5;
 }
