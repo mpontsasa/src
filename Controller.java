@@ -35,6 +35,7 @@ public class Controller {
        // scheduleView = new ScheduleView(scheduleModel, frame);
 
     }
+
     public void menuTest(){
         System.out.println("azigennn");
     }
@@ -282,7 +283,6 @@ public class Controller {
     public void saveProject() throws IOException{
 
         taskModel.saveTaskToFile(projectName);
-        //save Schedule ...
     }
 
     public void saveUnits(){
