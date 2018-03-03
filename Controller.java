@@ -277,8 +277,14 @@ public class Controller {
 
         try {
             loadTaskFromFile();
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
+        }
+        catch (FileNotFoundException e)
+        {
+            displayNonExtistingProjectError();
+            return;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
 
         frame.getTextArea().setText(taskModel.getDetaliiProiect());
@@ -289,18 +295,9 @@ public class Controller {
         switchViews();
     }
 
-    public void loadTaskFromFile() throws FileNotFoundException{
+    public void loadTaskFromFile() throws Exception{
         taskModel = new TaskModel();
-        try {
-            taskModel.loadProject(projectName);
-        }
-        catch (FileNotFoundException e)
-        {
-            displayNonExtistingProjectError();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+        taskModel.loadProject(projectName);
     }
 
     public void displayNonExtistingProjectError(){
