@@ -318,6 +318,7 @@ public class Controller {
     }
 
     public void saveButtonClicked(){
+
         try{
             saveProject();
         }
@@ -328,19 +329,12 @@ public class Controller {
 
         saveUnits();
 
-        System.out.println("saved!");
     }
 
     public void loadButtonClicked(){
 
-
-
         askUserInput();
         loadProject(textField.getText());
-
-//        if(activeView == Finals.TASK_VIEW_ACTIVE){
-//            taskView.buildFromModel();
-//        }
     }
 
     public void newProjectClicked(){
@@ -350,8 +344,6 @@ public class Controller {
         initializeViews();
 
         frame.getTextArea().setText("");
-
-        initializeViews();
 
         activeView = Finals.NO_VIEW_ACTIVE;
         switchViews();
@@ -443,32 +435,22 @@ public class Controller {
 
     public void orarGridChanged(int row, int col, boolean value){
         System.out.println("orar gird changed. new values:"+ row + " " + col + " " + value);
+
+        if (value){ // if selected
+            taskModel.getTaskUnits().get(row).getSchedules().add(col);
+        }
+        else{   // if unselected
+            for (int i = 0; i < taskModel.getTaskUnits().get(row).getSchedules().size(); i++)
+            {
+                if (taskModel.getTaskUnits().get(row).getSchedules().get(i) == col){
+
+                    taskModel.getTaskUnits().get(row).getSchedules().remove(i);
+                    break;
+                }
+            }
+        }
+
     }
-    //        scan.close();
-    //        }
-    //            scheduleModel.loadLine(line);
-    //            String line = scan.nextLine();
-    //        while(scan.hasNextLine()){
-    //        Scanner scan = new Scanner(new File(projectName + "_schedule.txt"));
-    //
-//    public void loadScheduleFromFile() throws FileNotFoundException{
-
-//    }
-    //
-    //        fw.close();
-    //
-    //        }
-    //            currentLine = scheduleModel.saveLine();
-    //            fw.write(currentLine + "\n");
-    //        while(!currentLine.equals(Finals.END_OF_PROJECT)) {
-    //
-    //        String currentLine = scheduleModel.saveLine();
-    //
-    //        FileWriter fw = new FileWriter(projectName + "_schedule.txt");
-    //
-//    public void saveScheduleToFile() throws IOException{
-
-//    }
 
     public void insertUnit(int unitIndex){
 
