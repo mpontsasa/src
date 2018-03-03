@@ -291,11 +291,20 @@ public class Controller {
 
     public void loadTaskFromFile() throws FileNotFoundException{
         taskModel = new TaskModel();
-        try{
+        try {
             taskModel.loadProject(projectName);
-        } catch (Exception e) {
+        }
+        catch (FileNotFoundException e)
+        {
+            displayNonExtistingProjectError();
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void displayNonExtistingProjectError(){
+        System.out.println("not existing proiect");
     }
 
     public void saveProject() throws IOException{

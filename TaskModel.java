@@ -25,8 +25,6 @@ public class TaskModel implements SuperModel {
     private float TVAAmplifier;
     private float totalValoareLucrareCuTVA;
 
-
-
     public TaskModel() {
         taskUnits = new ArrayList<>();
         currentSaveUnit = 0;
