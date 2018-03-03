@@ -66,8 +66,10 @@ public class Finals {
 
     public final static Color UNIT_PADDING_COLOR = new Color(180,209,7);
 
-    public final static int SUB_UNIT_TYPE = 0;
-    public final static int EXTENDED_SUB_UNIT_TYPE = 1;
+    public final static int MATERIAL_SUB_UNIT_TYPE = 0;
+    public final static int MANOPERA_SUB_UNIT_TYPE = 1;
+    public final static int UTILAJ_SUB_UNIT_TYPE = 2;
+    public final static int TRANSPORT_SUB_UNIT_TYPE = 3;
 
     public final static String PRET_TOTAL_UNITAR_TEXT = "PRET TOTAL UNITAR: ";
 

@@ -30,14 +30,16 @@ public class SubUnitView extends JPanel {
 
         String[][] data;
         switch (type){
-            case Finals.SUB_UNIT_TYPE:
-                 data = new String[][]{{"1", "", "", "", "", "", "", "", ""}};
+            case Finals.MATERIAL_SUB_UNIT_TYPE:
+            case Finals.TRANSPORT_SUB_UNIT_TYPE:
+                data = new String[][]{{"1", "", "", "", "", "", "", "", ""}};
                 break;
-            case Finals.EXTENDED_SUB_UNIT_TYPE:
-                data = new String[][]{{"1", "", "", "", "", "", "", "", "", "", ""}};
+            case Finals.MANOPERA_SUB_UNIT_TYPE:
+            case Finals.UTILAJ_SUB_UNIT_TYPE:
+                data = new String[][]{{"1", "", "", "", "", "", "", "", "", ""}};
                 break;
             default:
-                    data = null;//kene valami exception
+                data = null;//kene valami exception
         }
 
 
@@ -82,11 +84,13 @@ public class SubUnitView extends JPanel {
 
         if(data.length == 0){//ha nincs egy sor sem beszurom az elso sort
             switch (type){
-                case Finals.SUB_UNIT_TYPE:
+                case Finals.MATERIAL_SUB_UNIT_TYPE:
+                case Finals.TRANSPORT_SUB_UNIT_TYPE:
                     data = new String[][]{{"1", "", "", "", "", "", "", "", ""}};
                     break;
-                case Finals.EXTENDED_SUB_UNIT_TYPE:
-                    data = new String[][]{{"1", "", "", "", "", "", "", "", "", "", ""}};
+                case Finals.MANOPERA_SUB_UNIT_TYPE:
+                case Finals.UTILAJ_SUB_UNIT_TYPE:
+                    data = new String[][]{{"1", "", "", "", "", "", "", "", "", ""}};
                     break;
                 default:
                     data = null;//kene valami exception
@@ -131,11 +135,21 @@ public class SubUnitView extends JPanel {
 
 
         String[] columns;
-        if(type == Finals.SUB_UNIT_TYPE){
-            columns=Finals.SUB_UNIT_TABLE_HEADER;
-        }
-        else{
-            columns = Finals.EXTENDED_SUB_UNIT_TABLE_HEADER;
+        switch (type){
+            case Finals.MATERIAL_SUB_UNIT_TYPE:
+                columns = Finals.MATERIAL_TABLE_HEADER;
+                break;
+            case Finals.TRANSPORT_SUB_UNIT_TYPE:
+                columns = Finals.TRANSPORT_TABLE_HEADER;
+                break;
+            case Finals.MANOPERA_SUB_UNIT_TYPE:
+                columns = Finals.MANOPERA_TABLE_HEADER;
+                break;
+            case Finals.UTILAJ_SUB_UNIT_TYPE:
+                columns = Finals.UTILAJ_TABLE_HEADER;
+                break;
+            default:
+                columns = null;//kene valami exception
         }
 
         //ne lehessen athelyezni az oszlopokat es egy egesz sort kibalasztani
@@ -190,11 +204,12 @@ public class SubUnitView extends JPanel {
 
     public void insertBlankRow(Integer newIndex){
         subUnitTableModel.addRowToBooleanMatrix();
-        if(type == Finals.SUB_UNIT_TYPE){
+        if((type == Finals.MANOPERA_SUB_UNIT_TYPE) ||
+                (type == Finals.TRANSPORT_SUB_UNIT_TYPE)){
             subUnitTableModel.addRow(new String[]{newIndex.toString(), "", "", "", "", "", "", "", ""});
         }
         else{
-            subUnitTableModel.addRow(new String[]{newIndex.toString(), "", "", "", "", "", "", "", "", "", "", ""});
+            subUnitTableModel.addRow(new String[]{newIndex.toString(), "", "", "", "", "", "", "", "", ""});
         }
 
     }
