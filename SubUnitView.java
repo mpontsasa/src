@@ -1,10 +1,4 @@
-import com.sun.jdi.ObjectCollectedException;
-
 import javax.swing.*;
-import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseWheelEvent;
@@ -127,7 +121,7 @@ public class SubUnitView extends JPanel {
 
 
 
-        pretTotalUnitar = ttc.getPretTotalUnitars()[myIndex];
+        pretTotalUnitar = ttc.getSumPretTotalUnitars()[myIndex];
         adjustSizeAndPadding();
 
 

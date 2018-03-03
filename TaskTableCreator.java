@@ -2,7 +2,7 @@ public class TaskTableCreator {
 
     private String[][][] unitHeaderTs;  //[unit][sor][mezo]
     private String[][][][] subUnitTs;   //[unitszama][subunitszama][sor][mezo]
-    private String[] pretTotalUnitars;
+    private String[][] sumPretTotalUnitars;
     private String[][] sumTotalT;
     private String[][] sumMMUTT;
 
@@ -11,7 +11,7 @@ public class TaskTableCreator {
     public TaskTableCreator(TaskModel taskModel) {
         this.taskModel = taskModel;
 
-        createPretTotalUnitar();
+        createSumPretTotalUnitar();
         crateUnitHeaderTs();
         createSubUnitTs();
         createSumTotalT();
@@ -62,11 +62,13 @@ public class TaskTableCreator {
         }
     }
 
-    public void createPretTotalUnitar(){
+    public void createSumPretTotalUnitar(){
 
-        pretTotalUnitars = new String[Finals.NUMBER_OF_SUBUNITS];
-        for(TaskUnit tu : taskModel.getTaskUnits()){
-
+        sumPretTotalUnitars = new String[taskModel.getTaskUnits().size()][Finals.NUMBER_OF_SUBUNITS];
+        for(int u = 0; u < taskModel.getTaskUnits().size(); u++){
+            for (int su = 0; su < Finals.NUMBER_OF_SUBUNITS; su++){
+                sumPretTotalUnitars[u][su] = "" + taskModel.getTaskUnits().get(u).getSubUnits().get(su).getSumPretTotalUnitar();
+            }
         }
     }
 
@@ -100,8 +102,8 @@ public class TaskTableCreator {
         return sumMMUTT;
     }
 
-    public String[] getPretTotalUnitars() {
-        return pretTotalUnitars;
+    public String[][] getSumPretTotalUnitars() {
+        return sumPretTotalUnitars;
     }
 
     public String getDetaliiProiect(){
