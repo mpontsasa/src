@@ -24,9 +24,9 @@ public class Controller {
 
     private String projectName;
 
-    public Controller(String projectName) {
+    public Controller() {
 
-        this.projectName = projectName;
+
 
         activeView = Finals.NO_VIEW_ACTIVE;
         scheduleModel = new ScheduleModel();
@@ -300,7 +300,10 @@ public class Controller {
     }
 
     public void displayNonExtistingProjectError(){
-        System.out.println("not existing proiect");
+        JOptionPane.showMessageDialog(frame,
+                "Proiectul selectat nu exista!",
+                "Proiect inexistent",
+                JOptionPane.ERROR_MESSAGE);
     }
 
     public void saveProject() throws IOException{
@@ -318,6 +321,11 @@ public class Controller {
     }
 
     public void saveButtonClicked(){
+
+        if(projectName == null){
+            return;
+        }
+
         try{
             saveProject();
         }
@@ -332,32 +340,50 @@ public class Controller {
     }
 
     public void loadButtonClicked(){
-
-
-
-        askUserInput();
-        loadProject(textField.getText());
-
-//        if(activeView == Finals.TASK_VIEW_ACTIVE){
-//            taskView.buildFromModel();
-//        }
+        askUserInputLoadProject();
     }
 
     public void newProjectClicked(){
-        askUserInput();
-        projectName = textField.getText();
-        taskModel = new TaskModel();
-        initializeViews();
-
-        frame.getTextArea().setText("");
-
-        initializeViews();
-
-        activeView = Finals.NO_VIEW_ACTIVE;
-        switchViews();
+        askUserInputNewProject();
     }
 
-    private void askUserInput(){
+
+    private void askUserInputNewProject(){
+        jd = new JDialog();
+
+        textField = new JTextField("");
+        textField.setColumns(50);
+
+        textField.setVisible(true);
+        textField.addActionListener((ActionEvent e) ->{
+
+
+            projectName = textField.getText();
+            taskModel = new TaskModel();
+            initializeViews();
+
+            frame.getTextArea().setText("");
+
+
+
+            activeView = Finals.NO_VIEW_ACTIVE;
+            switchViews();
+
+            jd.setVisible(false);
+
+        });
+
+
+        jd.setTitle("Numele proiectului?");
+        jd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        jd.setSize(300, 75);
+        jd.add(textField);
+        jd.requestFocus();
+        jd.setModal(true);
+        jd.setVisible(true);
+    }
+
+    private void askUserInputLoadProject(){
         jd = new JDialog();
 
         textField = new JTextField("");
@@ -370,7 +396,7 @@ public class Controller {
 
             System.out.println(text);
 
-
+            loadProject(textField.getText());
 
             jd.setVisible(false);
 
