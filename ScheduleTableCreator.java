@@ -42,6 +42,7 @@ public class ScheduleTableCreator {
                 }
 
                 weeksTable[i][k] = true;
+                k++;
             }
 
             for (; k < maxDays; k++)
