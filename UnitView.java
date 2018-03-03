@@ -25,10 +25,10 @@ public class UnitView extends JPanel implements SuperView {
         String[][] uhvData = taskTableCreator.getUnitHeaderTs()[myIndex];//a unitokat egytol indexeljuk
         UnitHeaderView uhv = new UnitHeaderView(this, uhvData);
 
-        SubUnitView suv = new SubUnitView("MATERIAL", this, myIndex, 0,Finals.SUB_UNIT_TYPE);
-        SubUnitView suv2 = new SubUnitView("MANOPERA",this,myIndex,1,Finals.EXTENDED_SUB_UNIT_TYPE);
-        SubUnitView suv3 = new SubUnitView("UTILAJ",this, myIndex, 2,Finals.EXTENDED_SUB_UNIT_TYPE);
-        SubUnitView suv4 = new SubUnitView("TRANSPORT",this, myIndex, 3,Finals.SUB_UNIT_TYPE);
+        SubUnitView suv = new SubUnitView("MATERIAL", this, myIndex, 0,Finals.MATERIAL_SUB_UNIT_TYPE);
+        SubUnitView suv2 = new SubUnitView("MANOPERA",this,myIndex,1,Finals.MANOPERA_SUB_UNIT_TYPE);
+        SubUnitView suv3 = new SubUnitView("UTILAJ",this, myIndex, 2,Finals.UTILAJ_SUB_UNIT_TYPE);
+        SubUnitView suv4 = new SubUnitView("TRANSPORT",this, myIndex, 3,Finals.TRANSPORT_SUB_UNIT_TYPE);
         subUnitViews.add(suv);subUnitViews.add(suv2);subUnitViews.add(suv3);subUnitViews.add(suv4);
 
 
@@ -63,10 +63,10 @@ public class UnitView extends JPanel implements SuperView {
 
         UnitHeaderView uhv = new UnitHeaderView(this);
 
-        SubUnitView suv = new SubUnitView("MATERIAL",Finals.SUB_UNIT_TYPE);
-        SubUnitView suv2 = new SubUnitView("MANOPERA",Finals.EXTENDED_SUB_UNIT_TYPE);
-        SubUnitView suv3 = new SubUnitView("UTILAJ", Finals.EXTENDED_SUB_UNIT_TYPE);
-        SubUnitView suv4 = new SubUnitView("TRANSPORT",Finals.SUB_UNIT_TYPE);
+        SubUnitView suv = new SubUnitView("MATERIAL",Finals.MATERIAL_SUB_UNIT_TYPE);
+        SubUnitView suv2 = new SubUnitView("MANOPERA",Finals.MANOPERA_SUB_UNIT_TYPE);
+        SubUnitView suv3 = new SubUnitView("UTILAJ", Finals.UTILAJ_SUB_UNIT_TYPE);
+        SubUnitView suv4 = new SubUnitView("TRANSPORT",Finals.TRANSPORT_SUB_UNIT_TYPE);
         subUnitViews.add(suv);subUnitViews.add(suv2);subUnitViews.add(suv3);subUnitViews.add(suv4);
 
 

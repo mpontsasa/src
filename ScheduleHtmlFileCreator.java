@@ -42,7 +42,7 @@ public class ScheduleHtmlFileCreator {
                 "<body>\n" +
                 "<table>";
 
-        print
+
         for (int i = 0; i < taskModel.getTaskUnits().size(); i++){
             printRow(i);
         }
