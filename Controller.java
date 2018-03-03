@@ -371,7 +371,7 @@ public class Controller {
             String pn = textField.getText().replaceAll(" ","_");
 
 
-            if (Files.isRegularFile(Paths.get(Finals.PROJECTS_PATH + pn))){
+            if (Files.isRegularFile(Paths.get(Finals.PROJECTS_PATH + pn + "_task.txt"))){
                 displayProjectAlreadyExistsError();
 
             }
