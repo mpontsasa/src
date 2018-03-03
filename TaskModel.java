@@ -10,6 +10,7 @@ public class TaskModel implements SuperModel {
     private ArrayList<TaskUnit> taskUnits;
     private int currentSaveUnit;
 
+    private String detaliiProiect;
     private float material;
     private float manopera;
     private float utilaj;
@@ -23,6 +24,8 @@ public class TaskModel implements SuperModel {
     private float TVA;
     private float TVAAmplifier;
     private float totalValoareLucrareCuTVA;
+
+
 
     public TaskModel() {
         taskUnits = new ArrayList<>();
@@ -47,6 +50,22 @@ public class TaskModel implements SuperModel {
         else
         {
             throw new MissingProjectHeaderException("URES FILE");
+        }
+
+        if(scan.hasNextLine()) {
+            String line = scan.nextLine();
+
+            if(!line.substring(0,1).equals(Finals.DETALII_INITAL)){
+                throw new MissingDetaliiException("nincs detalii");
+            }
+            else {
+
+                processDetalii(line);
+            }
+        }
+        else
+        {
+            throw new MissingDetaliiException("csak projekt header van");
         }
 
         while(scan.hasNextLine()){
@@ -116,6 +135,29 @@ public class TaskModel implements SuperModel {
         //i++;
     }
 
+    public void processDetalii(String line) throws Exception{
+
+        String[] tokens = line.split(Finals.TOK_D);
+
+        if (tokens.length < 1){
+            System.out.println("" + tokens.length);
+
+            for (String token : tokens)
+            {
+                System.out.println("sor: " + token);
+            }
+
+            throw new InvalidDetaliiException("incorrect number of fields in header");
+        }
+
+        detaliiProiect = "";
+
+        for (int i = 1; i < tokens.length; i++)
+        {
+            detaliiProiect += tokens[i] + "\n";
+        }
+    }
+
     public String getHeader(){
         return Finals.PROJECT_INITAL + Finals.TOK_D
                 + material + Finals.TOK_D
@@ -128,6 +170,13 @@ public class TaskModel implements SuperModel {
                 + totalValoareLucrareFaraTVA + Finals.TOK_D
                 + TVA + Finals.TOK_D
                 + totalValoareLucrareCuTVA + Finals.TOK_D;
+    }
+
+    public String getDetaliiHeader(){
+        String dh = Finals.DETALII_INITAL + Finals.TOK_D + detaliiProiect;
+        dh.replaceAll("\n", Finals.TOK_D);
+
+        return dh;
     }
 
     public String[] getSumTotalTableHeader() {
@@ -177,6 +226,7 @@ public class TaskModel implements SuperModel {
         FileWriter fw = new FileWriter(Finals.PROJECTS_PATH + projectName + "_task.txt");
 
         fw.write(getHeader() + "\n");
+        fw.write(getDetaliiHeader() + "\n");
 
         for(TaskUnit tu : taskUnits) {
             fw.write(tu.getProjectFileLine() + "\n");
@@ -220,7 +270,6 @@ public class TaskModel implements SuperModel {
 
     //......setters
 
-
     public void setCheltuileIndirecteAmplifier(float cheltuileIndirecteAmplifier) {
         this.cheltuileIndirecteAmplifier = cheltuileIndirecteAmplifier;
 
@@ -237,6 +286,10 @@ public class TaskModel implements SuperModel {
         this.TVAAmplifier = TVAAmplifier;
 
         calculateTVA ();
+    }
+
+    public void setDetaliiProiect(String detaliiProiect) {
+        this.detaliiProiect = detaliiProiect;
     }
 
     //...........calculations
@@ -340,5 +393,9 @@ public class TaskModel implements SuperModel {
 
     public ArrayList<TaskUnit> getTaskUnits() {
         return taskUnits;
+    }
+
+    public String getDetaliiProiect() {
+        return detaliiProiect;
     }
 }

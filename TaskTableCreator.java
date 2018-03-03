@@ -6,7 +6,6 @@ public class TaskTableCreator {
     private String[][] sumTotalT;
     private String[][] sumMMUTT;
 
-
     private TaskModel taskModel;
 
     public TaskTableCreator(TaskModel taskModel) {
@@ -103,5 +102,9 @@ public class TaskTableCreator {
 
     public String[] getPretTotalUnitars() {
         return pretTotalUnitars;
+    }
+
+    public String getDetaliiProiect(){
+        return taskModel.getDetaliiProiect();
     }
 }
