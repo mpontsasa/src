@@ -370,8 +370,10 @@ public class Controller {
 
             String pn = textField.getText().replaceAll(" ","_");
 
+
             if (Files.isRegularFile(Paths.get(Finals.PROJECTS_PATH + pn))){
                 displayProjectAlreadyExistsError();
+
             }
             else
             {
