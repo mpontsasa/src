@@ -351,15 +351,11 @@ public class Controller {
         textField.setVisible(true);
         textField.addActionListener((ActionEvent e) ->{
 
-
             String text = textField.getText();
-
 
             System.out.println(text);
 
             loadProject(text);
-
-
 
             jd.setVisible(false);
 
