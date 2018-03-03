@@ -532,6 +532,7 @@ public class Controller {
             System.out.println("index error!");
             e.printStackTrace();
         }
+        taskView.buildFromModel();
 
     }
 

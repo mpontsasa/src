@@ -41,9 +41,12 @@ public class UnitView extends JPanel implements SuperView {
 
 
 
+        //add the deletion button
+        JButton deleteButton = new JButton(Finals.UNIT_DELETE_BUTTON_TEXT);
+        deleteButton.addActionListener(e->deleteButtonClicked());
+        this.add(deleteButton);
 
         paddingPanel.setPreferredSize(new Dimension(paddingPanel.getWidth(),10));
-
         this.add(paddingPanel);
 
         this.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -82,6 +85,7 @@ public class UnitView extends JPanel implements SuperView {
 
         paddingPanel.setPreferredSize(new Dimension(paddingPanel.getWidth(),10));
 
+
         this.add(paddingPanel);
 
         this.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -101,6 +105,9 @@ public class UnitView extends JPanel implements SuperView {
         parent.cellChanged(unitIndex,subUnitIndex,rowIndex,columnIndex,data);
     }
 
+    public void deleteButtonClicked(){
+        parent.deleteUnitClicked(myIndex);
+    }
 
     @Override
     public TaskView getParent() {

@@ -112,6 +112,7 @@ public class UnitHeaderView extends JPanel {
 
 
         this.add(scrollPane);
+        //this.add(new JButton("delete"));
     }
 
 

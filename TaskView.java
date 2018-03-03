@@ -103,6 +103,9 @@ public class TaskView extends JPanel {
         buildFromModel();
     }
 
+    public void deleteUnitClicked(int unitIndex){
+        myController.deleteUnit(unitIndex);
+    }
 
     public TaskModel getMyModel() {
         return (TaskModel)myModel;
