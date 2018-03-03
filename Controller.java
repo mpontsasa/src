@@ -35,6 +35,7 @@ public class Controller {
        // scheduleView = new ScheduleView(scheduleModel, frame);
 
     }
+
     public void menuTest(){
         System.out.println("azigennn");
     }
@@ -300,7 +301,6 @@ public class Controller {
     public void saveProject() throws IOException{
 
         taskModel.saveTaskToFile(projectName);
-        //save Schedule ...
     }
 
     public void saveUnits(){
@@ -351,15 +351,11 @@ public class Controller {
         textField.setVisible(true);
         textField.addActionListener((ActionEvent e) ->{
 
-
             String text = textField.getText();
-
 
             System.out.println(text);
 
             loadProject(text);
-
-
 
             jd.setVisible(false);
 
