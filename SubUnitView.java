@@ -121,7 +121,7 @@ public class SubUnitView extends JPanel {
 
 
 
-        pretTotalUnitar = ttc.getSumPretTotalUnitars()[myIndex];
+        pretTotalUnitar = ttc.getSumPretTotalUnitars()[parentIndex][myIndex];
         adjustSizeAndPadding();
 
 

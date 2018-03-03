@@ -39,6 +39,7 @@ public class MenuFrame extends JFrame {
         load.addActionListener(e->this.myController.loadButtonClicked());
 
         newProject = new JMenuItem("Proiect nou");
+        newProject.addActionListener(e->this.myController.newProjectClicked());
 
 
         details = new JMenuItem("Detalii proiect");
