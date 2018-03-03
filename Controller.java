@@ -235,6 +235,25 @@ public class Controller {
 
     }
 
+    public void orarGridChanged(int row, int col, boolean value){
+        System.out.println("orar gird changed. new values:"+ row + " " + col + " " + value);
+
+        if (value){ // if selected
+            taskModel.getTaskUnits().get(row).getSchedules().add(col);
+        }
+        else{   // if unselected
+            for (int i = 0; i < taskModel.getTaskUnits().get(row).getSchedules().size(); i++)
+            {
+                if (taskModel.getTaskUnits().get(row).getSchedules().get(i) == col){
+
+                    taskModel.getTaskUnits().get(row).getSchedules().remove(i);
+                    break;
+                }
+            }
+        }
+
+    }
+
     public void initializeViews(){
         //ahhoz, hogy lehessen scrollozni az ablakban, egy scrollpane-be teszem az egesz taskViewt, s azt a burkot a framebe
 
@@ -484,25 +503,6 @@ public class Controller {
 
             default:
                 System.out.println("error on switching views!");
-        }
-
-    }
-
-    public void orarGridChanged(int row, int col, boolean value){
-        System.out.println("orar gird changed. new values:"+ row + " " + col + " " + value);
-
-        if (value){ // if selected
-            taskModel.getTaskUnits().get(row).getSchedules().add(col);
-        }
-        else{   // if unselected
-            for (int i = 0; i < taskModel.getTaskUnits().get(row).getSchedules().size(); i++)
-            {
-                if (taskModel.getTaskUnits().get(row).getSchedules().get(i) == col){
-
-                    taskModel.getTaskUnits().get(row).getSchedules().remove(i);
-                    break;
-                }
-            }
         }
 
     }
