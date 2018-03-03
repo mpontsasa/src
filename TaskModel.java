@@ -176,6 +176,7 @@ public class TaskModel implements SuperModel {
         String dh = Finals.DETALII_INITAL + Finals.TOK_D + detaliiProiect;
         dh.replaceAll("\n", Finals.TOK_D);
 
+
         return dh;
     }
 

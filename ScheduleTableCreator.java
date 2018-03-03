@@ -28,7 +28,7 @@ public class ScheduleTableCreator {
 
     void createWeeksTable(){
 
-        weeksTable = new boolean[taskModel.getTaskUnits().size()][maxDays + 1]; // +1 mert 0-tol indexeljuk a napokat
+        weeksTable = new boolean[taskModel.getTaskUnits().size()][maxDays + Finals.EXTRA_ORAR_DAYS +1]; // +1 mert 0-tol indexeljuk a napokat
 
         for (int i = 0; i < taskModel.getTaskUnits().size(); i++){
 

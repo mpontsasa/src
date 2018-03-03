@@ -11,12 +11,11 @@ public class ResumeTableView extends JPanel {
 //    JScrollPane resumeScrollPane;
 
 
-    public ResumeTableView() {
-        this.setBackground(Color.CYAN);
-        int ii = 3; int jj = 36;
-        String[] columns = new String[]{"Nr.", "Articol de lucrare", "um", "cantitate", "ore"};
-        String[][] data = new String[][]{{"bla","blsxxxscdvfbdfghngfdsdfvdcscdva","bla","bla","bldfvgbfdswdfgba"},{"bla","bla","bla","bla","bla"},{"bla","bla","bla","bla","bla"}};
+    public ResumeTableView(ScheduleTableCreator stc) {
 
+
+        String[] columns = new String[]{"Nr.", "Articol de lucrare", "um", "cantitate", "ore"};
+        String[][] data = stc.getTasksTable();
 
         JPanel gridbagPanel = new JPanel();
 

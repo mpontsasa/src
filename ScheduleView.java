@@ -3,28 +3,29 @@ import java.awt.*;
 
 public class ScheduleView extends JPanel implements SuperView  {
 
-    private ScheduleModel myModel;
-    private JFrame myFrame;
+    private TaskModel taskModel;
+    private Controller myController;
     JSplitPane splitPane;
 
 
-    public ScheduleView(ScheduleModel myModel, JFrame myFrame) {
-        this.myModel = myModel;
-        this.myFrame = myFrame;
+    public ScheduleView(TaskModel taskModel, Controller myController) {
+        this.taskModel = taskModel;
+        this.myController = myController;
         //this.setLayout(new BoxLayout(this,BoxLayout.LINE_AXIS));
         //this.setLayout(new GridLayout(0,2));
         this.setLayout(new FlowLayout());
 
-        int numOfRows = 3;
-        int numOfColumns = 36;
+
+        ScheduleTableCreator stc = new ScheduleTableCreator(this.taskModel);
+
 
 
 
         /*na sozval itt annyirol van szo, hogy a ket viewban levo ket scrollpanet kiszedtem, s ezeket rakom egy splitpane-be
         s beallitom hogy az elvalasztas a screen felenel legyen. Kicsit meg lehetne szebben is irni, de most faradt vagyok
          */
-        ResumeTableView resumeTableView = new ResumeTableView();
-        OrarGridView orarGridView = new OrarGridView(numOfRows,numOfColumns);
+        ResumeTableView resumeTableView = new ResumeTableView(stc);
+        OrarGridView orarGridView = new OrarGridView(stc, myController);
 
 
 
@@ -59,9 +60,7 @@ public class ScheduleView extends JPanel implements SuperView  {
 
     }
 
-    public void test(){
-        myFrame.setTitle("csaaa");
-    }
+
 
 
 }
