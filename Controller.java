@@ -270,6 +270,24 @@ public class Controller {
         frame.setVisible(true);
     }
 
+    public void loadProject(String text){
+        projectName = text;
+
+
+        try {
+            loadTaskFromFile();
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        }
+
+        frame.getTextArea().setText(taskModel.getDetaliiProiect());
+
+        initializeViews();
+
+        activeView = Finals.NO_VIEW_ACTIVE;
+        switchViews();
+    }
+
     public void loadTaskFromFile() throws FileNotFoundException{
         taskModel = new TaskModel();
         try{
@@ -320,6 +338,10 @@ public class Controller {
 //        }
     }
 
+    public void newProjectClicked(){
+        askUserInput();
+    }
+
     private void askUserInput(){
         jd = new JDialog();
 
@@ -334,22 +356,8 @@ public class Controller {
 
 
             System.out.println(text);
-            projectName = text;
 
-
-            try {
-                loadTaskFromFile();
-            } catch (FileNotFoundException e1) {
-                e1.printStackTrace();
-            }
-
-            frame.getTextArea().setText(taskModel.getDetaliiProiect());
-
-            initializeViews();
-
-            activeView = Finals.NO_VIEW_ACTIVE;
-            switchViews();
-
+            loadProject(text);
 
 
 
