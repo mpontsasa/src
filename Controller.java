@@ -296,7 +296,7 @@ public class Controller {
                         "Are you sure to close this window?", "Really Closing?",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
-                    
+
                     System.exit(0);
                 }
             }
