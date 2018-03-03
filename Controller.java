@@ -31,7 +31,7 @@ public class Controller {
         activeView = Finals.NO_VIEW_ACTIVE;
         scheduleModel = new ScheduleModel();
         taskModel = new TaskModel();//eloszor letrehozzuk a modelleket, aztan atadjuk a viewknak a megfelelo modellt
-
+        initializeFrame();
        // scheduleView = new ScheduleView(scheduleModel, frame);
 
     }
@@ -233,7 +233,7 @@ public class Controller {
 
     public void initializeViews(){
         //ahhoz, hogy lehessen scrollozni az ablakban, egy scrollpane-be teszem az egesz taskViewt, s azt a burkot a framebe
-        initializeFrame();
+
         //taskView = new TaskView(taskModel,frame,this);
 //        taskShell = new JScrollPane(taskView);
 //        taskShell.getVerticalScrollBar().setUnitIncrement(16);
@@ -254,9 +254,7 @@ public class Controller {
         scheduleView = new ScheduleView(scheduleModel,frame);
         scheduleShell = new JScrollPane(scheduleView);
 
-        frame.revalidate();
-        frame.repaint();
-        frame.setVisible(true);
+
     }
 
     private void initializeFrame(){
@@ -265,9 +263,15 @@ public class Controller {
         frame.setBounds(0,0,600,450);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setTitle("Test");
+
+
+        frame.revalidate();
+        frame.repaint();
+        frame.setVisible(true);
     }
 
     public void loadTaskFromFile() throws FileNotFoundException{
+        taskModel = new TaskModel();
         try{
             taskModel.loadProject(projectName);
         } catch (Exception e) {
@@ -328,8 +332,10 @@ public class Controller {
 
             String text = textField.getText();
 
+
             System.out.println(text);
             projectName = text;
+
             try {
                 loadTaskFromFile();
             } catch (FileNotFoundException e1) {
@@ -337,6 +343,11 @@ public class Controller {
             }
 
             initializeViews();
+
+            switchViews();
+
+
+
 
             jd.setVisible(false);
 

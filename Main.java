@@ -6,16 +6,16 @@ import java.util.Iterator;
 
 public class Main {
     public static void main(String[] args){
-        Controller controller = new Controller("uj_tesztike");
+        Controller controller = new Controller("test_load_button");
         try {
-            controller.loadTaskFromFile();
-            controller.initializeViews();
+            //controller.loadTaskFromFile();
+            //controller.initializeViews();
             //controller.insertUnit(0);
             //controller.saveUnits();
             //controller.saveProject();
             //controller.printUnits();
-            controller.makeHtmlTaskFile();
-            controller.makeHtmlScheduleFile();
+            //controller.makeHtmlTaskFile();
+            //controller.makeHtmlScheduleFile();
 
 
             ///<INSERT TEST>
