@@ -46,7 +46,7 @@ public class MenuFrame extends JFrame {
         details.addActionListener(e->jd.setVisible(true));
 
         print = new JMenuItem("Listare");
-        print.addActionListener(e->this.myController.makeHtmlTaskFile());
+        print.addActionListener(e->this.myController.listareButtonClicked());
 
         switchViews = new JMenuItem("Schimbare");
         switchViews.addActionListener(e->this.myController.switchViews());
