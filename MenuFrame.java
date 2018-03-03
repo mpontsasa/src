@@ -70,7 +70,7 @@ public class MenuFrame extends JFrame {
         jd = new JDialog();
         textArea = new JTextArea();
         textArea.setVisible(true);
-        //ITT MEG BE KELL TOLTENI A TTCBOL
+
 
         textArea.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -99,5 +99,9 @@ public class MenuFrame extends JFrame {
         jd.requestFocus();
         jd.setModal(true);
 
+    }
+
+    public JTextArea getTextArea() {
+        return textArea;
     }
 }

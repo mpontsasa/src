@@ -336,14 +336,18 @@ public class Controller {
             System.out.println(text);
             projectName = text;
 
+
             try {
                 loadTaskFromFile();
             } catch (FileNotFoundException e1) {
                 e1.printStackTrace();
             }
 
+            frame.getTextArea().setText(taskModel.getDetaliiProiect());
+
             initializeViews();
 
+            activeView = Finals.NO_VIEW_ACTIVE;
             switchViews();
 
 
