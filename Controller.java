@@ -452,6 +452,8 @@ public class Controller {
         jd.setVisible(true);
     }
 
+    public void listareButtonClicked(){}
+
     public void makeHtmlTaskFile(){
         try{
             TaskHtmlFileCreator htmlCreator = new TaskHtmlFileCreator(taskModel, projectName);
