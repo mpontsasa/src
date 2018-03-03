@@ -337,7 +337,7 @@ public class Controller {
 
 
         askUserInput();
-
+        loadProject(textField.getText());
 
 //        if(activeView == Finals.TASK_VIEW_ACTIVE){
 //            taskView.buildFromModel();
@@ -346,6 +346,16 @@ public class Controller {
 
     public void newProjectClicked(){
         askUserInput();
+        projectName = textField.getText();
+        taskModel = new TaskModel();
+        initializeViews();
+
+        frame.getTextArea().setText("");
+
+        initializeViews();
+
+        activeView = Finals.NO_VIEW_ACTIVE;
+        switchViews();
     }
 
     private void askUserInput(){
@@ -361,7 +371,7 @@ public class Controller {
 
             System.out.println(text);
 
-            loadProject(text);
+
 
             jd.setVisible(false);
 
