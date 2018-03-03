@@ -34,7 +34,7 @@ public class Finals {
     public final static String[] SUB_UNIT_TABLE_HEADER = {"Nr.", "Element", "um", "Cantitate Unitara",
             "Pret Unitar", "Pret Total Untar", "Cantitate Totala", "Pret Total", "Furnizor"};
 
-    public final static int LENGTH_OF_EXTENDED_SUB_UNIT_TABLE = 11;
+    public final static int LENGTH_OF_EXTENDED_SUB_UNIT_TABLE = 10;
     public final static String[] EXTENDED_SUB_UNIT_TABLE_HEADER = {"Nr.", "Element", "um", "Cantitate Unitara",
             "Pret Unitar", "Pret Total Untar", "Cantitate Totala", "Pret Total", "Furnizor", "Nr. de alocatii", "Nr. de ore necesare"};
 

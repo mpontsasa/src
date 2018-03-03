@@ -43,6 +43,7 @@ public class ScheduleHtmlFileCreator {
                 "<table>";
 
 
+
         for (int i = 0; i < taskModel.getTaskUnits().size(); i++){
             printRow(i);
         }
