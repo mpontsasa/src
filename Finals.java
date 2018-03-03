@@ -60,6 +60,7 @@ public class Finals {
 
     public final static int LENGTH_OF_TASKS_TABLE = 5;
     public final static String[] TASKS_TABLE_HEADER = {"Nr.", "Articol de lucrare", "um", "Cantitate", "Ore"};
+    public final static String[] WEEK_HEADER = {"L", "M", "M", "J", "V", "S", "D"};
 
     public final static int LENGTH_OF_SUM_MMUT_TABLE = 4;
     public final static String[] SUM_MMUT_TABLE_HEADER = {"Material", "Manopera", "Utilaj", "Transport"};

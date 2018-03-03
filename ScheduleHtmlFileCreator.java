@@ -42,7 +42,7 @@ public class ScheduleHtmlFileCreator {
                 "<body>\n" +
                 "<table>";
 
-
+        printHeader();
 
         for (int i = 0; i < taskModel.getTaskUnits().size(); i++){
             printRow(i);
@@ -57,6 +57,43 @@ public class ScheduleHtmlFileCreator {
         fw.write(content);
 
         fw.close();
+    }
+
+    public void printHeader(){
+
+        content += "<tr>\n";
+
+        content += "<th colspan=\"" + Finals.LENGTH_OF_TASKS_TABLE +"\"> Articole </th>\n";
+
+        for (int i = 0; i < (stc.getMaxDays() + 1) / 7; i++){   // +1 mert 0-tol van inexelve
+            content += "<th colspan=\"7\"> Spt. " + i + "</th>\n";
+        }
+
+        if ((stc.getMaxDays() + 1) % 7 != 0)   // utolso, nem teljes het // +1 mert 0-tol van inexelve
+        {
+            content += "<th colspan=\"" + ((stc.getMaxDays() + 1) % 7) + "\"> Spt. " + ((stc.getMaxDays() + 1) / 7 + 1) + "</th>\n";// +1 mert 0-tol van inexelve
+        }
+
+        content += "</tr>\n";
+        content += "<tr>\n";
+
+        for (String str : Finals.TASKS_TABLE_HEADER){
+            content += "<th>" + str + "</th>\n";
+        }
+
+        for(int i = 0; i < (stc.getMaxDays() + 1) / 7; i++)
+        {
+            for (String str : Finals.WEEK_HEADER){
+                content += "<th>" + str + "</th>\n";
+            }
+        }
+
+        for (int  i = 0; i < (stc.getMaxDays() + 1) % 7; i++){
+
+            content += "<th>" + Finals.WEEK_HEADER[i] + "</th>\n";
+        }
+
+        content += "</tr>\n";
     }
 
     public void printRow(int i){
