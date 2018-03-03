@@ -272,8 +272,7 @@ public class Controller {
     }
 
     public void loadProject(String projectName){
-        this.projectName = projectName;
-
+        this.projectName = projectName.replaceAll(" ","_");
 
         try {
             loadTaskFromFile();
@@ -541,8 +540,7 @@ public class Controller {
         System.out.println("New code insterted:"+candidateCode);
         //taskView.addUnit();
     }
-
-
+    
 //    public void printComponenet(JComponent component){
 
 //        PrintUtil pu = new PrintUtil(component);
