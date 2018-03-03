@@ -44,7 +44,7 @@ public class OrarGridView extends JPanel {
 
                 notifyController(row,col,!orarGridViewTableModel.getEditRights(row,col));
 
-                
+
                 orarGridViewTableModel.setCellEditable(row,col,!orarGridViewTableModel.getEditRights(row,col));
                 orarGridViewTableModel.fireTableDataChanged();
             }

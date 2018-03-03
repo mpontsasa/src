@@ -175,7 +175,7 @@ public class TaskModel implements SuperModel {
     public String getDetaliiHeader(){
         String dh = Finals.DETALII_INITAL + Finals.TOK_D + detaliiProiect;
         return dh.replaceAll("\n", Finals.TOK_D);
-        
+
     }
 
     public String[] getSumTotalTableHeader() {
