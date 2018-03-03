@@ -9,7 +9,7 @@ import java.awt.event.MouseWheelEvent;
 public class UnitHeaderView extends JPanel {
 
 
-    private JTable table;
+    private RXTable table;
     private JScrollPane scrollPane;
     private UnitView parent;
     UnitHeaderTableModel unitHeaderTableModel;
@@ -24,7 +24,8 @@ public class UnitHeaderView extends JPanel {
 
 
 
-        table = new JTable(data,columns);
+        table = new RXTable(data,columns);
+        table.setSelectAllForEdit(true);
 
 
 
@@ -126,7 +127,8 @@ public class UnitHeaderView extends JPanel {
         String[][] data = {{"","", "", "", "",
                 "","","","","","",""}};
 
-        table = new JTable(data,columns);
+        table = new RXTable(data,columns);
+        table.setSelectAllForEdit(true);
         table.getTableHeader().setReorderingAllowed(false);
         table.setRowSelectionAllowed(false);
 

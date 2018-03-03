@@ -6,7 +6,7 @@ import java.awt.event.MouseWheelEvent;
 public class SubUnitView extends JPanel {
 
     private JScrollPane scrollPane;
-    private JTable table;
+    private RXTable table;
     private SubUnitTableModel subUnitTableModel;
     private String header;
     private UnitView parent;
@@ -149,7 +149,8 @@ public class SubUnitView extends JPanel {
         }
 
         //ne lehessen athelyezni az oszlopokat es egy egesz sort kibalasztani
-        table = new JTable(data,columns);
+        table = new RXTable(data,columns);
+        table.setSelectAllForEdit(true);
         table.getTableHeader().setReorderingAllowed(false);
         table.setRowSelectionAllowed(false);
 
