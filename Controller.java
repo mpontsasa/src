@@ -37,6 +37,7 @@ public class Controller {
 
         taskModel = new TaskModel();//eloszor letrehozzuk a modelleket, aztan atadjuk a viewknak a megfelelo modellt
         initializeFrame();
+        isSaved = true;
        // scheduleView = new ScheduleView(scheduleModel, frame);
 
     }
@@ -101,6 +102,7 @@ public class Controller {
 
     public boolean amplifiersEdited(int amplifierIndex, String data){
 
+        System.out.println("amp");
         switch (amplifierIndex)
         {
             case 1:
@@ -134,15 +136,19 @@ public class Controller {
                 System.out.println("Hibas index amplifierEdited-nel");
 
         }
+        isSaved = false;
         return true;
     }
 
     public void detaliiProiectChanged(String data){
         taskModel.setDetaliiProiect(data);
+        //System.out.println("detaliiiii");
+        isSaved = false;
     }
 
     public boolean unitEdited(int unitIndex, int columnIndex, String data){
 
+        //System.out.println("odjefgthgrf");
         switch(columnIndex){
             case 1:
                 taskModel.getTaskUnits().get(unitIndex).setUnitTitle(data);
@@ -175,6 +181,7 @@ public class Controller {
                 System.out.println("hibas columnIndex unit header editalasanal");
         }
 
+        isSaved = false;
         return true;
     }
 
@@ -233,6 +240,7 @@ public class Controller {
         }
 
         System.out.println("Cell edit: " + unitIndex + " " +subUnitIndex +" " + rowIndex + " " + columnIndex + " " + data);
+        isSaved = false;
         return true;
 
     }
@@ -253,6 +261,7 @@ public class Controller {
                 }
             }
         }
+        isSaved = false;
 
     }
 
@@ -292,13 +301,20 @@ public class Controller {
         frame.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                if (JOptionPane.showConfirmDialog(frame,
-                        "Are you sure to close this window?", "Really Closing?",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
 
+                if(!isSaved){
+                    if (JOptionPane.showConfirmDialog(frame,
+                            "Inchideti aplicatia fara salvare?", "Confirmare",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+
+                        System.exit(0);
+                    }
+                }
+                else {
                     System.exit(0);
                 }
+
             }
         });
 
@@ -358,6 +374,7 @@ public class Controller {
     public void saveProject() throws IOException{
 
         taskModel.saveTaskToFile(projectName);
+
     }
 
     public void saveUnits(){
@@ -385,6 +402,7 @@ public class Controller {
         }
 
         saveUnits();
+        isSaved = true;
 
     }
 
@@ -436,6 +454,7 @@ public class Controller {
         jd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         jd.setSize(300, 75);
         jd.add(textField);
+        jd.setLocationRelativeTo(null);
         jd.requestFocus();
         jd.setModal(true);
         jd.setVisible(true);
@@ -464,6 +483,7 @@ public class Controller {
         jd.setTitle("Numele proiectului?");
         jd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         jd.setSize(300, 75);
+        jd.setLocationRelativeTo(null);
         jd.add(textField);
         jd.requestFocus();
         jd.setModal(true);

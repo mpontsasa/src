@@ -164,6 +164,18 @@ public class SubUnitView extends JPanel {
             public void actionPerformed(ActionEvent e)
             {
                 TableCellListener tcl = (TableCellListener)e.getSource();
+
+                if(userInputWrong((String)tcl.getNewValue())){
+                    //if input contains the file structure token TOK_D, then revert changes and throw
+                    table.getModel().setValueAt(tcl.getOldValue(),tcl.getRow(),tcl.getColumn());
+                    JOptionPane.showMessageDialog(parent.getParent().myFrame,
+                            "Caracterul " + Finals.TOK_D + " nu este permis!",
+                            "Caracter invalid",
+                            JOptionPane.ERROR_MESSAGE);
+
+                    return;
+                }
+
                 if(myIndex == null){
                     table.getModel().setValueAt("",tcl.getRow(),tcl.getColumn());
 
@@ -197,6 +209,10 @@ public class SubUnitView extends JPanel {
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         TableColumnAdjuster tca = new TableColumnAdjuster(table);
         tca.adjustColumns();
+    }
+
+    private boolean userInputWrong(String data){
+        return data.contains(Finals.TOK_D);
     }
 
     public void insertBlankRow(Integer newIndex){

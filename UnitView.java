@@ -93,7 +93,7 @@ public class UnitView extends JPanel implements SuperView {
 
     @Override
     public void buildFromModel() {
-
+        parent.buildFromModel();
     }
 
 

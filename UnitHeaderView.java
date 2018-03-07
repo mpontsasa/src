@@ -45,6 +45,20 @@ public class UnitHeaderView extends JPanel {
             public void actionPerformed(ActionEvent e)
             {
                 TableCellListener tcl = (TableCellListener)e.getSource();
+
+
+
+                if(userInputWrong((String)tcl.getNewValue())){
+
+                    //if input contains the file structure token TOK_D, then revert changes and throw
+                    table.getModel().setValueAt(tcl.getOldValue(),tcl.getRow(),tcl.getColumn());
+
+                    JOptionPane.showMessageDialog(parent.getParent().myFrame,
+                            "Caracterul " + Finals.TOK_D + " nu este permis!",
+                            "Caracter invalid",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 notifyChangeInHeader(tcl);
             }
         };
@@ -144,6 +158,19 @@ public class UnitHeaderView extends JPanel {
             public void actionPerformed(ActionEvent e)
             {
                 TableCellListener tcl = (TableCellListener)e.getSource();
+
+                if(userInputWrong((String)tcl.getNewValue())){
+
+                    //if input contains the file structure token TOK_D, then revert changes and throw
+                    table.getModel().setValueAt(tcl.getOldValue(),tcl.getRow(),tcl.getColumn());
+
+                    JOptionPane.showMessageDialog(parent.getParent().myFrame,
+                            "Caracterul " + Finals.TOK_D + " nu este permis!",
+                            "Caracter invalid",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
                 if(tcl.getColumn() == 2){
                     // "Cod" changed
                     String candidateCode = table.getModel().getValueAt(0,2).toString();//getValueAt returns Object
@@ -157,6 +184,8 @@ public class UnitHeaderView extends JPanel {
                 }
                 else{
                     table.getModel().setValueAt("",tcl.getRow(),tcl.getColumn());
+                    notifyChangeInHeader(tcl);
+
                 }
 
             }
@@ -231,9 +260,19 @@ public class UnitHeaderView extends JPanel {
     }
 
 
+    private boolean userInputWrong(String input){
+        return input.contains(Finals.TOK_D);
+    }
+
     private void notifyChangeInHeader(TableCellListener tcl){
-        parent.getParent().myController.taskViewEdited(parent.getMyIndex(),-1,-1,
-                tcl.getColumn(),(String) tcl.getNewValue());
+        if(!parent.getParent().myController.taskViewEdited(parent.getMyIndex(),-1,-1,
+                tcl.getColumn(),(String) tcl.getNewValue())){
+            JOptionPane.showMessageDialog(parent.getParent().myFrame,
+                    "Format incorect.",
+                    "Caracter invalid",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        parent.buildFromModel();
     }
     private void notifyController(String candidateCode){
 
