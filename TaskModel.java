@@ -117,7 +117,15 @@ public class TaskModel implements SuperModel {
         i++;
 
         nextTok = tokens[i];
+        cheltuileIndirecteAmplifier = Float.parseFloat(nextTok);
+        i++;
+
+        nextTok = tokens[i];
         profit = Float.parseFloat(nextTok);
+        i++;
+
+        nextTok = tokens[i];
+        profitAmplifier = Float.parseFloat(nextTok);
         i++;
 
         nextTok = tokens[i];
@@ -126,6 +134,10 @@ public class TaskModel implements SuperModel {
 
         nextTok = tokens[i];
         TVA = Float.parseFloat(nextTok);
+        i++;
+
+        nextTok = tokens[i];
+        TVAAmplifier = Float.parseFloat(nextTok);
         i++;
 
         nextTok = tokens[i];
@@ -164,9 +176,12 @@ public class TaskModel implements SuperModel {
                 + transport + Finals.TOK_D
                 + totalCostDirect + Finals.TOK_D
                 + cheltuileIndirecte + Finals.TOK_D
+                + cheltuileIndirecteAmplifier + Finals.TOK_D
                 + profit + Finals.TOK_D
+                + profitAmplifier + Finals.TOK_D
                 + totalValoareLucrareFaraTVA + Finals.TOK_D
                 + TVA + Finals.TOK_D
+                + TVAAmplifier + Finals.TOK_D
                 + totalValoareLucrareCuTVA + Finals.TOK_D;
     }
 

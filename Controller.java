@@ -102,7 +102,7 @@ public class Controller {
 
     public boolean amplifiersEdited(int amplifierIndex, String data){
 
-        System.out.println("amp");
+        //System.out.println("amp");
         switch (amplifierIndex)
         {
             case 1:
@@ -374,7 +374,6 @@ public class Controller {
     public void saveProject() throws IOException{
 
         taskModel.saveTaskToFile(projectName);
-
     }
 
     public void saveUnits(){

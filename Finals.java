@@ -21,7 +21,7 @@ public class Finals {
     public final static String[] SUB_UNIT_NECESARS = {"NECESAR MATERIAL", "NECESAR MANOPERA", "NECESAR UTILAJ", "NECESAR TRANSPORT"};
     public final static int NUMBER_OF_SUBUNITS = 4;
 
-    public final static int NR_OF_FIELDS_IN_PROJECT = 11;
+    public final static int NR_OF_FIELDS_IN_PROJECT = 14;
     public final static int NR_OF_FIELDS_IN_DETALII = 2;
     public final static int NR_OF_FIELDS_IN_UNIT = 5;
     public final static int NR_OF_FIELDS_IN_SUB_UNIT = 1;
