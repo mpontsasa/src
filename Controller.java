@@ -425,6 +425,14 @@ public class Controller {
 
         textField.addActionListener((ActionEvent e) ->{
 
+            if(textField.getText().contains(Finals.TOK_D)){
+                JOptionPane.showMessageDialog(frame,
+                        "Caracterul " + Finals.TOK_D + " nu este permis",
+                        "Caracter invalid",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             String pn = textField.getText().replaceAll(" ","_");
             //System.out.println(pn);
 
