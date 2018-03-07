@@ -8,7 +8,7 @@ import java.awt.event.MouseWheelEvent;
 public class SumTableView extends JPanel {
     private JScrollPane totalScrollPane;
     private JScrollPane MMUTScrollPane;
-    private JTable totalsTable;
+    private RXTable totalsTable;
     private JTable MMUTTable;// material manopera utilaj transport
     private TaskView parent;
 
@@ -26,7 +26,8 @@ public class SumTableView extends JPanel {
         String [] MMUTColumns = Finals.SUM_MMUT_TABLE_HEADER;
         String[][] MMUTData = taskTableCreator.getSumMMUTT();
 
-        totalsTable = new JTable(data,columns);
+        totalsTable = new RXTable(data,columns);
+        totalsTable.setSelectAllForEdit(true);
         totalsTable.getTableHeader().setReorderingAllowed(false);
         totalsTable.setRowSelectionAllowed(false);
 
