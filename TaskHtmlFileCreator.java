@@ -152,5 +152,50 @@ public class TaskHtmlFileCreator {
         }
 
         content += "</tr>\n";
+
+        printFormulas(subUnitIndex);
+    }
+
+    public void printFormulas(int subUnitIndex){
+
+
+        content += "<tr>\n";
+
+        switch(subUnitIndex)
+        {
+            case 0:
+                for (String field : Finals.MATERIAL_FORMULAS) {
+                    content += "<th>";
+                    content += field;
+                    content += "</th>\n";
+
+                }
+                break;
+            case 1:
+                for (String field : Finals.MANOPERA_FORMULAS) {
+                    content += "<th>";
+                    content += field;
+                    content += "</th>\n";
+
+                }
+                break;
+            case 2:
+                for (String field : Finals.UTILAJ_FORMULAS) {
+                    content += "<th>";
+                    content += field;
+                    content += "</th>\n";
+
+                }
+                break;
+            case 3:
+                for (String field : Finals.TRANSPORT_FORMULAS) {
+                    content += "<th>";
+                    content += field;
+                    content += "</th>\n";
+
+                }
+        }
+
+        content += "</tr>\n";
     }
 }

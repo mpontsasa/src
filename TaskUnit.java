@@ -286,11 +286,18 @@ public class TaskUnit {
         this.cantitate = cantitate;
 
         calculatePretTotal();
-
         calculateMaterial();
         calculateManopera();
         calculateUtilaj();
         calculateTransport();
+
+        for (TaskSubUnit su : subUnits){
+            su.calculateAll();
+        }
+
+//        for (TaskSubUnit su : subUnits){
+//            for (TaskRow tr : su.getTaskRows())
+//        }
     }
 
     public void setOre(float ore) {
