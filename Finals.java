@@ -53,6 +53,10 @@ public class Finals {
     public final static String[] TRANSPORT_TABLE_HEADER = {"Nr.", "Operatiune", "um", "Cantitate Unitara",
             "Pret Unitar", "Pret Total Untar", "Cantitate Totala", "Pret Total", "Furnizor"};
 
+    public final static String[] MATERIAL_FORMULAS = {"", "", "", "a", "b", "c=a*b", "d=a*cantitate", "e=b*d", ""};
+    public final static String[] TRANSPORT_FORMULAS = {"", "", "", "a", "b", "c=a*b", "d=a*cantitate", "e=b*d", ""};
+    public final static String[] MANOPERA_FORMULAS = {"", "", "", "a", "b", "c=a*b", "d=a*cantitate", "e=b*d", "f", "g=d*f"};
+    public final static String[] UTILAJ_FORMULAS = {"", "", "", "a", "b", "c=a*b", "d=a*cantitate", "e=b*d", "f", "g=d*f"};
 
     public final static int LENGTH_OF_SUM_TOTAL_TABLE = 6;
     public final static String[] SUM_TOTAL_TABLE_HEADER = {" TOTAL COST DIRECT (RON) ",
@@ -83,6 +87,8 @@ public class Finals {
     public final static int EXTRA_ORAR_DAYS = 14;
 
     public final static String UNIT_DELETE_BUTTON_TEXT = "Stergere articol din proiect";
+
+
 
     //public final static String[] WEEK_HEADER = {"L", "M", "M", "J", "V", "S", "D"};
 

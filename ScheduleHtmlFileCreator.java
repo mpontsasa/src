@@ -124,7 +124,7 @@ public class ScheduleHtmlFileCreator {
     //--------------------------------------------------------tasks resz
 
 
-        for (int j = 0; j < stc.getMaxDays(); j++){
+        for (int j = 0; j <= stc.getMaxDays(); j++){
             if (stc.getWeeksTable()[i][j]){ // ha zold
                 content += "<th id=\"selected\"></th>\n";
             }
