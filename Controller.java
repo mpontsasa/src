@@ -409,6 +409,31 @@ public class Controller {
         askUserInputLoadProject();
     }
 
+    public void listareButtonClicked(){
+        makeHtmlTaskFile();
+        makeHtmlScheduleFile();
+
+        File f = null;
+        String path = "";
+        boolean bool = false;
+
+        try {
+
+            f = new File(Finals.PRINT_PATH + projectName);
+
+
+            path = f.getAbsolutePath();
+            System.out.print("Absolute Pathname "+ path);
+
+            Desktop.getDesktop().open(new File(path));
+
+        } catch(Exception e) {
+
+            // if any error occurs
+            e.printStackTrace();
+        }
+    }
+
     public void newProjectClicked(){
         askUserInputNewProject();
     }
@@ -495,11 +520,6 @@ public class Controller {
         jd.requestFocus();
         jd.setModal(true);
         jd.setVisible(true);
-    }
-
-    public void listareButtonClicked(){
-        makeHtmlTaskFile();
-        makeHtmlScheduleFile();
     }
 
     public void makeHtmlTaskFile(){

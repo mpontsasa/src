@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileWriter;
 
 public class ScheduleHtmlFileCreator {
@@ -52,7 +53,9 @@ public class ScheduleHtmlFileCreator {
                 "</body>\n" +
                 "</html>";
 //..............print to file
-        FileWriter fw = new FileWriter(projectName + "_grafic_de_executie.html");
+        File file = new File(Finals.PRINT_PATH + projectName + "/" +projectName+ "_grafic_de_executie.html");
+        file.getParentFile().mkdirs();
+        FileWriter fw = new FileWriter(Finals.PRINT_PATH + projectName + "/" +projectName+ "_grafic_de_executie.html");
 
         fw.write(content);
 

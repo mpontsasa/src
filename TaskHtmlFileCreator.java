@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileWriter;
 
 public class TaskHtmlFileCreator {
@@ -46,7 +47,10 @@ public class TaskHtmlFileCreator {
         content += "</body>\n" +
                 "</html>";
 //..............print to file
-        FileWriter fw = new FileWriter(projectName + ".html");
+
+        File file = new File(Finals.PRINT_PATH + projectName + "\\" + projectName + ".html");
+        file.getParentFile().mkdirs();
+        FileWriter fw = new FileWriter(Finals.PRINT_PATH + projectName + "\\" + projectName + ".html");
 
         fw.write(content);
 
