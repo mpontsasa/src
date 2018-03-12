@@ -1,7 +1,9 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -296,6 +298,7 @@ public class Controller {
         frame = new MenuFrame(this);
 
 
+        String[] options = {"Da","Nu"};
 
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -303,10 +306,10 @@ public class Controller {
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
 
                 if(!isSaved){
-                    if (JOptionPane.showConfirmDialog(frame,
+                    if (JOptionPane.showOptionDialog(frame,
                             "Inchideti aplicatia fara salvare?", "Confirmare",
                             JOptionPane.YES_NO_OPTION,
-                            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                            JOptionPane.QUESTION_MESSAGE,null,options,null) == JOptionPane.YES_OPTION){
 
                         System.exit(0);
                     }
@@ -322,6 +325,8 @@ public class Controller {
         frame.setBounds(0,0,600,450);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setTitle("Test");
+
+
 
 
         frame.revalidate();
@@ -410,6 +415,10 @@ public class Controller {
     }
 
     public void listareButtonClicked(){
+        if(projectName == null){
+            return;
+        }
+
         makeHtmlTaskFile();
         makeHtmlScheduleFile();
 
@@ -544,6 +553,9 @@ public class Controller {
 
     public void switchViews(){
 
+        if(projectName == null){
+            return;
+        }
         switch (activeView){
 
             case Finals.TASK_VIEW_ACTIVE:
@@ -702,5 +714,9 @@ public class Controller {
 
     public TaskView getTaskView() {
         return taskView;
+    }
+
+    public String getProjectName() {
+        return projectName;
     }
 }
