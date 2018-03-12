@@ -293,30 +293,34 @@ public class Controller {
 
     }
 
+    private void askUserConfirmOnExit(){
+        String[] options = {"Da","Nu"};
+        if(!isSaved){
+            if (JOptionPane.showOptionDialog(frame,
+                    "Inchideti aplicatia fara salvare?", "Confirmare",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,null,options,null) == JOptionPane.YES_OPTION){
+
+                System.exit(0);
+            }
+        }
+        else {
+            System.exit(0);
+        }
+    }
     private void initializeFrame(){
         
         frame = new MenuFrame(this);
 
 
-        String[] options = {"Da","Nu"};
+
 
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
 
-                if(!isSaved){
-                    if (JOptionPane.showOptionDialog(frame,
-                            "Inchideti aplicatia fara salvare?", "Confirmare",
-                            JOptionPane.YES_NO_OPTION,
-                            JOptionPane.QUESTION_MESSAGE,null,options,null) == JOptionPane.YES_OPTION){
-
-                        System.exit(0);
-                    }
-                }
-                else {
-                    System.exit(0);
-                }
+                askUserConfirmOnExit();
 
             }
         });
