@@ -503,6 +503,9 @@ public class Controller {
     }
 
     public void listareButtonClicked(){
+        if(projectName == null){
+            return;
+        }
         makeHtmlTaskFile();
         makeHtmlScheduleFile();
     }
@@ -529,6 +532,9 @@ public class Controller {
 
     public void switchViews(){
 
+        if(projectName == null){
+            return;
+        }
         switch (activeView){
 
             case Finals.TASK_VIEW_ACTIVE:
@@ -687,5 +693,9 @@ public class Controller {
 
     public TaskView getTaskView() {
         return taskView;
+    }
+
+    public String getProjectName() {
+        return projectName;
     }
 }

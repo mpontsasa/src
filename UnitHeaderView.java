@@ -184,7 +184,7 @@ public class UnitHeaderView extends JPanel {
                 }
                 else{
                     table.getModel().setValueAt("",tcl.getRow(),tcl.getColumn());
-                    
+
 
                 }
 
