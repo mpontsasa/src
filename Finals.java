@@ -14,8 +14,8 @@ public class Finals {
     public final static String DETALII_INITAL = "D";
     public final static String UNIT_END_STRING = "END_OF_UNIT";
 
-    public final static String PROJECTS_PATH = "projects/";
-    public final static String UNITS_PATH = "units/";
+    public final static String PROJECTS_PATH = "data/projects/";
+    public final static String UNITS_PATH = "data/units/";
     public final static String PRINT_PATH = "listari/";
 
     public final static String[] SUB_UNIT_TITLES = {"MATERIAL", "MANOPERA", "UTILAJ", "TRANSPORT"};
