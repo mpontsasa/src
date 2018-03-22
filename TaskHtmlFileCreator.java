@@ -25,19 +25,37 @@ public class TaskHtmlFileCreator {
                 "    width: 100%;\n" +
                 "}\n" +
                 "\n" +
-                "td, th {\n" +
+                "td {\n" +
                 "    border: 1px solid #dddddd;\n" +
                 "    text-align: left;\n" +
+                "}\n" +
+                "th {\n" +
+                "    border: 1px solid #dddddd;\n" +
+                "    text-align: center;\n" +
                 "    padding: 8px;\n" +
                 "}\n" +
                 "\n" +
 //                "tr:nth-child(even) {\n" +
 //                "    background-color: #dddddd;\n" +
+//                "}\n" +
+                ".unitTitle {\n" +
+                "\tbackground-color: DodgerBlue;\n" +
+                "\tfont-size: large;\n" +
                 "}\n" +
+                ".leftSideLine {\n" +
+                "\tbackground-color: OrangeRed;\n" +
+                "width: 1%;"+
+                "}" +
+                ".details {\n" +
+                "color: SlateBlue;\n" +
+                "}" +
                 "</style>\n" +
                 "</head>\n" +
                 "<body>";
 
+
+        printProjectTitle();
+        printProjectDetails();
 
         for (int i = 0; i < taskModel.getTaskUnits().size(); i++){
             printUnit(i);
@@ -57,6 +75,20 @@ public class TaskHtmlFileCreator {
         fw.close();
     }
 
+    public void printProjectTitle() {
+
+    }
+
+    public void printProjectDetails(){
+
+        String dt = taskModel.getDetaliiProiect();
+        dt = dt.replaceAll("\n", "<br>");
+
+        content += "<section class=\"details\">";
+        content += dt;
+        content += "</section><br>";
+    }
+
     public void printUnit(int unitIndex){
 
         printUnitHeader(unitIndex);
@@ -70,21 +102,29 @@ public class TaskHtmlFileCreator {
         content += "<table>";
 
         content += "<tr>\n";
-        for (String field : Finals.UNIT_TABLE_HEADER){
-            content += "<th>";
-            content += field;
-            content += "</th>\n";
 
+        //nr of unit
+        content += "<th class=\"unitTitle\" rowspan=\"2\">";
+        content += Finals.UNIT_TABLE_HEADER[0] + ttc.getUnitHeaderTs()[unitIndex][0][0];
+        content += "</th>\n";
+
+        //title of unit
+        content += "<th class=\"unitTitle\" rowspan=\"2\">";
+        content += ttc.getUnitHeaderTs()[unitIndex][0][1];
+        content += "</th>\n";
+
+        for (int i = 2; i < Finals.UNIT_TABLE_HEADER.length; i++){
+            content += "<th>";
+            content +=  Finals.UNIT_TABLE_HEADER[i];
+            content += "</th>\n";
         }
         content += "</tr>\n";
 
         content += "<tr>\n";
-
-        for (String field : ttc.getUnitHeaderTs()[unitIndex][0]){
+        for (int i = 2; i < ttc.getUnitHeaderTs()[unitIndex][0].length; i++){
             content += "<th>";
-            content += field;
+            content += ttc.getUnitHeaderTs()[unitIndex][0][i];
             content += "</th>\n";
-
         }
 
         content += "</tr>\n";
@@ -98,10 +138,11 @@ public class TaskHtmlFileCreator {
 
         for (int row = 0 ; row < ttc.getSubUnitTs()[unitIndex][subUnitIndex].length; row++){
             content += "<tr>";
+            putLeftSideCell();
             for (int field = 0; field < ttc.getSubUnitTs()[unitIndex][subUnitIndex][row].length; field++){
-                content += "<th>\n";
+                content += "<td>";
                 content += ttc.getSubUnitTs()[unitIndex][subUnitIndex][row][field];
-                content += "</th>\n";
+                content += "</td>\n";
             }
             content += "</tr>\n";
         }
@@ -113,13 +154,13 @@ public class TaskHtmlFileCreator {
         content += "<table>";
 
         content += "<tr>\n";
-        content += "<th>";
+        putLeftSideCell();
+        content += "<th colspan=\"4\">";
         content += Finals.SUB_UNIT_TITLES[subUnitIndex];
         content += "</th>\n";
         content += "</tr>\n";
-
         content += "<tr>\n";
-
+        putLeftSideCell();
         switch(subUnitIndex)
         {
             case 0:
@@ -164,7 +205,7 @@ public class TaskHtmlFileCreator {
 
 
         content += "<tr>\n";
-
+        putLeftSideCell();
         switch(subUnitIndex)
         {
             case 0:
@@ -201,5 +242,10 @@ public class TaskHtmlFileCreator {
         }
 
         content += "</tr>\n";
+    }
+
+    public void putLeftSideCell()
+    {
+        content += "<th class=\"leftSideLine\"></th>\n";
     }
 }

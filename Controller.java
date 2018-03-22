@@ -217,18 +217,19 @@ public class Controller {
                 }
                 break;
             case 8:
-                    row.setFurnizor(data);
-                break;
-            case 9:
-                try{
+                    if (subUnitIndex == 0 || subUnitIndex == 3) //Materil vagy transport
+                        row.setFurnizor(data);
+                    else {    //manopera vagy utilaj
+                        try{
 
-                    row.setNumarDeAlocati(Integer.parseInt(data));
-                }
-                catch (NumberFormatException e){
-                    return false;
-                }
-                break;
-            case 10:
+                            row.setNumarDeAlocati(Integer.parseInt(data));
+                        }
+                        catch (NumberFormatException e) {
+                            return false;
+                        }
+                    }
+                    break;
+            case 9:
                 try{
 
                     row.setNumarDeOreNecesare(Float.parseFloat(data));
