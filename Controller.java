@@ -285,7 +285,13 @@ public class Controller {
 
         taskView = new TaskView(taskModel,frame,this);
         taskShell = new JScrollPane(taskView);
-        taskShell.getVerticalScrollBar().setUnitIncrement(16);
+        taskShell.getVerticalScrollBar().setUnitIncrement(25);
+
+        //https://stackoverflow.com/questions/4298582/jscrollpane-scrolling-with-arrow-keys
+        JScrollBar vertical = taskShell.getVerticalScrollBar();
+        InputMap im = vertical.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        im.put(KeyStroke.getKeyStroke("DOWN"), "positiveUnitIncrement");
+        im.put(KeyStroke.getKeyStroke("UP"), "negativeUnitIncrement");
 
         scheduleView = new ScheduleView(taskModel,this);
         scheduleShell = new JScrollPane(scheduleView);
@@ -556,6 +562,7 @@ public class Controller {
     }
 
     public void switchViews(){
+
 
         if(projectName == null){
             return;
