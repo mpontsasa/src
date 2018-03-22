@@ -269,20 +269,6 @@ public class Controller {
     }
 
     public void initializeViews(){
-        //ahhoz, hogy lehessen scrollozni az ablakban, egy scrollpane-be teszem az egesz taskViewt, s azt a burkot a framebe
-
-        //taskView = new TaskView(taskModel,frame,this);
-//        taskShell = new JScrollPane(taskView);
-//        taskShell.getVerticalScrollBar().setUnitIncrement(16);
-
-
-//        frame.add(shell,BorderLayout.CENTER);
-        //frame.setContentPane(shell);
-        //activeView = Finals.TASK_VIEW_ACTIVE;
-
-//        scheduleView = new ScheduleView(scheduleModel,frame);
-//        shell = new JScrollPane(scheduleView);
-//        frame.add(scheduleView, BorderLayout.CENTER);
 
         taskView = new TaskView(taskModel,frame,this);
         taskShell = new JScrollPane(taskView);
