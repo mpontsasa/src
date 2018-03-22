@@ -1,9 +1,6 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -148,7 +145,7 @@ public class Controller {
         isSaved = false;
     }
 
-    public boolean unitEdited(int unitIndex, int columnIndex, String data){
+    private boolean unitEdited(int unitIndex, int columnIndex, String data){
 
         //System.out.println("odjefgthgrf");
         switch(columnIndex){
@@ -187,7 +184,7 @@ public class Controller {
         return true;
     }
 
-    public boolean rowEdited(int unitIndex, int subUnitIndex, int rowIndex, int columnIndex, String data){
+    private boolean rowEdited(int unitIndex, int subUnitIndex, int rowIndex, int columnIndex, String data){
 
         TaskRow row = taskModel.getTaskUnits().get(unitIndex).getSubUnits().get(subUnitIndex).getTaskRows().get(rowIndex);
 
@@ -268,7 +265,7 @@ public class Controller {
 
     }
 
-    public void initializeViews(){
+    private void initializeViews(){
 
         taskView = new TaskView(taskModel,frame,this);
         taskShell = new JScrollPane(taskView);
@@ -331,7 +328,7 @@ public class Controller {
         frame.setVisible(true);
     }
 
-    public void loadProject(String projectName){
+    private void loadProject(String projectName){
         this.projectName = projectName.replaceAll(" ","_");
 
         try {
@@ -354,31 +351,31 @@ public class Controller {
         switchViews();
     }
 
-    public void loadTaskFromFile() throws Exception{
+    private void loadTaskFromFile() throws Exception{
         taskModel = new TaskModel();
         taskModel.loadProject(projectName);
     }
 
-    public void displayNonExtistingProjectError(){
+    private void displayNonExtistingProjectError(){
         JOptionPane.showMessageDialog(frame,
                 "Proiectul selectat nu exista!",
                 "Proiect inexistent",
                 JOptionPane.ERROR_MESSAGE);
     }
 
-    public void displayProjectAlreadyExistsError(){
+    private void displayProjectAlreadyExistsError(){
         JOptionPane.showMessageDialog(frame,
                 "Proiectul selectat exista deja!",
                 "Proiect existent",
                 JOptionPane.ERROR_MESSAGE);
     }
 
-    public void saveProject() throws IOException{
+    private void saveProject() throws IOException{
 
         taskModel.saveTaskToFile(projectName);
     }
 
-    public void saveUnits(){
+    private void saveUnits(){
         try {
             taskModel.saveUnits();
         } catch (Exception e) {
@@ -528,7 +525,7 @@ public class Controller {
         jd.setVisible(true);
     }
 
-    public void makeHtmlTaskFile(){
+    private void makeHtmlTaskFile(){
         try{
             TaskHtmlFileCreator htmlCreator = new TaskHtmlFileCreator(taskModel, projectName);
         }
@@ -538,7 +535,7 @@ public class Controller {
         }
     }
 
-    public void makeHtmlScheduleFile(){
+    private void makeHtmlScheduleFile(){
         try{
             ScheduleHtmlFileCreator htmlCreator = new ScheduleHtmlFileCreator(taskModel, projectName);
         }
