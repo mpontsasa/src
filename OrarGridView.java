@@ -129,9 +129,8 @@ public class OrarGridView extends JPanel {
                 for (int i = 0; i < numOfDays; i++){
                     res[dayIndex] = week.toString() + days[i];
                     dayIndex++;
-                    numOfDays--;
-
                 }
+                numOfDays = 0;
                 week++;
             }
 
