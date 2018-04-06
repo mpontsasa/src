@@ -215,10 +215,11 @@ public class TaskUnit {
             }
         }
         scan.close();
+        clculateAll();
     }
 
     public void saveUnit() throws Exception{
-        FileWriter fw = new FileWriter(Finals.UNITS_PATH + unitCode + ".txt");
+        FileWriter fw = new FileWriter(Finals.UNITS_PATH + unitCode + "_" + unitTitle + ".txt");
 
         fw.write(getHeader() + "\n");
 

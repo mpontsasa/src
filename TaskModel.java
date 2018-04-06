@@ -410,4 +410,5 @@ public class TaskModel implements SuperModel {
     public String getDetaliiProiect() {
         return detaliiProiect;
     }
+
 }

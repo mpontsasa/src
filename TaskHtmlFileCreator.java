@@ -6,10 +6,12 @@ public class TaskHtmlFileCreator {
     TaskModel taskModel;
     String content = "";
     TaskTableCreator ttc;
+    protected String projectName;
 
     TaskHtmlFileCreator(TaskModel taskModel, String projectName) throws  Exception{
         this.taskModel = taskModel;
         ttc = new TaskTableCreator(taskModel);
+        this.projectName =  projectName.replaceAll("_"," ");
         createHtmlFile(projectName);
     }
 
@@ -42,6 +44,9 @@ public class TaskHtmlFileCreator {
                 "\tbackground-color: DodgerBlue;\n" +
                 "\tfont-size: large;\n" +
                 "}\n" +
+                ".projectTitle {\n" +
+                "    text-align: center;\n" +
+                "}\n" +
                 ".leftSideLine {\n" +
                 "\tbackground-color: OrangeRed;\n" +
                 "width: 1%;"+
@@ -49,11 +54,21 @@ public class TaskHtmlFileCreator {
                 ".details {\n" +
                 "color: SlateBlue;\n" +
                 "}" +
+                ".headerTableRight {\n" +
+                "    text-align: right;\n" +
+                "    border: 0px solid #dddddd;\n" +
+                "    font-size: large\n" +
+                "}\n" +
+                ".headerTableLeft {\n" +
+                "    text-align: left;\n" +
+                "    border: 0px solid #dddddd;\n" +
+                "    font-size: large\n" +
+                "}" +
                 "</style>\n" +
                 "</head>\n" +
                 "<body>";
 
-
+        printPageHeader();
         printProjectTitle();
         printProjectDetails();
 
@@ -75,8 +90,20 @@ public class TaskHtmlFileCreator {
         fw.close();
     }
 
-    public void printProjectTitle() {
+    public void printPageHeader() {
+        content += "\n" +
+                "<table><tr>\n" +
+                "<td class=\"headerTableLeft\">\n" +
+                "\t<img src=\"https://deifco.ro/wp-content/uploads/2011/07/logo.png\" alt=\"Deifco\">\n" +
+                "</td>\n" +
+                "<td class=\"headerTableRight\">\n" +
+                "\t<img src=\"https://agcon.ro/wp-content/uploads/2011/07/logo-agcon-300x69.png\" alt=\"AGcon\">\n" +
+                "</td>\n" +
+                "</tr></table>";
+    }
 
+    public void printProjectTitle() {
+        content += "<h1 class=\"projectTitle\">" + projectName +"</h1>";
     }
 
     public void printProjectDetails(){

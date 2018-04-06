@@ -30,8 +30,6 @@ public class Controller {
 
     public Controller() {
 
-
-
         activeView = Finals.NO_VIEW_ACTIVE;
 
         taskModel = new TaskModel();//eloszor letrehozzuk a modelleket, aztan atadjuk a viewknak a megfelelo modellt
@@ -298,6 +296,7 @@ public class Controller {
             System.exit(0);
         }
     }
+
     private void initializeFrame(){
         
         frame = new MenuFrame(this);
