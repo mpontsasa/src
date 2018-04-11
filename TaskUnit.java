@@ -102,15 +102,15 @@ public class TaskUnit {
 
         res[1] = unitTitle;
         res[2] = unitCode;
-        res[3] = "" + pretUnitar;
+        res[3] = "" + (double)Math.round(pretUnitar * 100d) / 100d;
         res[4] = unitateMetric;
         res[5] = "" + cantitate;
-        res[6] = "" + ore;
-        res[7] = "" + pretTotal;
-        res[8] = "" + material;
-        res[9] = "" + manopera;
-        res[10] = "" + utilaj;
-        res[11] = "" + transport;
+        res[6] = "" + (double)Math.round(ore * 100d) / 100d;
+        res[7] = "" + (double)Math.round(pretTotal * 100d) / 100d;
+        res[8] = "" + (double)Math.round(material * 100d) / 100d;
+        res[9] = "" + (double)Math.round(manopera * 100d) / 100d;
+        res[10] = "" + (double)Math.round(utilaj * 100d) / 100d;
+        res[11] = "" + (double)Math.round(transport * 100d) / 100d;
 
         return res;
     }
@@ -219,7 +219,7 @@ public class TaskUnit {
     }
 
     public void saveUnit() throws Exception{
-        FileWriter fw = new FileWriter(Finals.UNITS_PATH + unitCode + "_" + unitTitle + ".txt");
+        FileWriter fw = new FileWriter(Finals.UNITS_PATH + unitCode + ".txt");
 
         fw.write(getHeader() + "\n");
 

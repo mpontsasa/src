@@ -67,7 +67,7 @@ public class TaskTableCreator {
         sumPretTotalUnitars = new String[taskModel.getTaskUnits().size()][Finals.NUMBER_OF_SUBUNITS];
         for(int u = 0; u < taskModel.getTaskUnits().size(); u++){
             for (int su = 0; su < Finals.NUMBER_OF_SUBUNITS; su++){
-                sumPretTotalUnitars[u][su] = "" + taskModel.getTaskUnits().get(u).getSubUnits().get(su).getSumPretTotalUnitar();
+                sumPretTotalUnitars[u][su] = "" + (double)Math.round((taskModel.getTaskUnits().get(u).getSubUnits().get(su).getSumPretTotalUnitar()) * 100d) / 100d;
             }
         }
     }

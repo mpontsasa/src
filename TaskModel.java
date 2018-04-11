@@ -32,7 +32,9 @@ public class TaskModel implements SuperModel {
 
     public void loadProject(String projectName) throws Exception {
 
-        Scanner scan = new Scanner(new File(Finals.PROJECTS_PATH + projectName + "_task.txt"));
+        //System.out.println(Finals.PROJECTS_PATH + projectName + ".txt");
+
+        Scanner scan = new Scanner(new File(Finals.PROJECTS_PATH + projectName + ".txt"));
 
         if(scan.hasNextLine()) {
             String line = scan.nextLine();
@@ -208,10 +210,10 @@ public class TaskModel implements SuperModel {
         String[] res = new String[Finals.LENGTH_OF_SUM_TOTAL_TABLE];
 
         res[0] = "";
-        res[1] = "" + cheltuileIndirecteAmplifier;
-        res[2] = "" + profitAmplifier;
+        res[1] = "" + (double)Math.round(cheltuileIndirecteAmplifier * 100d) / 100d;
+        res[2] = "" + (double)Math.round(profitAmplifier * 100d) / 100d;
         res[3] = "";
-        res[4] = "" + TVAAmplifier;
+        res[4] = "" + (double)Math.round(TVAAmplifier * 100d) / 100d;
         res[5] = "";
 
         return res;
@@ -220,10 +222,10 @@ public class TaskModel implements SuperModel {
     public String[] getSumMMUTTableHeader() {
         String[] res = new String[Finals.LENGTH_OF_SUM_TOTAL_TABLE];
 
-        res[0] = "" + material;
-        res[1] = "" + manopera;
-        res[2] = "" + utilaj;
-        res[3] = "" + transport;
+        res[0] = "" + (double)Math.round(material * 100d) / 100d;
+        res[1] = "" + (double)Math.round(manopera * 100d) / 100d;
+        res[2] = "" + (double)Math.round(utilaj * 100d) / 100d;
+        res[3] = "" + (double)Math.round(transport * 100d) / 100d;
         //res[4] = "" + totalCostDirect;
         return res;
     }
@@ -235,7 +237,7 @@ public class TaskModel implements SuperModel {
    }
 
     public  void saveTaskToFile(String projectName) throws IOException {
-        FileWriter fw = new FileWriter(Finals.PROJECTS_PATH + projectName + "_task.txt");
+        FileWriter fw = new FileWriter(Finals.PROJECTS_PATH + projectName + ".txt");
 
         fw.write(getHeader() + "\n");
         fw.write(getDetaliiHeader() + "\n");

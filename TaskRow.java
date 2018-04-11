@@ -96,13 +96,23 @@ public class TaskRow {
     public String[] getTableHeader() { //the row itselve
         String[] res = new String[Finals.LENGTH_OF_SUB_UNIT_TABLE];
 
-        res[1] = rowTitle;
+        /*res[1] = rowTitle;
         res[2] = unitateDeMasura;
         res[3] = "" + cantitateUnitara;
         res[4] = "" + pretUnitara;
         res[5] = "" + pretTotalUnitara;
         res[6] = "" + cantitateTotala;
         res[7] = "" + pretTotal;
+        res[8] = furnizor;*/
+
+
+        res[1] = rowTitle;
+        res[2] = unitateDeMasura;
+        res[3] = "" + (double)Math.round(cantitateUnitara * 100d) / 100d;
+        res[4] = "" + (double)Math.round(pretUnitara * 100d) / 100d;
+        res[5] = "" + (double)Math.round(pretTotalUnitara * 100d) / 100d;
+        res[6] = "" + (double)Math.round(cantitateTotala * 100d) / 100d;
+        res[7] = "" + (double)Math.round(pretTotal * 100d) / 100d;
         res[8] = furnizor;
 
         return res;
@@ -113,13 +123,13 @@ public class TaskRow {
 
         res[1] = rowTitle;
         res[2] = unitateDeMasura;
-        res[3] = "" + cantitateUnitara;
-        res[4] = "" + pretUnitara;
-        res[5] = "" + pretTotalUnitara;
-        res[6] = "" + cantitateTotala;
-        res[7] = "" + pretTotal;
-        res[8] = "" + numarDeAlocati;
-        res[9] = "" + numarDeOreNecesare;
+        res[3] = "" + (double)Math.round(cantitateUnitara * 100d) / 100d;
+        res[4] = "" + (double)Math.round(pretUnitara * 100d) / 100d;
+        res[5] = "" + (double)Math.round(pretTotalUnitara * 100d) / 100d;
+        res[6] = "" + (double)Math.round(cantitateTotala * 100d) / 100d;
+        res[7] = "" + (double)Math.round(pretTotal * 100d) / 100d;
+        res[8] = "" + (double)Math.round(numarDeAlocati * 100d) / 100d;
+        res[9] = "" + (double)Math.round(numarDeOreNecesare * 100d) / 100d;
 
         return res;
     }
@@ -136,7 +146,15 @@ public class TaskRow {
     }
 
     public void calculateCantitateTotala() {
-        cantitateTotala = cantitateUnitara * getParentUnit().getCantitate();
+
+        if (parent.getSubUnitIndex() == 1 || parent.getSubUnitIndex() == 2)
+        {
+            cantitateTotala = cantitateUnitara * getParentUnit().getCantitate()/60;
+        }
+        else
+        {
+            cantitateTotala = cantitateUnitara * getParentUnit().getCantitate();
+        }
         calculatePretTotal();   // fuggoseg miatt
         calculateNumarDeOreNecesare();  // fuggoseg miatt
     }
@@ -146,7 +164,7 @@ public class TaskRow {
     }
 
     public void calculateNumarDeOreNecesare(){
-        numarDeOreNecesare = numarDeAlocati * cantitateTotala * 1/60;
+        numarDeOreNecesare =  cantitateTotala / numarDeAlocati;
     }
 
     public void clculateAll() {
