@@ -20,9 +20,9 @@ public class SubUnitTableModel extends DefaultTableModel {
             editable_cells[i][3] = true;
             editable_cells[i][4] = true;
             editable_cells[i][8] = true;
-            if(data[0].length > 9){
-                editable_cells[i][9] = true;
-            }
+//            if(data[0].length > 9){
+//                editable_cells[i][9] = true;
+//            }
         }
 
 
