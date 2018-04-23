@@ -335,6 +335,7 @@ public class Controller {
         }
         catch (FileNotFoundException e)
         {
+            e.printStackTrace();
             displayNonExtistingProjectError();
             return;
         }

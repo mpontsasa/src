@@ -158,6 +158,8 @@ public class SubUnitView extends JPanel {
         subUnitTableModel = new SubUnitTableModel(data,columns);
         table.setModel(subUnitTableModel);
 
+        table.changeSelection(0,1,false, false);
+
 
         Action action = new AbstractAction()
         {
@@ -191,6 +193,10 @@ public class SubUnitView extends JPanel {
 
                 cellChanged(parent.getMyIndex(),myIndex,tcl.getRow(),tcl.getColumn(), (String)tcl.getNewValue());
                 resizeSubunit();
+                //table.changeSelection(tcl.getRow(),tcl.getColumn() + 1, false,false);
+
+                //table.changeSelection(tcl.getRow(), tcl.getColumn() + 1, false, false);
+                //table.editCellAt(tcl.getRow(), tcl.getColumn() + 1);
             }
         };
         TableCellListener tcl = new TableCellListener(table, action);
