@@ -64,6 +64,9 @@ public class TaskHtmlFileCreator {
                 "    border: 0px solid #dddddd;\n" +
                 "    font-size: large\n" +
                 "}" +
+                ".subUnitHeader {\n" +
+                "   background-color: Orange;\n" +
+                "}" +
                 "</style>\n" +
                 "</head>\n" +
                 "<body>";
@@ -182,7 +185,7 @@ public class TaskHtmlFileCreator {
 
         content += "<tr>\n";
         putLeftSideCell();
-        content += "<th colspan=\"4\">";
+        content += "<th class=\"subUnitHeader\" colspan=\"4\">";
         content += Finals.SUB_UNIT_TITLES[subUnitIndex];
         content += "</th>\n";
         content += "</tr>\n";

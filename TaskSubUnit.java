@@ -136,4 +136,8 @@ public class TaskSubUnit {
     public ArrayList<TaskRow> getTaskRows() {
         return taskRows;
     }
+
+    public int getSubUnitIndex() {
+        return subUnitIndex;
+    }
 }
