@@ -327,7 +327,7 @@ public class TaskUnit {
     }
 
     public void calculateManopera(){
-        manopera = subUnits.get(1).getSumPretTotalUnitar() * cantitate;
+        manopera = subUnits.get(1).getSumPretTotalUnitar() * cantitate / 60;
         parent.calculateManopera();
     }
 

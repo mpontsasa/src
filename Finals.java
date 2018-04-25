@@ -56,8 +56,8 @@ public class Finals {
 
     public final static String[] MATERIAL_FORMULAS = {"", "", "", "a", "b", "c=a*b", "d=a*cantitate", "e=b*d", ""};
     public final static String[] TRANSPORT_FORMULAS = {"", "", "", "a", "b", "c=a*b", "d=a*cantitate", "e=b*d", ""};
-    public final static String[] MANOPERA_FORMULAS = {"", "", "", "a", "b", "c=a*b", "d=a*cantitate", "e=b*d", "f", "g=d*f"};
-    public final static String[] UTILAJ_FORMULAS = {"", "", "", "a", "b", "c=a*b", "d=a*cantitate", "e=b*d", "f", "g=d*f"};
+    public final static String[] MANOPERA_FORMULAS = {"", "", "", "a", "b", "c=a*b", "d=a*cantitate/60", "e=b*d", "f", "g=d*f"};
+    public final static String[] UTILAJ_FORMULAS = {"", "", "", "a", "b", "c=a*b", "d=a*cantitate/60", "e=b*d", "f", "g=d*f"};
 
     public final static int LENGTH_OF_SUM_TOTAL_TABLE = 6;
     public final static String[] SUM_TOTAL_TABLE_HEADER = {" TOTAL COST DIRECT (RON) ",
