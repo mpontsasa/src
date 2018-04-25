@@ -38,7 +38,8 @@ public class UnitHeaderView extends JPanel {
 
         JTableUtilities.setCellsAlignment(table, SwingConstants.CENTER,unitHeaderTableModel);
 
-        unitHeaderTableModel.setCellEditable(0,2,false);
+        //vegul betessuzk hogy lehessen a kodot editalni
+        //unitHeaderTableModel.setCellEditable(0,2,false);
 
         Action action = new AbstractAction()
         {
