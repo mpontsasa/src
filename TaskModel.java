@@ -32,7 +32,7 @@ public class TaskModel implements SuperModel {
 
     public void loadProject(String projectName) throws Exception {
 
-        //System.out.println(Finals.PROJECTS_PATH + projectName + ".txt");
+
 
         Scanner scan = new Scanner(new File(Finals.PROJECTS_PATH + projectName + ".txt"));
 

@@ -219,7 +219,13 @@ public class TaskUnit {
     }
 
     public void saveUnit() throws Exception{
+
+        //FileWriter fw = new FileWriter(Finals.UNITS_PATH + unitCode + "_" + unitTitle + ".txt");
+        //ennel az a baj ugye hgoy mi ugy mentenenk el ha ez nem lenne kicommentelve hogy
+        //unitCode_unitTitle.txt, viszont a load az arra keres hogy unitCode.txt
+
         FileWriter fw = new FileWriter(Finals.UNITS_PATH + unitCode + ".txt");
+
 
         fw.write(getHeader() + "\n");
 

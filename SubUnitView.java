@@ -153,10 +153,17 @@ public class SubUnitView extends JPanel {
         table.setSelectAllForEdit(true);
         table.getTableHeader().setReorderingAllowed(false);
         table.setRowSelectionAllowed(false);
+//        table.setSelectAllForEdit(true);
+//        table.setSelectAllForKeyEvent(true);
+//        table.setSelectAllForActionEvent(true);
+//        table.setSelectAllForMouseEvent(true);
 
         //lehessen csak bizonyos cellakat modositni
         subUnitTableModel = new SubUnitTableModel(data,columns);
         table.setModel(subUnitTableModel);
+
+
+
 
 
         Action action = new AbstractAction()
@@ -191,6 +198,10 @@ public class SubUnitView extends JPanel {
 
                 cellChanged(parent.getMyIndex(),myIndex,tcl.getRow(),tcl.getColumn(), (String)tcl.getNewValue());
                 resizeSubunit();
+                //table.changeSelection(tcl.getRow(),tcl.getColumn() + 1, false,false);
+
+                //table.changeSelection(tcl.getRow(), tcl.getColumn() + 1, false, false);
+                //table.editCellAt(tcl.getRow(), tcl.getColumn() + 1);
             }
         };
         TableCellListener tcl = new TableCellListener(table, action);
@@ -209,6 +220,15 @@ public class SubUnitView extends JPanel {
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         TableColumnAdjuster tca = new TableColumnAdjuster(table);
         tca.adjustColumns();
+
+
+//        if((parent != null) && (parent.getMyIndex() == Controller.activeUnitIndex) && (myIndex == Controller.activeSubUnitIndex)){
+//            table.grabFocus();
+//            table.changeSelection(Controller.activeRow,Controller.activeColumn,false, false);
+//            //while(!table.hasFocus())table.grabFocus();
+//        }
+//        table.changeSelection(2,2,false,false);
+
     }
 
     private boolean userInputWrong(String data){

@@ -28,6 +28,12 @@ public class Controller {
 
     private boolean isSaved;
 
+    public static int activeUnitIndex = 0;
+    public static int activeSubUnitIndex = 0;
+    public static int activeRow = 0;
+    public static int activeColumn = 0;
+
+
     public Controller() {
 
         activeView = Finals.NO_VIEW_ACTIVE;
@@ -238,6 +244,11 @@ public class Controller {
         }
 
         System.out.println("Cell edit: " + unitIndex + " " +subUnitIndex +" " + rowIndex + " " + columnIndex + " " + data);
+        activeUnitIndex = unitIndex;
+        activeSubUnitIndex = subUnitIndex;
+        activeRow = rowIndex;
+        activeColumn = columnIndex;
+
         isSaved = false;
         return true;
 
@@ -335,6 +346,7 @@ public class Controller {
         }
         catch (FileNotFoundException e)
         {
+            e.printStackTrace();
             displayNonExtistingProjectError();
             return;
         }
